@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	class Towers
+	public abstract class Towers
 	{
 		protected float damage;
 		protected float price;
@@ -23,7 +23,7 @@ namespace UTD_P2
 
 		protected Vector2 position;
 
-		public void Update(GameTime gameTime)
+		public virtual void Update(GameTime gameTime)
 		{
 			if(!readyToFire)
 			{
@@ -37,5 +37,10 @@ namespace UTD_P2
 				inRangeCheck.checkRange(position, range);
 			}
 		}
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
+        }
 	}
 }
