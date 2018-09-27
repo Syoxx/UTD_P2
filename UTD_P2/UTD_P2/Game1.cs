@@ -1,8 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UTD_P2
 {
@@ -13,18 +18,35 @@ namespace UTD_P2
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+
         private Texture2D mainMenuBackground;
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
 
+        Level1 level1 = new Level1();
+        Level2 level2 = new Level2();
+        Level3 level3 = new Level3();
+
+        private Texture2D lvlBackground;
+        private Texture2D lvlTile1;
+        private Texture2D lvlTile2;
+        private Texture2D lvlTile3;
+        private Texture2D lvlTile4;
+
+        private Texture2D lvlOneWalls;
+        private Texture2D lvlTwoWalls;
+        private Texture2D lvlThreeWalls;
+
         public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
+
             graphics.PreferredBackBufferHeight = 1080;
             graphics.PreferredBackBufferWidth = 1920;
-			Content.RootDirectory = "Content";
+
             this.IsMouseVisible = true;
+            Content.RootDirectory = "Content";
 		}
 
 		/// <summary>
@@ -56,11 +78,38 @@ namespace UTD_P2
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+
             mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
             mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
             mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
-            // TODO: use this.Content to load your game content here
+
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
+
+
+            // Level content loader
+
+            // Implement pngconverter of level tiles here
+            lvlBackground = PNGConverter("Content/Assets/TD/blablabla.png");
+            lvlTile1 = PNGConverter("Content/Assets/TD/blablabla1.png");
+            lvlTile2 = PNGConverter("Content/Assets/TD/blablabla2.png");
+            lvlTile3 = PNGConverter("Content/Assets/TD/blablabla3.png");
+            lvlTile4 = PNGConverter("Content/Assets/TD/blablabla4.png");
+
+            lvlOneWalls = PNGConverter("Content/Assets/TD/blablabla50.png");
+            lvlTwoWalls = PNGConverter("Content/Assets/TD/blablabla60.png");
+            lvlThreeWalls = PNGConverter("Content/Assets/TD/blablabla70.png");
+
+            // Example
+            Texture2D grass = Content.Load<Texture2D>("grass");
+            Texture2D path = Content.Load<Texture2D>("path");
+
+            level1.AddTexture(grass);
+            level1.AddTexture(path);
+
+
+
+            // TODO: use this.Content to load your game content here
+           
         }
 
 		/// <summary>
@@ -113,6 +162,7 @@ namespace UTD_P2
         {
             //loadLevel with i
         }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -120,13 +170,16 @@ namespace UTD_P2
         protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
             mainMenu.Draw(gameTime, spriteBatch);
-            
-			base.Draw(gameTime);
+            level1.Draw(spriteBatch);
+           
             spriteBatch.End();
-		}
+
+            base.Draw(gameTime);
+        }
 	}
 }

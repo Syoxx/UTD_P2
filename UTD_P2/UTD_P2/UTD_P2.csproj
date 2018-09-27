@@ -42,10 +42,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="EnemyController.cs" />
     <Compile Include="Enemys.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="inRangeCheck.cs" />
     <Compile Include="Interface.cs" />
+    <Compile Include="Level1.cs" />
+    <Compile Include="Level2.cs" />
+    <Compile Include="Level3.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
