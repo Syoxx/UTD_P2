@@ -13,15 +13,23 @@ namespace UTD_P2
 	public abstract class Towers
 	{
 		protected float damage;
+        protected float damageRadius;
 		protected float price;
-		protected float range;
+		public float range;
 		protected float reloadTime;
 		protected float timer;
 
 		protected bool readyToFire;
 		protected bool canSlow;
 
-		protected Vector2 position;
+		public Vector2 position;
+
+        protected Texture2D towerTexture, projectileTexture;
+
+        public virtual void Fire(Enemys target)
+        {
+
+        }
 
 		public virtual void Update(GameTime gameTime)
 		{
@@ -31,16 +39,11 @@ namespace UTD_P2
 				if (timer >= reloadTime)
 					readyToFire = true;
 			}
-
-			else
-			{
-				inRangeCheck.checkRange(position, range);
-			}
 		}
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(towerTexture, new Rectangle((int)position.X, (int)position.Y, towerTexture.Width, towerTexture.Height), Color.White);
         }
 	}
 }
