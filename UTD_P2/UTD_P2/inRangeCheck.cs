@@ -11,7 +11,7 @@ namespace UTD_P2
 {
 	class inRangeCheck
 	{
-		private bool isInRange = false;
+		private static bool isInRange = false;
 
 		public static bool checkRange(Vector2 towerPosition, float towerRange)
 		{

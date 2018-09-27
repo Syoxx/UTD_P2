@@ -14,14 +14,24 @@ namespace UTD_P2
 		Texture2D background;
 		Texture2D playMenuButton;
 		Texture2D exitMenuButton;
-		Texture2D creditsMenuButton;
+        public bool isActive = false;
 
-		public MainMenu(Texture2D background, Texture2D playMenuButton, Texture2D exitMenuButton, Texture2D creditsMenuButton)
+		public MainMenu(Texture2D background, Texture2D playMenuButton, Texture2D exitMenuButton)
 		{
 			this.background = background;
 			this.playMenuButton = playMenuButton;
 			this.exitMenuButton = exitMenuButton;
-			this.creditsMenuButton = creditsMenuButton;
+            isActive = true;
 		}
-	}
+
+        public void Update(GameTime gameTime)
+        {
+
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background,new Rectangle(0,0,800,480), Color.White);
+        }
+    }
 }
