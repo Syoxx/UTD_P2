@@ -23,6 +23,11 @@ namespace UTD_P2
             towerTexture = texture;
         }
 
+        public override void Fire(Enemys target)
+        {
+            base.Fire(target);
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

@@ -18,6 +18,7 @@ namespace UTD_P2
 		public float range;
 		protected float reloadTime;
 		protected float timer;
+        protected float projectileSpeed;
 
 		protected bool readyToFire;
 		protected bool canSlow;
@@ -28,7 +29,7 @@ namespace UTD_P2
 
         public virtual void Fire(Enemys target)
         {
-
+            Projectile proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position);
         }
 
 		public virtual void Update(GameTime gameTime)
