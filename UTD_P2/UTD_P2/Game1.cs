@@ -17,11 +17,12 @@ namespace UTD_P2
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
-        pri
 
         public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
 			Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
 		}
@@ -55,9 +56,9 @@ namespace UTD_P2
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-            mainMenuBackground = PNGConverter("Content/Assets/TD/Sample.png");
-            mainMenuStartButton = PNGConverter("Content/Assets/TD/PNG/Default/towerDefense_tile001.png");
-            mainMenuQuitButton = PNGConverter("Content/Assets/TD/PNG/Default/towerDefense_tile002.png");
+            mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
+            mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
+            mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
         }
@@ -82,10 +83,10 @@ namespace UTD_P2
 				Exit();
 
             if (mainMenu.isActive)
-                UpdateMainMenu();
+                UpdateMainMenu(gameTime);
 
-            if (level.isActive)
-                UpdateLevel();
+            //if (level.isActive)
+            //    UpdateLevel(gameTime);
 
 
 			// TODO: Add your update logic here
@@ -93,16 +94,25 @@ namespace UTD_P2
 			base.Update(gameTime);
 		}
 
-        private void UpdateLevel()
+        private void UpdateLevel(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        private void UpdateMainMenu()
+        private void UpdateMainMenu(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            mainMenu.Update(gameTime, this);
         }
 
+        public void Quit()
+        {
+            this.Exit();
+        }
+
+        public void LoadLevel(int i)
+        {
+            //loadLevel with i
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
