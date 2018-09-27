@@ -11,8 +11,6 @@ namespace UTD_P2
 {
 	class inRangeCheck
 	{
-		private static bool isInRange = false;
-
 		public void checkRange(List<Towers> towers, List<Enemys> enemys)
 		{
             foreach(Towers tower in towers)

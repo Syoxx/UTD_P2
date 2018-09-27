@@ -29,7 +29,7 @@ namespace UTD_P2
 
         public virtual void Fire(Enemys target)
         {
-            Projectile proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position);
+            Projectile proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
         }
 
 		public virtual void Update(GameTime gameTime)

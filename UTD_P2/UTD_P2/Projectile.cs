@@ -17,18 +17,24 @@ namespace UTD_P2
 
         private Vector2 position;
 
-        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position)
+        private Enemys target;
+
+        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target)
         {
             this.texture = texture;
             this.speed = speed;
             this.damage = damage;
             this.damageRadius = damageRadius;
             this.position = position;
+            this.target = target;
         }
 
         public void Update(GameTime gameTime)
         {
-
+            if (Vector2.Distance(position, target.position) <= 2)
+            {
+                target.life -= damage;
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
