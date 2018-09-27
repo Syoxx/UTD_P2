@@ -9,19 +9,54 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	class MainMenu
+	public class MainMenu
 	{
 		Texture2D background;
 		Texture2D playMenuButton;
 		Texture2D exitMenuButton;
-		Texture2D creditsMenuButton;
+        Button playButton;
+        Button exitButton;
+        public bool isActive = false;
+        private bool startGame = false;
+        private bool exitGame = false;
 
-		public MainMenu(Texture2D background, Texture2D playMenuButton, Texture2D exitMenuButton, Texture2D creditsMenuButton)
+        public MainMenu(Texture2D background, Texture2D playMenuButton, Texture2D exitMenuButton)
 		{
 			this.background = background;
 			this.playMenuButton = playMenuButton;
 			this.exitMenuButton = exitMenuButton;
-			this.creditsMenuButton = creditsMenuButton;
+            isActive = true;
+            playButton = new Button("startGame", playMenuButton, 960 - (playMenuButton.Width / 2), 500 - (playMenuButton.Height / 2));
+            exitButton = new Button("quitGame", exitMenuButton, 960 - (exitMenuButton.Width / 2), 580 - (exitMenuButton.Height / 2));
 		}
-	}
+
+        public void StartGame()
+        {
+            startGame = true;
+        }
+
+        public void ExitGame()
+        {
+            exitGame = true;
+        }
+
+        public void Update(GameTime gameTime, Game1 game)
+        {
+            if (startGame)
+                game.LoadLevel(1);
+
+            if (exitGame)
+                game.Quit();
+
+            playButton.Update(gameTime, this);
+            exitButton.Update(gameTime, this);
+        }
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background,new Rectangle(0,0,1920,1080), Color.White);
+            playButton.Draw(spriteBatch);
+            exitButton.Draw(spriteBatch);
+        }
+    }
 }

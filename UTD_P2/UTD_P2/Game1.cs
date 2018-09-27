@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.IO;
 
 namespace UTD_P2
 {
@@ -11,11 +13,18 @@ namespace UTD_P2
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+        private Texture2D mainMenuBackground;
+        private Texture2D mainMenuStartButton;
+        private Texture2D mainMenuQuitButton;
+        private MainMenu mainMenu;
 
-		public Game1()
+        public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
 			Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
 		}
 
 		/// <summary>
@@ -31,6 +40,14 @@ namespace UTD_P2
 			base.Initialize();
 		}
 
+        private Texture2D PNGConverter(string path)
+        {
+            FileStream fileStream = new FileStream(path, FileMode.Open);
+            Texture2D returnTexture = Texture2D.FromStream(GraphicsDevice, fileStream);
+            fileStream.Dispose();
+            return returnTexture;
+        }
+
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
@@ -39,9 +56,12 @@ namespace UTD_P2
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-
-			// TODO: use this.Content to load your game content here
-		}
+            mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
+            mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
+            mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
+            // TODO: use this.Content to load your game content here
+            mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
+        }
 
 		/// <summary>
 		/// UnloadContent will be called once per game and is the place to unload
@@ -62,22 +82,51 @@ namespace UTD_P2
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
+            if (mainMenu.isActive)
+                UpdateMainMenu(gameTime);
+
+            //if (level.isActive)
+            //    UpdateLevel(gameTime);
+
+
 			// TODO: Add your update logic here
 
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// This is called when the game should draw itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw(GameTime gameTime)
+        private void UpdateLevel(GameTime gameTime)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void UpdateMainMenu(GameTime gameTime)
+        {
+            mainMenu.Update(gameTime, this);
+        }
+
+        public void Quit()
+        {
+            this.Exit();
+        }
+
+        public void LoadLevel(int i)
+        {
+            //loadLevel with i
+        }
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
 
-			// TODO: Add your drawing code here
-
+            // TODO: Add your drawing code here
+            mainMenu.Draw(gameTime, spriteBatch);
+            
 			base.Draw(gameTime);
+            spriteBatch.End();
 		}
 	}
 }
