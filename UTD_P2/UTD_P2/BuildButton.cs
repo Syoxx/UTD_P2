@@ -14,14 +14,16 @@ namespace UTD_P2
         Vector2 uIButtonPos;
         UIButton uIButton;
         GraphicsDevice graphicsDevice;
+        Player player:
 
-        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice)
+        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player)
         {
             this.name = name;
             this.texture = texture;
             this.buttonX = buttonX;
             this.buttonY = buttonY;
             this.graphicsDevice = graphicsDevice;
+            this.player = player;
         }
 
         public override void Update(GameTime gameTime)
@@ -31,7 +33,7 @@ namespace UTD_P2
 
         protected override void OnButtonClick()
         {
-            uIButton = new UIButton((int)uIButtonPos.X, (int)uIButtonPos.Y, this, graphicsDevice);
+            uIButton = new UIButton((int)uIButtonPos.X, (int)uIButtonPos.Y, this, graphicsDevice, player);
         }
 
         protected override void OnButtonClickMenu(MainMenu mainMenu)

@@ -47,10 +47,12 @@
     <Compile Include="DoubleShotTower.cs" />
     <Compile Include="Enemys.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="InputManager.cs" />
     <Compile Include="inRangeCheck.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuButton.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="SlowTower.cs" />
     <Compile Include="Towers.cs" />
     <Compile Include="UIButton.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -903,7 +906,7 @@
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile275.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile276.png">
+    <Content Include="Content\Assets\TD\PNG\Default\number0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile277.png">
@@ -927,7 +930,7 @@
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile283.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile284.png">
+    <Content Include="Content\Assets\TD\PNG\Default\number8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile285.png">
@@ -1283,6 +1286,17 @@
     </Content>
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet%402.png" />
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet.png" />
+    <Content Include="Content\Assets\TD\UI\currencySymbol.png" />
+    <Content Include="Content\Assets\TD\UI\number0.png" />
+    <Content Include="Content\Assets\TD\UI\number1.png" />
+    <Content Include="Content\Assets\TD\UI\number2.png" />
+    <Content Include="Content\Assets\TD\UI\number3.png" />
+    <Content Include="Content\Assets\TD\UI\number4.png" />
+    <Content Include="Content\Assets\TD\UI\number5.png" />
+    <Content Include="Content\Assets\TD\UI\number6.png" />
+    <Content Include="Content\Assets\TD\UI\number7.png" />
+    <Content Include="Content\Assets\TD\UI\number8.png" />
+    <Content Include="Content\Assets\TD\UI\number9.png" />
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.svg" />
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.swf" />
     <Content Include="Icon.ico" />
