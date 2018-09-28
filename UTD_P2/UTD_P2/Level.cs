@@ -13,12 +13,20 @@ namespace UTD_P2
     /// </summary>
     public class Level
     {
+        #region Variables
+
         public enum MapState { map1, map2, map3, };
 
         MapState mState = MapState.map1;
 
         int[,] mapToUse;
 
+        #endregion
+
+
+        /// <summary>
+        /// Switch-Case to know which map to be loaded.
+        /// </summary>
         public void Update()
         {
             switch (mState)
@@ -38,20 +46,22 @@ namespace UTD_P2
             }
         }
 
+        #region Map Arrays
+
         /// <summary>
         /// This arrays are going to be used to map out our level. Each one of these numbers is a texture.
         /// </summary>
-        
+
         // Level 1
         int[,] map1 = new int[,]
         {
-            {0,0,1,0,0,0,0,1,},
-            {0,0,1,1,0,0,0,1,},
-            {0,0,0,1,1,0,0,1,},
-            {0,0,0,0,1,0,0,1,},
-            {0,0,0,1,1,0,0,1,},
-            {1,0,1,1,0,0,0,1,},
-            {1,0,0,0,0,0,0,1,},
+            {1,1,1,1,1,1,1,1,},
+            {1,1,0,0,0,0,1,1,},
+            {1,0,1,0,0,1,0,1,},
+            {1,0,0,1,1,0,0,1,},
+            {1,0,0,1,1,0,0,1,},
+            {1,0,1,0,0,1,0,1,},
+            {1,1,0,0,0,0,1,1,},
             {1,1,1,1,1,1,1,1,},
         };
 
@@ -71,15 +81,19 @@ namespace UTD_P2
         // Level 3
         int[,] map3 = new int[,]
         {
-            {0,0,1,0,0,0,0,0,},
-            {0,0,1,1,0,0,0,0,},
-            {0,0,0,1,1,0,0,0,},
-            {0,0,0,0,1,0,0,0,},
-            {0,0,0,1,1,0,0,0,},
-            {0,0,1,1,0,0,0,0,},
-            {0,0,1,0,0,0,0,0,},
-            {0,0,1,1,1,1,1,1,},
+            {1,1,1,1,1,1,1,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,1,1,1,1,1,1,},
+            {1,0,1,0,0,0,1,1,},
+            {1,0,1,0,0,0,1,1,},
+            {1,0,1,1,1,1,1,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,1,1,1,1,1,1,1,},
         };
+
+        #endregion
+
+        #region LoadMapTextures
 
         /// <summary>
         /// Get the widht of our level by retreiving our array's row lenght.
@@ -113,7 +127,8 @@ namespace UTD_P2
             tileTextures.Add(texture);
         }
 
-
+        
+        /// <param name="batch"></param>
         public void Draw(SpriteBatch batch)
         {
             for (int x = 0; x < Width; x++)
@@ -131,5 +146,8 @@ namespace UTD_P2
                 }
             }
         }
+
+        #endregion
+
     }
 }
