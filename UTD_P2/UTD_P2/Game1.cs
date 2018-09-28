@@ -24,10 +24,8 @@ namespace UTD_P2
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
 
-        Level1 level1 = new Level1();
-        Level2 level2 = new Level2();
-        Level3 level3 = new Level3();
-
+        Level level = new Level();
+        
         private Texture2D lvlBackground;
         private Texture2D lvlTile1;
         private Texture2D lvlTile2;
@@ -103,8 +101,8 @@ namespace UTD_P2
             Texture2D grass = Content.Load<Texture2D>("grass");
             Texture2D path = Content.Load<Texture2D>("path");
 
-            level1.AddTexture(grass);
-            level1.AddTexture(path);
+            level.AddTexture(grass);
+            level.AddTexture(path);
 
 
 
@@ -158,9 +156,9 @@ namespace UTD_P2
             this.Exit();
         }
 
-        public void LoadLevel(int i)
+        public void LoadLevel()
         {
-            //loadLevel with i
+            //loadLevel with bool startGame
         }
 
         /// <summary>
@@ -175,7 +173,7 @@ namespace UTD_P2
 
             // TODO: Add your drawing code here
             mainMenu.Draw(gameTime, spriteBatch);
-            level1.Draw(spriteBatch);
+            level.Draw(spriteBatch);
            
             spriteBatch.End();
 

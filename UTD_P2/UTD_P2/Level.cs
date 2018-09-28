@@ -11,12 +11,65 @@ namespace UTD_P2
     /// <summary>
     /// Load and unload what we need in a level
     /// </summary>
-    public class Level1
+    public class Level
     {
+        public enum MapState { map1, map2, map3, };
+
+        MapState mState = MapState.map1;
+
+        int[,] mapToUse;
+
+        public void Update()
+        {
+            switch (mState)
+            {
+                case MapState.map1:
+                    mapToUse = map1;
+                    break;
+                case MapState.map2:
+                    mapToUse = map2;
+                    break;
+                case MapState.map3:
+                    mapToUse = map3;
+                    break;
+
+                default:
+                    throw new Exception(String.Format("Unknown state: {0}", mState));
+            }
+        }
+
         /// <summary>
-        /// This array is going to be used to map out our level. Each one of these numbers is a texture.
+        /// This arrays are going to be used to map out our level. Each one of these numbers is a texture.
         /// </summary>
-        int[,] map = new int[,] 
+        
+        // Level 1
+        int[,] map1 = new int[,]
+        {
+            {0,0,1,0,0,0,0,1,},
+            {0,0,1,1,0,0,0,1,},
+            {0,0,0,1,1,0,0,1,},
+            {0,0,0,0,1,0,0,1,},
+            {0,0,0,1,1,0,0,1,},
+            {1,0,1,1,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,1,1,1,1,1,1,1,},
+        };
+
+        // Level 2
+        int[,] map2 = new int[,]
+        {
+            {1,1,1,1,1,1,1,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,0,0,0,0,0,0,1,},
+            {1,1,1,1,1,1,1,1,},
+        };
+
+        // Level 3
+        int[,] map3 = new int[,]
         {
             {0,0,1,0,0,0,0,0,},
             {0,0,1,1,0,0,0,0,},
@@ -33,14 +86,17 @@ namespace UTD_P2
         /// </summary>
         public int Width
         {
-            get { return map.GetLength(1); }
+            get { return mapToUse.GetLength(1); }
+
+            //get { return map.GetLength(1); }
         }
         /// <summary>
         /// Get the height of our level by retreiving our array's column lenght.
         /// </summary>
         public int Height
         {
-            get { return map.GetLength(0); }
+            get { return mapToUse.GetLength(0); }
+            //get { return map.GetLength(0); }
         }
 
         /// <summary>
@@ -64,7 +120,8 @@ namespace UTD_P2
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    int textureIndex = map[y, x];
+                    //int textureIndex = map[y, x];
+                    int textureIndex = mapToUse[y, x];
                     if (textureIndex == -1)
                         continue;
 
