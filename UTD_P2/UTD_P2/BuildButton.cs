@@ -11,12 +11,17 @@ namespace UTD_P2
 {
     class BuildButton : Button
     {
-        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY)
+        Vector2 uIButtonPos;
+        UIButton uIButton;
+        GraphicsDevice graphicsDevice;
+
+        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice)
         {
             this.name = name;
             this.texture = texture;
             this.buttonX = buttonX;
             this.buttonY = buttonY;
+            this.graphicsDevice = graphicsDevice;
         }
 
         public override void Update(GameTime gameTime)
@@ -26,7 +31,7 @@ namespace UTD_P2
 
         protected override void OnButtonClick()
         {
-            throw new NotImplementedException();
+            uIButton = new UIButton((int)uIButtonPos.X, (int)uIButtonPos.Y, this, graphicsDevice);
         }
 
         protected override void OnButtonClickMenu(MainMenu mainMenu)
