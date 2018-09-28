@@ -41,17 +41,26 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BuildButton.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="EnemyController.cs" />
+    <Compile Include="ContentConverter.cs" />
+    <Compile Include="DoubleShotTower.cs" />
     <Compile Include="Enemys.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="inRangeCheck.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="MenuButton.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RocketLauncherTower.cs" />
+    <Compile Include="SingleShotTower.cs" />
+    <Compile Include="SlowTower.cs" />
     <Compile Include="Towers.cs" />
+    <Compile Include="UIButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

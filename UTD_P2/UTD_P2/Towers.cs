@@ -10,20 +10,29 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	class Towers
+	public abstract class Towers
 	{
 		protected float damage;
+        protected float damageRadius;
 		protected float price;
-		protected float range;
+		public float range;
 		protected float reloadTime;
 		protected float timer;
+        protected float projectileSpeed;
 
 		protected bool readyToFire;
 		protected bool canSlow;
 
-		protected Vector2 position;
+		public Vector2 position;
 
-		public void Update(GameTime gameTime)
+        protected Texture2D towerTexture, projectileTexture;
+
+        public virtual void Fire(Enemys target)
+        {
+            Projectile proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
+        }
+
+		public virtual void Update(GameTime gameTime)
 		{
 			if(!readyToFire)
 			{
@@ -31,11 +40,11 @@ namespace UTD_P2
 				if (timer >= reloadTime)
 					readyToFire = true;
 			}
-
-			else
-			{
-				inRangeCheck.checkRange(position, range);
-			}
 		}
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(towerTexture, new Rectangle((int)position.X, (int)position.Y, towerTexture.Width, towerTexture.Height), Color.White);
+        }
 	}
 }

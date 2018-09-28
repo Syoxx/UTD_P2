@@ -9,14 +9,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-    public class Button
+    public abstract class Button
     {
-        int buttonX, buttonY;
-        private string Name;
-        private Texture2D Texture;
-        MouseState mouseState;
-        MouseState oldState;
-        Color currentColor;
+        protected int buttonX, buttonY;
+        protected string name;
+        protected Texture2D texture;
+        protected MouseState mouseState;
+        protected MouseState oldState;
+        protected Color currentColor;
 
         public int ButtonX
         {
@@ -34,22 +34,14 @@ namespace UTD_P2
             }
         }
 
-        public Button(string name, Texture2D texture, int buttonX, int buttonY)
-        {
-            this.Name = name;
-            this.Texture = texture;
-            this.buttonX = buttonX;
-            this.buttonY = buttonY;
-        }
-
         /**
          * @return true: If a player enters the button with mouse
          */
         public bool enterButton()
         {
-            if (mouseState.X < buttonX + Texture.Width &&
+            if (mouseState.X < buttonX + texture.Width &&
                     mouseState.X > buttonX &&
-                    mouseState.Y < buttonY + Texture.Height &&
+                    mouseState.Y < buttonY + texture.Height &&
                     mouseState.Y > buttonY)
             {
                 currentColor = Color.Gray;
@@ -59,26 +51,33 @@ namespace UTD_P2
             return false;
         }
 
-        public void Update(GameTime gameTime, MainMenu mainMenu)
+        public virtual void Update(GameTime gameTime)
         {
             mouseState = Mouse.GetState();
             if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
             {
-                switch (Name)
-                {
-                    case "startGame":
-                        mainMenu.StartGame();
-                        break;
-                    case "quitGame":
-                        mainMenu.ExitGame();
-                        break;
-                }
+                OnButtonClick();
             }
             oldState = mouseState;
         }
-        public void Draw(SpriteBatch spriteBatch)
+
+        public virtual void Update(GameTime gameTime, MainMenu mainMenu)
         {
-            spriteBatch.Draw(Texture, new Rectangle((int)ButtonX, (int)ButtonY, Texture.Width, Texture.Height), currentColor);
+            mouseState = Mouse.GetState();
+            if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
+            {
+                OnButtonClickMenu(mainMenu);
+            }
+            oldState = mouseState;
+        }
+
+        protected abstract void OnButtonClick();
+
+        protected abstract void OnButtonClickMenu(MainMenu mainMenu);
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, new Rectangle((int)ButtonX, (int)ButtonY, texture.Width, texture.Height), currentColor);
         }
     }
 }

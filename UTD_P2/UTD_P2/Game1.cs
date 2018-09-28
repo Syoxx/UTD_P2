@@ -60,14 +60,6 @@ namespace UTD_P2
 			base.Initialize();
 		}
 
-        private Texture2D PNGConverter(string path)
-        {
-            FileStream fileStream = new FileStream(path, FileMode.Open);
-            Texture2D returnTexture = Texture2D.FromStream(GraphicsDevice, fileStream);
-            fileStream.Dispose();
-            return returnTexture;
-        }
-
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
@@ -81,6 +73,7 @@ namespace UTD_P2
             mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
             mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
 
+            // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
 
 
@@ -156,9 +149,9 @@ namespace UTD_P2
             this.Exit();
         }
 
-        public void LoadLevel()
+        public void LoadLevel(int i)
         {
-            //loadLevel with bool startGame
+            //loadLevel with i
         }
 
         /// <summary>

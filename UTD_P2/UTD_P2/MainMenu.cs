@@ -26,8 +26,8 @@ namespace UTD_P2
 			this.playMenuButton = playMenuButton;
 			this.exitMenuButton = exitMenuButton;
             isActive = true;
-            playButton = new Button("startGame", playMenuButton, 960 - (playMenuButton.Width / 2), 500 - (playMenuButton.Height / 2));
-            exitButton = new Button("quitGame", exitMenuButton, 960 - (exitMenuButton.Width / 2), 580 - (exitMenuButton.Height / 2));
+            playButton = new MenuButton("startGame", playMenuButton, 960 - (playMenuButton.Width / 2), 500 - (playMenuButton.Height / 2));
+            exitButton = new MenuButton("quitGame", exitMenuButton, 960 - (exitMenuButton.Width / 2), 580 - (exitMenuButton.Height / 2));
 		}
 
         public void StartGame()
