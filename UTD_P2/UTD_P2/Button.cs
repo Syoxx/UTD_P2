@@ -72,10 +72,19 @@ namespace UTD_P2
                     case "quitGame":
                         mainMenu.ExitGame();
                         break;
+                    case "buildTower":
+                        BuildTower();
+                        break;
                 }
             }
             oldState = mouseState;
         }
+
+        private void BuildTower()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, new Rectangle((int)ButtonX, (int)ButtonY, Texture.Width, Texture.Height), currentColor);

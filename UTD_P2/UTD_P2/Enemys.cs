@@ -17,11 +17,12 @@ namespace UTD_P2
         private Texture2D texture;
         private float bounty;
 
-        public Enemys(Texture2D texture, Vector2 position, float bounty)
+        public Enemys(Texture2D texture, Vector2 position, float bounty, float speed)
         {
             this.texture = texture;
             this.position = position;
             this.bounty = bounty;
+            this.moveSpeed = speed;
         }
 
         public void Update(GameTime gameTime)

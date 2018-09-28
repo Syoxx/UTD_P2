@@ -40,14 +40,6 @@ namespace UTD_P2
 			base.Initialize();
 		}
 
-        private Texture2D PNGConverter(string path)
-        {
-            FileStream fileStream = new FileStream(path, FileMode.Open);
-            Texture2D returnTexture = Texture2D.FromStream(GraphicsDevice, fileStream);
-            fileStream.Dispose();
-            return returnTexture;
-        }
-
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
@@ -56,9 +48,9 @@ namespace UTD_P2
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-            mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
-            mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
-            mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
+            mainMenuBackground = ContentConverter.Convert("Content/Assets/MenuButtons/Background.jpg", GraphicsDevice);
+            mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
+            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
         }
