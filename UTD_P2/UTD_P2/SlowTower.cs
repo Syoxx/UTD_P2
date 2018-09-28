@@ -21,6 +21,8 @@ namespace UTD_P2
             position.X = positionX;
             position.Y = positionY;
             towerTexture = texture;
+            canSlow = true;
+            rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
         public override void Fire(Enemys target)

@@ -19,6 +19,7 @@ namespace UTD_P2
                 {
                     if (Vector2.Distance(tower.position, enemy.position) <= tower.range)
                     {
+                        tower.rotationTarget = enemy;
                         tower.Fire(enemy);
                     }
                 }
