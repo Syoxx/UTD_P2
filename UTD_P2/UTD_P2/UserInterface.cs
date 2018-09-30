@@ -35,34 +35,215 @@ namespace UTD_P2
             number8 = ContentConverter.Convert(rootPath + "number8.png", graphicsDevice);
             number9 = ContentConverter.Convert(rootPath + "number9.png", graphicsDevice);
             currencySymbol = ContentConverter.Convert(rootPath + "currencySymbol.png", graphicsDevice);
-        }
+			onesDisplay = tensDisplay = hundredsDisplay = thousandsDisplay = number0;
+
+			posThousands = new Vector2(number0.Width, number0.Height);
+			posHundreds = new Vector2(number0.Width / 2, 0) + posThousands;
+			posTens = new Vector2(number0.Width / 2, 0) + posHundreds;
+			posOnes = new Vector2(number0.Width / 2, 0) + posTens;
+		}
 
         public void Update(GameTime gameTime)
         {
-            if (player.money < 10)
-            {
-                tensDisplay = hundredsDisplay = thousandsDisplay = number0;
-            }
-
-            if (player.money < 100)
-            {
-                hundredsDisplay = thousandsDisplay = number0;
-            }
-
-            if (player.money < 1000)
-            {
-                thousandsDisplay = number0;
-            }
-
-            if (player.money > 1000)
-            {
-                thousandsDisplay = number1;
-            }
+			CalcMoney(player.money);
         }
+
+		private void CalcMoney(int curMoney)
+		{
+			if (curMoney < 10)
+			{
+				tensDisplay = hundredsDisplay = thousandsDisplay = number0;
+				CalcOnes(curMoney);
+			}
+
+			if (curMoney >= 10 && curMoney < 100)
+			{
+				hundredsDisplay = thousandsDisplay = number0;
+				CalcTens(curMoney);
+			}
+
+			if (curMoney >= 100 && curMoney < 1000)
+			{
+				thousandsDisplay = number0;
+				CalcHundreds(curMoney);
+			}
+
+			if (curMoney >= 1000)
+			{
+				thousandsDisplay = number1;
+				CalcHundreds(curMoney - 1000);
+			}
+		}
+
+		private void CalcHundreds(int curMoney)
+		{
+			if (curMoney >= 900)
+			{
+				hundredsDisplay = number9;
+				CalcTens(curMoney - 900);
+			}
+
+			else if (curMoney >= 800)
+			{
+				hundredsDisplay = number8;
+				CalcTens(curMoney - 800);
+			}
+
+			else if (curMoney >= 700)
+			{
+				hundredsDisplay = number7;
+				CalcTens(curMoney - 700);
+			}
+
+			else if (curMoney >= 600)
+			{
+				hundredsDisplay = number6;
+				CalcTens(curMoney - 600);
+			}
+
+			else if (curMoney >= 500)
+			{
+				hundredsDisplay = number5;
+				CalcTens(curMoney - 500);
+			}
+
+			else if (curMoney >= 400)
+			{
+				hundredsDisplay = number4;
+				CalcTens(curMoney - 400);
+			}
+
+			else if (curMoney >= 300)
+			{
+				hundredsDisplay = number3;
+				CalcTens(curMoney - 300);
+			}
+
+			else if (curMoney >= 200)
+			{
+				hundredsDisplay = number2;
+				CalcTens(curMoney - 200);
+			}
+
+			else if (curMoney >= 100)
+			{
+				hundredsDisplay = number1;
+				CalcTens(curMoney - 100);
+			}
+
+			else if (curMoney < 100)
+			{
+				hundredsDisplay = number0;
+				CalcTens(curMoney);
+			}
+		}
+
+		private void CalcTens(int curMoney)
+		{
+			if (curMoney >= 90)
+			{
+				tensDisplay = number9;
+				CalcOnes(curMoney - 90);
+			}
+
+			else if (curMoney >= 80)
+			{
+				tensDisplay = number8;
+				CalcOnes(curMoney - 80);
+			}
+
+			else if (curMoney >= 70)
+			{
+				tensDisplay = number7;
+				CalcOnes(curMoney - 70);
+			}
+
+			else if  (curMoney >= 60)
+			{
+				tensDisplay = number6;
+				CalcOnes(curMoney - 60);
+			}
+
+			else if (curMoney >= 50)
+			{
+				tensDisplay = number5;
+				CalcOnes(curMoney - 50);
+			}
+
+			else if (curMoney >= 40)
+			{
+				tensDisplay = number4;
+				CalcOnes(curMoney - 40);
+			}
+
+			else if (curMoney >= 30)
+			{
+				tensDisplay = number3;
+				CalcOnes(curMoney - 30);
+			}
+
+			else if (curMoney >= 20)
+			{
+				tensDisplay = number2;
+				CalcOnes(curMoney - 20);
+			}
+
+			else if (curMoney >= 10)
+			{
+				tensDisplay = number1;
+				CalcOnes(curMoney - 10);
+			}
+
+			else if (curMoney < 10)
+			{
+				tensDisplay = number0;
+				CalcOnes(curMoney);
+			}
+		}
+
+		private void CalcOnes(int curMoney)
+		{
+			switch (curMoney)
+			{
+				case 9:
+					onesDisplay = number9;
+					break;
+				case 8:
+					onesDisplay = number8;
+					break;
+				case 7:
+					onesDisplay = number7;
+					break;
+				case 6:
+					onesDisplay = number6;
+					break;
+				case 5:
+					onesDisplay = number5;
+					break;
+				case 4:
+					onesDisplay = number4;
+					break;
+				case 3:
+					onesDisplay = number3;
+					break;
+				case 2:
+					onesDisplay = number2;
+					break;
+				case 1:
+					onesDisplay = number1;
+					break;
+				case 0:
+					onesDisplay = number0;
+					break;
+			}
+		}
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-        }
+			spriteBatch.Draw(thousandsDisplay, posThousands, new Rectangle(0, 0, thousandsDisplay.Width, thousandsDisplay.Height), Color.White);
+			spriteBatch.Draw(hundredsDisplay, posHundreds, new Rectangle(0, 0, hundredsDisplay.Width, hundredsDisplay.Height), Color.White);
+			spriteBatch.Draw(tensDisplay, posTens, new Rectangle(0, 0, tensDisplay.Width, tensDisplay.Height), Color.White);
+			spriteBatch.Draw(onesDisplay, posOnes, new Rectangle(0, 0, onesDisplay.Width, onesDisplay.Height), Color.White);
+		}
     }
 }

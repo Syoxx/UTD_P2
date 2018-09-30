@@ -13,7 +13,8 @@ namespace UTD_P2
 
         public Player()
         {
-
+			money = 15;
+			life = 30;
         }
     }
 }

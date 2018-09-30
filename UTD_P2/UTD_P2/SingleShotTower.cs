@@ -25,9 +25,9 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
-        public override void Fire(Enemys target)
+        public override void Fire()
         {
-            base.Fire(target);
+            base.Fire();
         }
 
         public override void Update(GameTime gameTime)

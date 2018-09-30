@@ -26,17 +26,33 @@ namespace UTD_P2
 
         Projectile proj;
 
-        public Enemys rotationTarget;
+        protected Enemys target;
 
-        public virtual void Fire(Enemys target)
-        {
-            if (target.life > 0)
-            proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
-        }
+		public Enemys Target
+		{
+			get
+			{
+				return target;
+			}
+
+			set
+			{
+				target = value;
+			}
+		}
+
+		public virtual void Fire()
+		{
+			if (target.life > 0)
+			{
+				timer = 0;
+				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
+			}
+		}
 
 		public virtual void Update(GameTime gameTime)
 		{
-            direction = position - rotationTarget.position;
+            direction = position - target.position;
             direction.Normalize();
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
 			if(!readyToFire)
@@ -45,6 +61,9 @@ namespace UTD_P2
 				if (timer >= reloadTime)
 					readyToFire = true;
 			}
+
+			if (readyToFire)
+				Fire();
 		}
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

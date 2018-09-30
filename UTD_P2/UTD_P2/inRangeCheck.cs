@@ -9,9 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	class inRangeCheck
+	class InRangeCheck
 	{
-		public void checkRange(List<Towers> towers, List<Enemys> enemys)
+		public void CheckRange(List<Towers> towers, List<Enemys> enemys)
 		{
             foreach(Towers tower in towers)
             {
@@ -19,8 +19,8 @@ namespace UTD_P2
                 {
                     if (Vector2.Distance(tower.position, enemy.position) <= tower.range)
                     {
-                        tower.rotationTarget = enemy;
-                        tower.Fire(enemy);
+						if (tower.Target == null)
+							tower.Target = enemy;
                     }
                 }
             }
