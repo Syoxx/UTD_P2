@@ -62,8 +62,14 @@ namespace UTD_P2
 					readyToFire = true;
 			}
 
-			if (readyToFire)
-				Fire();
+			if (!(target == null))
+			{
+				if (readyToFire && target.life > 0)
+					Fire();
+
+				if (target.life <= 0)
+					target = null;
+			}
 		}
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

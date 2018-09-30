@@ -19,8 +19,11 @@ namespace UTD_P2
                 {
                     if (Vector2.Distance(tower.position, enemy.position) <= tower.range)
                     {
-						if (tower.Target == null)
+						if (tower.Target == null && enemy.life > 0)
 							tower.Target = enemy;
+
+						else
+							continue;
                     }
                 }
             }
