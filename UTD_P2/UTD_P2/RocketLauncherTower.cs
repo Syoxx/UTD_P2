@@ -11,7 +11,7 @@ namespace UTD_P2
 {
     class RocketLauncherTower : Towers
     {
-        public RocketLauncherTower(Texture2D texture, float positionX, float positionY, Player player)
+        public RocketLauncherTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 20;
             damageRadius = 10;
@@ -23,6 +23,8 @@ namespace UTD_P2
             towerTexture = texture;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
+            this.player = player;
+            projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/missile.png", graphicsDevice);
         }
 
         public override void Fire(Level level)

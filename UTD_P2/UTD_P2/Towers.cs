@@ -28,6 +28,8 @@ namespace UTD_P2
 
         protected Enemys target;
 
+        protected Player player;
+
 		public Enemys Target
 		{
 			get
@@ -62,7 +64,7 @@ namespace UTD_P2
 
             if (target == null)
             {
-                direction = position - Mouse.GetState().Position.ToVector2();
+                direction = position - player.position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
             }

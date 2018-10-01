@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-    public class Projectile
+    public class Projectile : IDisposable
     {
         private float speed, damage, damageRadius, rotationAngle;
 
@@ -21,6 +21,8 @@ namespace UTD_P2
 
         private Rectangle sourceRectangle;
 
+        public bool hit;
+
         public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target)
         {
             this.texture = texture;
@@ -29,6 +31,7 @@ namespace UTD_P2
             this.damageRadius = damageRadius;
             this.position = position;
             this.target = target;
+            hit = false;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
@@ -43,6 +46,7 @@ namespace UTD_P2
                 if (damageRadius > 0)
                     InitiateExplosion();
                 target.life -= damage;
+                hit = true;
             }
         }
 
@@ -51,10 +55,17 @@ namespace UTD_P2
             //TODO: implement Circle for Explosion collision
         }
 
+        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, position, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

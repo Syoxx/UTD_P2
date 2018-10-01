@@ -33,6 +33,8 @@ namespace UTD_P2
 
         private Level level;
 
+        private GraphicsDevice graphicsDevice;
+
         public UIButton(int buttonX, int buttonY, BuildButton buildButton, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.buttonX = buttonX;
@@ -40,6 +42,7 @@ namespace UTD_P2
             this.buildButton = buildButton;
             this.player = player;
             this.level = level;
+            this.graphicsDevice = graphicsDevice;
 
             singleShotTexture = ContentConverter.Convert(singleShotPath, graphicsDevice);
             singleShotUITexture = ContentConverter.Convert(singleShotUIPath, graphicsDevice);
@@ -171,19 +174,19 @@ namespace UTD_P2
             switch (towerType)
             {
                 case TowerTypes.Single:
-                    SingleShotTower newSingleShotTower = new SingleShotTower(singleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player);
+                    SingleShotTower newSingleShotTower = new SingleShotTower(singleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
                     level.AddTower(newSingleShotTower, this);
                     break;
                 case TowerTypes.Double:
-                    DoubleShotTower newDoubleShotTower = new DoubleShotTower(doubleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player);
+                    DoubleShotTower newDoubleShotTower = new DoubleShotTower(doubleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
                     level.AddTower(newDoubleShotTower, this);
                     break;
                 case TowerTypes.Slow:
-                    SlowTower newSlowTower = new SlowTower(slowTexture, buildButton.ButtonX, buildButton.ButtonY, player);
+                    SlowTower newSlowTower = new SlowTower(slowTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
                     level.AddTower(newSlowTower, this);
                     break;
                 case TowerTypes.Rocket:
-                    RocketLauncherTower newRocketLauncherTower = new RocketLauncherTower(rocketLauncherTexture, buildButton.ButtonX, buildButton.ButtonY, player);
+                    RocketLauncherTower newRocketLauncherTower = new RocketLauncherTower(rocketLauncherTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
                     level.AddTower(newRocketLauncherTower, this);
                     break;
             }

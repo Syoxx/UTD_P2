@@ -11,7 +11,7 @@ namespace UTD_P2
 {
     class SingleShotTower : Towers
     {
-        public SingleShotTower(Texture2D texture, float positionX, float positionY, Player player)
+        public SingleShotTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 10;
             damageRadius = 0;
@@ -24,6 +24,7 @@ namespace UTD_P2
             towerTexture = texture;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
+            projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/bullet.png", graphicsDevice);
         }
 
         public override void Fire(Level level)

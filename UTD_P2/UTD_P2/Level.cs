@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -70,7 +70,7 @@ namespace UTD_P2
             projectileList = new List<Projectile>();
             buildButtonList = new List<BuildButton>();
 
-            player = new Player();
+            player = new Player(graphicsDevice);
             ui = new UserInterface(graphicsDevice, player);
 
             isActive = true;
@@ -179,10 +179,12 @@ namespace UTD_P2
             {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,},
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
         };
+        private KeyboardState currentKBState;
+        private KeyboardState oldKBState;
 
         #endregion
-        
-        
+
+
         #region LoadMapTextures
 
         /// <summary>
@@ -268,6 +270,17 @@ namespace UTD_P2
 
         public void Update(GameTime gameTime)
         {
+            currentKBState = Keyboard.GetState();
+
+            if (currentKBState.IsKeyDown(Keys.Z))
+                player.position.Y -= 2;
+            if (currentKBState.IsKeyDown(Keys.H))
+                player.position.Y += 2;
+            if (currentKBState.IsKeyDown(Keys.G))
+                player.position.X -= 2;
+            if (currentKBState.IsKeyDown(Keys.J))
+                player.position.X += 2;
+
             foreach(Towers tower in towerList)
             {
                 tower.Update(gameTime, this);
@@ -290,6 +303,10 @@ namespace UTD_P2
                 uiButton.Update(gameTime);
 
             ui.Update(gameTime);
+
+            player.Update(gameTime);
+
+            oldKBState = currentKBState;
         }
 
         /// <param name="batch"></param>
@@ -326,6 +343,8 @@ namespace UTD_P2
 
             if(uiButton != null)
                 uiButton.Draw(batch);
+
+            player.Draw(batch);
         }
 
     }
