@@ -11,7 +11,7 @@ namespace UTD_P2
 {
     class DoubleShotTower : Towers
     {
-        public DoubleShotTower(Texture2D texture, float positionX, float positionY)
+        public DoubleShotTower(Texture2D texture, float positionX, float positionY, Player player)
         {
             damage = 15;
             damageRadius = 0;
@@ -22,6 +22,7 @@ namespace UTD_P2
             position.Y = positionY;
             towerTexture = texture;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
+            player.money -= (int)price;
         }
 
         public override void Fire(Level level)

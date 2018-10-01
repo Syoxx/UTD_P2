@@ -15,7 +15,7 @@ namespace UTD_P2
     {
         #region Variables
 
-        Texture2D backgroundGreen, lvlTile1, lvlTile2, lvlTile3, lvlTile4, lvlTile5, lvlTile6;
+        Texture2D backgroundGreen, lvlTile1, lvlTile2, lvlTile3, lvlTile4, lvlTile5, lvlTile6, buildButtonTexture;
 
         #region TilesToPath
 
@@ -42,6 +42,11 @@ namespace UTD_P2
         private List<Towers> towerList;
         private List<Enemys> enemyList;
         private List<Projectile> projectileList;
+        private List<BuildButton> buildButtonList;
+        private UIButton uiButton;
+
+        private Player player;
+        private UserInterface ui;
 
         public bool isActive;
 
@@ -63,13 +68,18 @@ namespace UTD_P2
             towerList = new List<Towers>();
             enemyList = new List<Enemys>();
             projectileList = new List<Projectile>();
+            buildButtonList = new List<BuildButton>();
+
+            player = new Player();
+            ui = new UserInterface(graphicsDevice, player);
 
             isActive = true;
 
             // Level 1
             backgroundGreen = ContentConverter.Convert(lvl1Background, graphicsDevice);
             lvlTile1 = ContentConverter.Convert(enemyWayLvl1, graphicsDevice);
-            
+            buildButtonTexture = ContentConverter.Convert("Content/Assets/TD/UI/buildTower.png", graphicsDevice);
+
 
             //NOTE: Array-Index 0
             AddTexture(backgroundGreen);
@@ -83,6 +93,8 @@ namespace UTD_P2
             {
                 case MapState.map1:
                     mapToUse = map1;
+                    BuildButton buildButton = new BuildButton("buildButton", buildButtonTexture, 220, 64, graphicsDevice, player, this);
+                    buildButtonList.Add(buildButton);
                     break;
                 case MapState.map2:
                     mapToUse = map2;
@@ -207,9 +219,10 @@ namespace UTD_P2
         /// Add tower to the towerList.
         /// </summary>
         /// <param name="tower"></param>
-        public void AddTower(Towers tower)
+        public void AddTower(Towers tower, UIButton button)
         {
             towerList.Add(tower);
+            uiButton = null;
         }
  
         #endregion
@@ -240,6 +253,19 @@ namespace UTD_P2
 
         #endregion
 
+        #region UIButtonList
+
+        /// <summary>
+        /// Add UIButton to the List uIButtonList
+        /// </summary>
+        /// <param name="button"></param>
+        public void SetUIButton(UIButton button)
+        {
+            uiButton = button;
+        }
+
+        #endregion
+
         public void Update(GameTime gameTime)
         {
             foreach(Towers tower in towerList)
@@ -256,6 +282,14 @@ namespace UTD_P2
             {
                 proj.Update(gameTime);
             }
+
+            foreach (BuildButton button in buildButtonList)
+                button.Update(gameTime);
+
+            if(uiButton != null)
+                uiButton.Update(gameTime);
+
+            ui.Update(gameTime);
         }
 
         /// <param name="batch"></param>
@@ -276,6 +310,9 @@ namespace UTD_P2
                 }
             }
 
+            foreach (BuildButton button in buildButtonList)
+                button.Draw(batch);
+
             foreach (Towers tower in towerList)
                 tower.Draw(batch);
 
@@ -284,6 +321,11 @@ namespace UTD_P2
 
             foreach (Projectile proj in projectileList)
                 proj.Draw(batch);
+
+            ui.Draw(batch);
+
+            if(uiButton != null)
+                uiButton.Draw(batch);
         }
 
     }

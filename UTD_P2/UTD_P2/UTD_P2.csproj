@@ -1307,17 +1307,66 @@
     </Content>
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet%402.png" />
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet.png" />
-    <Content Include="Content\Assets\TD\UI\currencySymbol.png" />
-    <Content Include="Content\Assets\TD\UI\number0.png" />
-    <Content Include="Content\Assets\TD\UI\number1.png" />
-    <Content Include="Content\Assets\TD\UI\number2.png" />
-    <Content Include="Content\Assets\TD\UI\number3.png" />
-    <Content Include="Content\Assets\TD\UI\number4.png" />
-    <Content Include="Content\Assets\TD\UI\number5.png" />
-    <Content Include="Content\Assets\TD\UI\number6.png" />
-    <Content Include="Content\Assets\TD\UI\number7.png" />
-    <Content Include="Content\Assets\TD\UI\number8.png" />
-    <Content Include="Content\Assets\TD\UI\number9.png" />
+    <Content Include="Content\Assets\TD\Towers\doubleShot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\Towers\rocketLauncher.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\Towers\singleShot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\Towers\slow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\buildTower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\currencySymbol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\number9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\Towers\doubleShot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\Towers\rocketLauncher.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\Towers\singleShot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\Towers\slow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.svg" />
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.swf" />
     <Content Include="Icon.ico" />

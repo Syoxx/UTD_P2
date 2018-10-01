@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UTD_P2
 {
-    class Player
+    public class Player
     {
         public int money;
         public int life;

@@ -53,9 +53,6 @@ namespace UTD_P2
 
 		public virtual void Update(GameTime gameTime, Level level)
 		{
-            direction = position - target.position;
-            direction.Normalize();
-            rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
 			if(!readyToFire)
 			{
 				timer += gameTime.ElapsedGameTime.Milliseconds;
@@ -63,9 +60,19 @@ namespace UTD_P2
 					readyToFire = true;
 			}
 
-			if (!(target == null))
+            if (target == null)
+            {
+                direction = position - Mouse.GetState().Position.ToVector2();
+                direction.Normalize();
+                rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
+            }
+
+			if (target != null)
 			{
-				if (readyToFire && target.life > 0)
+                direction = position - target.position;
+                direction.Normalize();
+                rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
+                if (readyToFire && target.life > 0)
 					Fire(level);
 
 				if (target.life <= 0)

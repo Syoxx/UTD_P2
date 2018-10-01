@@ -11,7 +11,7 @@ namespace UTD_P2
 {
     class SlowTower : Towers
     {
-        public SlowTower(Texture2D texture, float positionX, float positionY)
+        public SlowTower(Texture2D texture, float positionX, float positionY, Player player)
         {
             damage = 50;
             damageRadius = 5;
@@ -23,6 +23,7 @@ namespace UTD_P2
             towerTexture = texture;
             canSlow = true;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
+            player.money -= (int)price;
         }
 
         public override void Fire(Level level)

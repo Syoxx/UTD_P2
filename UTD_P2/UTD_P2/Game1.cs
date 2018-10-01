@@ -35,6 +35,7 @@ namespace UTD_P2
 
             graphics.PreferredBackBufferHeight = 1080;
             graphics.PreferredBackBufferWidth = 1920;
+            //graphics.IsFullScreen = true;
 
             this.IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -88,23 +89,29 @@ namespace UTD_P2
 		{
             currentState = Keyboard.GetState();
 
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
-            if (mainMenu.isActive)
-                UpdateMainMenu(gameTime);
+            if (mainMenu != null)
+            {
+                if (mainMenu.isActive)
+                    UpdateMainMenu(gameTime);
+            }
 
-            if (!gamePaused && level.isActive)
-                UpdateLevel(gameTime);
+            if (level != null)
+            {
+                if (!gamePaused && level.isActive)
+                    UpdateLevel(gameTime);
 
-            if (gamePaused)
-                UpdatePauseMenu(gameTime);
+                if (gamePaused)
+                    UpdatePauseMenu(gameTime);
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
-                gamePaused = true;
+                if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
+                    gamePaused = true;
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
-                gamePaused = false;
+                if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
+                    gamePaused = false;
+            }
 
             oldState = currentState;
 			base.Update(gameTime);
@@ -121,7 +128,7 @@ namespace UTD_P2
 
         private void UpdateLevel(GameTime gameTime)
         {
-            //throw new NotImplementedException();
+            level.Update(gameTime);
         }
 
         /// <summary>
@@ -177,14 +184,20 @@ namespace UTD_P2
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
-            if (mainMenu.isActive)
-                mainMenu.Draw(gameTime, spriteBatch);
+            if (mainMenu != null)
+            {
+                if (mainMenu.isActive)
+                    mainMenu.Draw(gameTime, spriteBatch);
+            }
 
-            if (level.isActive)
-                level.Draw(spriteBatch);
+            if (level != null)
+            {
+                if (level.isActive)
+                    level.Draw(spriteBatch);
 
-            if (gamePaused)
-                pauseMenu.Draw(spriteBatch);
+                if (gamePaused)
+                    pauseMenu.Draw(spriteBatch);
+            }
             
             spriteBatch.End();
 
