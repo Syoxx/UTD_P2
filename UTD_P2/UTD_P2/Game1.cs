@@ -174,6 +174,8 @@ namespace UTD_P2
         {
             mainMenu.isActive = isActive;
         }
+
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
