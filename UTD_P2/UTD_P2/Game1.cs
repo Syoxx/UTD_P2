@@ -92,15 +92,21 @@ namespace UTD_P2
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
-            if (mainMenu.isActive)
-                UpdateMainMenu(gameTime);
+            if(mainMenu != null)
+            {
+                if (mainMenu.isActive)
+                    UpdateMainMenu(gameTime);
+            }
+            
+            if(level != null)
+            {
+                if (!gamePaused && level.isActive)
+                    UpdateLevel(gameTime);
 
-            if (!gamePaused && level.isActive)
-                UpdateLevel(gameTime);
-
-            if (gamePaused)
-                UpdatePauseMenu(gameTime);
-
+                if (gamePaused)
+                    UpdatePauseMenu(gameTime);
+            }
+            
             if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
                 gamePaused = true;
 
@@ -151,7 +157,6 @@ namespace UTD_P2
             if(i == 1)
             {
                 level = new Level(Level.MapState.map1, GraphicsDevice);
-
             }
             else if(i == 2)
             {
@@ -180,15 +185,20 @@ namespace UTD_P2
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
-            if (mainMenu.isActive)
-                mainMenu.Draw(gameTime, spriteBatch);
+            if(mainMenu != null)
+            {
+                if (mainMenu.isActive)
+                    mainMenu.Draw(gameTime, spriteBatch);
+            }
 
-            if (level.isActive)
-                level.Draw(spriteBatch);
-
-            if (gamePaused)
-                pauseMenu.Draw(spriteBatch);
-            
+            if(level != null)
+            {
+                if (level.isActive)
+                    level.Draw(spriteBatch);
+                if (gamePaused)
+                    pauseMenu.Draw(spriteBatch);
+            }
+                        
             spriteBatch.End();
 
             base.Draw(gameTime);
