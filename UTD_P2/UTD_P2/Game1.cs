@@ -95,16 +95,16 @@ namespace UTD_P2
             if (mainMenu.isActive)
                 UpdateMainMenu(gameTime);
 
-            if (!gamePaused /*&& level.isActive*/)
+            if (!gamePaused && level.isActive)
                 UpdateLevel(gameTime);
 
             if (gamePaused)
                 UpdatePauseMenu(gameTime);
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused /*&& level.isActive*/)
+            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
                 gamePaused = true;
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused /*&& level.isActive*/)
+            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
                 gamePaused = false;
 
             oldState = currentState;
@@ -183,8 +183,8 @@ namespace UTD_P2
             if (mainMenu.isActive)
                 mainMenu.Draw(gameTime, spriteBatch);
 
-            //if (level.isActive)
-            //    level.Draw(spriteBatch);
+            if (level.isActive)
+                level.Draw(spriteBatch);
 
             if (gamePaused)
                 pauseMenu.Draw(spriteBatch);

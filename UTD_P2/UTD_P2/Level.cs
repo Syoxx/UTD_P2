@@ -43,6 +43,8 @@ namespace UTD_P2
         private List<Enemys> enemyList;
         private List<Projectile> projectileList;
 
+        public bool isActive;
+
         public enum MapState { map1, map2, map3, };
 
         MapState mState;
@@ -62,7 +64,7 @@ namespace UTD_P2
             enemyList = new List<Enemys>();
             projectileList = new List<Projectile>();
 
-
+            isActive = true;
 
             // Level 1
             backgroundGreen = ContentConverter.Convert(lvl1Background, graphicsDevice);

@@ -54,6 +54,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuButton.cs" />
+    <Compile Include="PauseMenu.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
