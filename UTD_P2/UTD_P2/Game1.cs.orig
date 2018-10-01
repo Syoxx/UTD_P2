@@ -23,12 +23,18 @@ namespace UTD_P2
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
-        private PauseMenu pauseMenu;
-        public bool gamePaused;
-        private KeyboardState currentState, oldState;
+
+        Level level = new Level();
         
-        bool isLevelActive = false;
-        private Level level;
+        private Texture2D lvlBackground;
+        private Texture2D lvlTile1;
+        private Texture2D lvlTile2;
+        private Texture2D lvlTile3;
+        private Texture2D lvlTile4;
+
+        private Texture2D lvlOneWalls;
+        private Texture2D lvlTwoWalls;
+        private Texture2D lvlThreeWalls;
 
         public Game1()
 		{
@@ -62,13 +68,45 @@ namespace UTD_P2
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+<<<<<<< HEAD
 
+            mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
+            mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
+            mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
+
+=======
             mainMenuBackground = ContentConverter.Convert("Content/Assets/MenuButtons/Background.jpg", GraphicsDevice);
             mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
             mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
+            // TODO: use this.Content to load your game content here
+>>>>>>> origin/Develop
+            mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
+
+
+            // Level content loader
+
+            // Implement pngconverter of level tiles here
+            lvlBackground = PNGConverter("Content/Assets/TD/blablabla.png");
+            lvlTile1 = PNGConverter("Content/Assets/TD/blablabla1.png");
+            lvlTile2 = PNGConverter("Content/Assets/TD/blablabla2.png");
+            lvlTile3 = PNGConverter("Content/Assets/TD/blablabla3.png");
+            lvlTile4 = PNGConverter("Content/Assets/TD/blablabla4.png");
+
+            lvlOneWalls = PNGConverter("Content/Assets/TD/blablabla50.png");
+            lvlTwoWalls = PNGConverter("Content/Assets/TD/blablabla60.png");
+            lvlThreeWalls = PNGConverter("Content/Assets/TD/blablabla70.png");
+
+            // Example
+            Texture2D grass = Content.Load<Texture2D>("grass");
+            Texture2D path = Content.Load<Texture2D>("path");
+
+            level.AddTexture(grass);
+            level.AddTexture(path);
+
+
 
             // TODO: use this.Content to load your game content here
-            mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
+           
         }
 
 		/// <summary>
@@ -87,88 +125,41 @@ namespace UTD_P2
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
-            currentState = Keyboard.GetState();
-
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
             if (mainMenu.isActive)
                 UpdateMainMenu(gameTime);
 
-            if (!gamePaused /*&& level.isActive*/)
-                UpdateLevel(gameTime);
+            //if (level.isActive)
+            //    UpdateLevel(gameTime);
 
-            if (gamePaused)
-                UpdatePauseMenu(gameTime);
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused /*&& level.isActive*/)
-                gamePaused = true;
+			// TODO: Add your update logic here
 
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused /*&& level.isActive*/)
-                gamePaused = false;
-
-            oldState = currentState;
 			base.Update(gameTime);
 		}
-
-        private void UpdatePauseMenu(GameTime gameTime)
-        {
-            if (pauseMenu == null)
-                pauseMenu = new PauseMenu(this, GraphicsDevice);
-
-            else
-                pauseMenu.Update(gameTime);
-        }
 
         private void UpdateLevel(GameTime gameTime)
         {
             //throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Updates main menu
-        /// </summary>
-        /// <param name="gameTime"></param>
         private void UpdateMainMenu(GameTime gameTime)
         {
             mainMenu.Update(gameTime, this);
         }
 
-        /// <summary>
-        /// Quit the application
-        /// </summary>
         public void Quit()
         {
             this.Exit();
         }
 
-        /// <summary>
-        /// Load level and their contents
-        /// </summary>
-        /// <param name="i"></param>
-        public void LoadLevel(int i)
+        public void LoadLevel()
         {
-            if(i == 1)
-            {
-                level = new Level(Level.MapState.map1, GraphicsDevice);
-
-            }
-            else if(i == 2)
-            {
-                level = new Level(Level.MapState.map2, GraphicsDevice);
-            }
-            else if(i == 3)
-            {
-                level = new Level(Level.MapState.map3, GraphicsDevice);
-            }
-            
-            isLevelActive = true;
+            //loadLevel with bool startGame
         }
 
-        public void SetMainMenuActive(bool isActive)
-        {
-            mainMenu.isActive = isActive;
-        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -180,18 +171,12 @@ namespace UTD_P2
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
-            if (mainMenu.isActive)
-                mainMenu.Draw(gameTime, spriteBatch);
-
-            //if (level.isActive)
-            //    level.Draw(spriteBatch);
-
-            if (gamePaused)
-                pauseMenu.Draw(spriteBatch);
-            
+            mainMenu.Draw(gameTime, spriteBatch);
+            level.Draw(spriteBatch);
+           
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-    }
+	}
 }

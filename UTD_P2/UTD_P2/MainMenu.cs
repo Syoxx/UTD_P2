@@ -43,7 +43,10 @@ namespace UTD_P2
         public void Update(GameTime gameTime, Game1 game)
         {
             if (startGame)
+            {
                 game.LoadLevel(1);
+                isActive = false;
+            }
 
             if (exitGame)
                 game.Quit();

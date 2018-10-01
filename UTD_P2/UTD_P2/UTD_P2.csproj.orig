@@ -43,18 +43,19 @@
   <ItemGroup>
     <Compile Include="BuildButton.cs" />
     <Compile Include="Button.cs" />
+<<<<<<< HEAD
     <Compile Include="EnemyController.cs" />
+=======
     <Compile Include="ContentConverter.cs" />
     <Compile Include="DoubleShotTower.cs" />
+>>>>>>> origin/Develop
     <Compile Include="Enemys.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="InputManager.cs" />
     <Compile Include="inRangeCheck.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuButton.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,34 +64,15 @@
     <Compile Include="SlowTower.cs" />
     <Compile Include="Towers.cs" />
     <Compile Include="UIButton.cs" />
-    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Tiled, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Assets\Level1\tileBackground-Green.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Assets\Level1\tileEnemyWay.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Assets\MenuButtons\Background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -926,7 +908,7 @@
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile275.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\PNG\Default\number0.png">
+    <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile276.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile277.png">
@@ -950,7 +932,7 @@
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile283.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\PNG\Default\number8.png">
+    <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile284.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\PNG\Default\towerDefense_tile285.png">
@@ -1306,17 +1288,6 @@
     </Content>
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet%402.png" />
     <Content Include="Content\Assets\TD\Tilesheet\towerDefense_tilesheet.png" />
-    <Content Include="Content\Assets\TD\UI\currencySymbol.png" />
-    <Content Include="Content\Assets\TD\UI\number0.png" />
-    <Content Include="Content\Assets\TD\UI\number1.png" />
-    <Content Include="Content\Assets\TD\UI\number2.png" />
-    <Content Include="Content\Assets\TD\UI\number3.png" />
-    <Content Include="Content\Assets\TD\UI\number4.png" />
-    <Content Include="Content\Assets\TD\UI\number5.png" />
-    <Content Include="Content\Assets\TD\UI\number6.png" />
-    <Content Include="Content\Assets\TD\UI\number7.png" />
-    <Content Include="Content\Assets\TD\UI\number8.png" />
-    <Content Include="Content\Assets\TD\UI\number9.png" />
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.svg" />
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.swf" />
     <Content Include="Icon.ico" />
@@ -1324,12 +1295,8 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
-    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Assets\Level2\" />
-    <Folder Include="Content\Assets\Level3\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

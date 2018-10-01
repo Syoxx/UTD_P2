@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-    class Projectile
+    public class Projectile
     {
         private float speed, damage, damageRadius, rotationAngle;
 
