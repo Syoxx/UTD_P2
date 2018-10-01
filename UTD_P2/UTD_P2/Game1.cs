@@ -23,18 +23,9 @@ namespace UTD_P2
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
-
-        Level level = new Level();
         
-        private Texture2D lvlBackground;
-        private Texture2D lvlTile1;
-        private Texture2D lvlTile2;
-        private Texture2D lvlTile3;
-        private Texture2D lvlTile4;
-
-        private Texture2D lvlOneWalls;
-        private Texture2D lvlTwoWalls;
-        private Texture2D lvlThreeWalls;
+        bool isLevelActive = false;
+        private Level level;
 
         public Game1()
 		{
@@ -69,38 +60,12 @@ namespace UTD_P2
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            mainMenuBackground = PNGConverter("Content/Assets/MenuButtons/Background.jpg");
-            mainMenuStartButton = PNGConverter("Content/Assets/MenuButtons/MenuStart.png");
-            mainMenuQuitButton = PNGConverter("Content/Assets/MenuButtons/MenuQuit.png");
+            mainMenuBackground = ContentConverter.Convert("Content/Assets/MenuButtons/Background.jpg", GraphicsDevice);
+            mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
+            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
-
-
-            // Level content loader
-
-            // Implement pngconverter of level tiles here
-            lvlBackground = PNGConverter("Content/Assets/TD/blablabla.png");
-            lvlTile1 = PNGConverter("Content/Assets/TD/blablabla1.png");
-            lvlTile2 = PNGConverter("Content/Assets/TD/blablabla2.png");
-            lvlTile3 = PNGConverter("Content/Assets/TD/blablabla3.png");
-            lvlTile4 = PNGConverter("Content/Assets/TD/blablabla4.png");
-
-            lvlOneWalls = PNGConverter("Content/Assets/TD/blablabla50.png");
-            lvlTwoWalls = PNGConverter("Content/Assets/TD/blablabla60.png");
-            lvlThreeWalls = PNGConverter("Content/Assets/TD/blablabla70.png");
-
-            // Example
-            Texture2D grass = Content.Load<Texture2D>("grass");
-            Texture2D path = Content.Load<Texture2D>("path");
-
-            level.AddTexture(grass);
-            level.AddTexture(path);
-
-
-
-            // TODO: use this.Content to load your game content here
-           
         }
 
 		/// <summary>
@@ -134,24 +99,53 @@ namespace UTD_P2
 			base.Update(gameTime);
 		}
 
+        /// <summary>
+        /// Interaction with enemy, tower & projectile lists.
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void UpdateLevel(GameTime gameTime)
         {
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Updates main menu
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void UpdateMainMenu(GameTime gameTime)
         {
             mainMenu.Update(gameTime, this);
         }
 
+        /// <summary>
+        /// Quit the application
+        /// </summary>
         public void Quit()
         {
             this.Exit();
         }
 
+        /// <summary>
+        /// Load level and their contents
+        /// </summary>
+        /// <param name="i"></param>
         public void LoadLevel(int i)
         {
-            //loadLevel with i
+            if(i == 1)
+            {
+                level = new Level(Level.MapState.map1, GraphicsDevice);
+
+            }
+            else if(i == 2)
+            {
+                level = new Level(Level.MapState.map2, GraphicsDevice);
+            }
+            else if(i == 3)
+            {
+                level = new Level(Level.MapState.map3, GraphicsDevice);
+            }
+            
+            isLevelActive = true;
         }
 
         /// <summary>
@@ -166,8 +160,12 @@ namespace UTD_P2
 
             // TODO: Add your drawing code here
             mainMenu.Draw(gameTime, spriteBatch);
-            level.Draw(spriteBatch);
-           
+
+            if (isLevelActive == true)
+            {
+                level.Draw(spriteBatch);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
