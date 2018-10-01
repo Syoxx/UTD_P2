@@ -35,9 +35,9 @@ namespace UTD_P2
             base.Update(gameTime, level);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime, spriteBatch);
+            base.Draw(spriteBatch);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace UTD_P2
             //TODO: implement Circle for Explosion collision
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, position, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);

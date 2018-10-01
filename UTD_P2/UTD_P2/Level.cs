@@ -275,6 +275,15 @@ namespace UTD_P2
                         x * 64, y * 64, 64, 64), Color.White);
                 }
             }
+
+            foreach (Towers tower in towerList)
+                tower.Draw(batch);
+
+            foreach (Enemys enemy in enemyList)
+                enemy.Draw(batch);
+
+            foreach (Projectile proj in projectileList)
+                proj.Draw(batch);
         }
 
     }

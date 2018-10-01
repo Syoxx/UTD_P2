@@ -73,7 +73,7 @@ namespace UTD_P2
 			}
 		}
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             sourceRectangle = new Rectangle(0, 0, towerTexture.Width, towerTexture.Height);
             spriteBatch.Draw(towerTexture, position, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);

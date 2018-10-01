@@ -27,7 +27,6 @@ namespace UTD_P2
         public bool gamePaused;
         private KeyboardState currentState, oldState;
         
-        bool isLevelActive = false;
         private Level level;
 
         public Game1()
@@ -161,8 +160,6 @@ namespace UTD_P2
             {
                 level = new Level(Level.MapState.map3, GraphicsDevice);
             }
-            
-            isLevelActive = true;
         }
 
         public void SetMainMenuActive(bool isActive)
