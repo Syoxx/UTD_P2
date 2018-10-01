@@ -17,11 +17,11 @@ namespace UTD_P2
 
         private Vector2 position, direction, rotationCenter;
 
-        public Enemys target;
+        public Enemy target;
 
         private Rectangle sourceRectangle;
 
-        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target)
+        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemy target)
         {
             this.texture = texture;
             this.speed = speed;
@@ -42,7 +42,7 @@ namespace UTD_P2
             {
                 if (damageRadius > 0)
                     InitiateExplosion();
-                target.life -= damage;
+                target.CurrentHealth -= damage;
             }
         }
 

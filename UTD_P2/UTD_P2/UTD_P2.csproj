@@ -46,7 +46,7 @@
     <Compile Include="EnemyController.cs" />
     <Compile Include="ContentConverter.cs" />
     <Compile Include="DoubleShotTower.cs" />
-    <Compile Include="Enemys.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="inRangeCheck.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="RocketLauncherTower.cs" />
     <Compile Include="SingleShotTower.cs" />
     <Compile Include="SlowTower.cs" />
+    <Compile Include="Sprite.cs" />
     <Compile Include="Towers.cs" />
     <Compile Include="UIButton.cs" />
     <Compile Include="UserInterface.cs" />
@@ -86,6 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assets\Enemys\enemy1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Enemys\enemy2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Enemys\enemy3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Enemys\enemy4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Assets\Level1\tileBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -176,6 +189,9 @@
     <Content Include="Content\Assets\Level3\tileWayUpper.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Assets\LevelUI\uiLine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Assets\MenuButtons\Background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -201,6 +217,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\Outlines\verOutline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\StartEnd\end.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\StartEnd\start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\License.txt" />

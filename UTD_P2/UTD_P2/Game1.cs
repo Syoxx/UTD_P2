@@ -28,7 +28,13 @@ namespace UTD_P2
         private KeyboardState currentState, oldState;
         
         bool isLevelActive = false;
+
         private Level level;
+
+        private Enemy enemy1;
+        
+
+
 
         public Game1()
 		{
@@ -67,7 +73,6 @@ namespace UTD_P2
             mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
             mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
         }
 
@@ -115,7 +120,7 @@ namespace UTD_P2
 
             oldState = currentState;
 			base.Update(gameTime);
-		}
+        }
 
         private void UpdatePauseMenu(GameTime gameTime)
         {
@@ -128,6 +133,7 @@ namespace UTD_P2
 
         private void UpdateLevel(GameTime gameTime)
         {
+            level.Update(gameTime);
             //throw new NotImplementedException();
         }
 
@@ -174,6 +180,8 @@ namespace UTD_P2
         {
             mainMenu.isActive = isActive;
         }
+
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -194,11 +202,14 @@ namespace UTD_P2
             if(level != null)
             {
                 if (level.isActive)
+                {
                     level.Draw(spriteBatch);
+                }
+
                 if (gamePaused)
                     pauseMenu.Draw(spriteBatch);
             }
-                        
+
             spriteBatch.End();
 
             base.Draw(gameTime);

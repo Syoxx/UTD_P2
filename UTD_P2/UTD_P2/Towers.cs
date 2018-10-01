@@ -26,9 +26,9 @@ namespace UTD_P2
 
         Projectile proj;
 
-        protected Enemys target;
+        protected Enemy target;
 
-		public Enemys Target
+		public Enemy Target
 		{
 			get
 			{
@@ -43,7 +43,7 @@ namespace UTD_P2
 
 		public virtual void Fire()
 		{
-			if (target.life > 0)
+			if (target.CurrentHealth > 0)
 			{
 				timer = 0;
 				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
@@ -64,10 +64,10 @@ namespace UTD_P2
 
 			if (!(target == null))
 			{
-				if (readyToFire && target.life > 0)
+				if (readyToFire && target.CurrentHealth > 0)
 					Fire();
 
-				if (target.life <= 0)
+				if (target.CurrentHealth <= 0)
 					target = null;
 			}
 		}
