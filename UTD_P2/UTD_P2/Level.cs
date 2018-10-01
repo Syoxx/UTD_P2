@@ -240,6 +240,24 @@ namespace UTD_P2
 
         #endregion
 
+        public void Update(GameTime gameTime)
+        {
+            foreach(Towers tower in towerList)
+            {
+                tower.Update(gameTime, this);
+            }
+
+            foreach(Enemys enemy in enemyList)
+            {
+                enemy.Update(gameTime);
+            }
+
+            foreach(Projectile proj in projectileList)
+            {
+                proj.Update(gameTime);
+            }
+        }
+
         /// <param name="batch"></param>
         public void Draw(SpriteBatch batch)
         {

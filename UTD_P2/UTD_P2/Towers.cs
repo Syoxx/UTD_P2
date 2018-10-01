@@ -41,16 +41,17 @@ namespace UTD_P2
 			}
 		}
 
-		public virtual void Fire()
+		public virtual void Fire(Level level)
 		{
 			if (target.life > 0)
 			{
 				timer = 0;
 				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
+                level.AddProjectile(proj);
 			}
 		}
 
-		public virtual void Update(GameTime gameTime)
+		public virtual void Update(GameTime gameTime, Level level)
 		{
             direction = position - target.position;
             direction.Normalize();
@@ -65,7 +66,7 @@ namespace UTD_P2
 			if (!(target == null))
 			{
 				if (readyToFire && target.life > 0)
-					Fire();
+					Fire(level);
 
 				if (target.life <= 0)
 					target = null;

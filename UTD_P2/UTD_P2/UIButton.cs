@@ -31,12 +31,15 @@ namespace UTD_P2
 
         private Player player;
 
-        public UIButton(int buttonX, int buttonY, BuildButton buildButton, GraphicsDevice graphicsDevice, Player player)
+        private Level level;
+
+        public UIButton(int buttonX, int buttonY, BuildButton buildButton, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.buttonX = buttonX;
             this.buttonY = buttonY;
             this.buildButton = buildButton;
             this.player = player;
+            this.level = level;
 
             singleShotTexture = ContentConverter.Convert(singleShotPath, graphicsDevice);
             singleShotUITexture = ContentConverter.Convert(singleShotUIPath, graphicsDevice);
@@ -171,19 +174,19 @@ namespace UTD_P2
             {
                 case TowerTypes.Single:
                     SingleShotTower newSingleShotTower = new SingleShotTower(singleShotTexture, buildButton.ButtonX, buildButton.ButtonY);
-                    //add to Tower List in Level class and subtract value from player money
+                    level.AddTower(newSingleShotTower);
                     break;
                 case TowerTypes.Double:
                     DoubleShotTower newDoubleShotTower = new DoubleShotTower(doubleShotTexture, buildButton.ButtonX, buildButton.ButtonY);
-                    //add to Tower List in Level class and substract value from player money
+                    level.AddTower(newDoubleShotTower);
                     break;
                 case TowerTypes.Slow:
                     SlowTower newSlowTower = new SlowTower(slowTexture, buildButton.ButtonX, buildButton.ButtonY);
-                    //add to Tower List in Level class and substract value from player money
+                    level.AddTower(newSlowTower);
                     break;
                 case TowerTypes.Rocket:
                     RocketLauncherTower newRocketLauncherTower = new RocketLauncherTower(rocketLauncherTexture, buildButton.ButtonX, buildButton.ButtonY);
-                    //add to Tower List in Level class and substract value from player money
+                    level.AddTower(newRocketLauncherTower);
                     break;
             }
         }

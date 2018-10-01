@@ -24,14 +24,14 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
-        public override void Fire()
+        public override void Fire(Level level)
         {
-            base.Fire();
+            base.Fire(level);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Level level)
         {
-            base.Update(gameTime);
+            base.Update(gameTime, level);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
