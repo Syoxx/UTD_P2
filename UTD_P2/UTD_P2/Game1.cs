@@ -17,6 +17,9 @@ namespace UTD_P2
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
         private MainMenu mainMenu;
+        private PauseMenu pauseMenu;
+        public bool gamePaused;
+        private KeyboardState currentState, oldState;
 
         public Game1()
 		{
@@ -71,20 +74,38 @@ namespace UTD_P2
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
+            currentState = Keyboard.GetState();
+
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
             if (mainMenu.isActive)
                 UpdateMainMenu(gameTime);
 
-            //if (level.isActive)
-            //    UpdateLevel(gameTime);
+            if (!gamePaused /*&& level.isActive*/)
+                UpdateLevel(gameTime);
 
+            if (gamePaused)
+                UpdatePauseMenu(gameTime);
 
-			// TODO: Add your update logic here
+            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused /*&& level.isActive*/)
+                gamePaused = true;
 
+            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused /*&& level.isActive*/)
+                gamePaused = false;
+
+            oldState = currentState;
 			base.Update(gameTime);
 		}
+
+        private void UpdatePauseMenu(GameTime gameTime)
+        {
+            if (pauseMenu == null)
+                pauseMenu = new PauseMenu(this, GraphicsDevice);
+
+            else
+                pauseMenu.Update(gameTime);
+        }
 
         private void UpdateLevel(GameTime gameTime)
         {
@@ -105,6 +126,11 @@ namespace UTD_P2
         {
             //loadLevel with i
         }
+
+        public void SetMainMenuActive(bool isActive)
+        {
+            mainMenu.isActive = isActive;
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -115,10 +141,17 @@ namespace UTD_P2
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
-            mainMenu.Draw(gameTime, spriteBatch);
+            if (mainMenu.isActive)
+                mainMenu.Draw(gameTime, spriteBatch);
+
+            //if (level.isActive)
+            //    level.Draw(spriteBatch);
+
+            if (gamePaused)
+                pauseMenu.Draw(spriteBatch);
             
 			base.Draw(gameTime);
             spriteBatch.End();
 		}
-	}
+    }
 }

@@ -24,6 +24,11 @@ namespace UTD_P2
             base.Update(gameTime, mainMenu);
         }
 
+        public override void Update(GameTime gameTime, Game1 game)
+        {
+            base.Update(gameTime);
+        }
+
         protected override void OnButtonClick()
         {
             throw new NotImplementedException();
@@ -38,6 +43,22 @@ namespace UTD_P2
                     break;
                 case "quitGame":
                     mainMenu.ExitGame();
+                    break;
+            }
+        }
+
+        protected override void OnButtonClickMenu(Game1 game)
+        {
+            switch (name)
+            {
+                case "resumeButtonPause":
+                    game.gamePaused = false;
+                    break;
+                case "mainMenuButton":
+                    game.SetMainMenuActive(true);
+                    break;
+                case "quitButtonPause":
+                    game.Exit();
                     break;
             }
         }

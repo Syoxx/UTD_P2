@@ -71,9 +71,21 @@ namespace UTD_P2
             oldState = mouseState;
         }
 
+        public virtual void Update(GameTime gameTime, Game1 game)
+        {
+            mouseState = Mouse.GetState();
+            if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
+            {
+                OnButtonClickMenu(game);
+            }
+            oldState = mouseState;
+        }
+
         protected abstract void OnButtonClick();
 
         protected abstract void OnButtonClickMenu(MainMenu mainMenu);
+
+        protected abstract void OnButtonClickMenu(Game1 game);
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {

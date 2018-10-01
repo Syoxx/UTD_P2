@@ -14,7 +14,7 @@ namespace UTD_P2
         Vector2 uIButtonPos;
         UIButton uIButton;
         GraphicsDevice graphicsDevice;
-        Player player:
+        Player player;
 
         public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player)
         {
@@ -37,6 +37,11 @@ namespace UTD_P2
         }
 
         protected override void OnButtonClickMenu(MainMenu mainMenu)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnButtonClickMenu(Game1 game)
         {
             throw new NotImplementedException();
         }

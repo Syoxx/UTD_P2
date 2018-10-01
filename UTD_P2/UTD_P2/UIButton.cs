@@ -193,6 +193,11 @@ namespace UTD_P2
             throw new NotImplementedException();
         }
 
+        protected override void OnButtonClickMenu(Game1 game)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
