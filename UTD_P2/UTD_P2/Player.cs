@@ -14,17 +14,6 @@ namespace UTD_P2
         public int money;
         public int life;
 
-        public int Money
-        {
-            get { return money; }
-            set { money = value; }
-        }
-        
-        public int Lives
-        {
-            get { return life; }
-            set { life = value; }
-        }
 
         public Player(GraphicsDevice graphicsDevice)
         {

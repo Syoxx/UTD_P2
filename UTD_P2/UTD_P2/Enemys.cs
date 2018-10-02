@@ -27,11 +27,13 @@ namespace UTD_P2
         float healthPercentage;
 
         public bool alive = true;
-        private bool enemyAtEnd;
+        public bool enemyAtEnd;
         protected float speed = 10f;
         protected int bountyGiven;
 
         protected float rotationAngle;
+        private bool executed = false;
+        private bool moneyExecuted = false;
 
         public float CurrentHealth
         {
@@ -155,18 +157,37 @@ namespace UTD_P2
             }
             else
             {
+                ReducePlayerLife();
                 alive = false;
-                enemyAtEnd = true;
                 //player.life -= 1;
             }
 
             if (currentHealth <= 0)
             {
+                AddMoneyToPlayer();
                 alive = false;
                 //player.money += 5;
             }
 
             projTargetPosition = position + new Vector2(32, 32);
+        }
+
+        private void ReducePlayerLife()
+        {
+            if (!executed)
+            {
+                player.life -= 1;
+                executed = true;
+            }
+        }
+
+        private void AddMoneyToPlayer()
+        {
+            if (!moneyExecuted)
+            {
+                player.money += bountyGiven;
+                moneyExecuted = true;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

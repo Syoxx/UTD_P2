@@ -33,6 +33,7 @@ namespace UTD_P2
 
         Level level;
         Player player;
+        Enemys enemys;
         GraphicsDevice graphicsDevice;
 
         string contentPath = "Content/Assets/Enemys/";
@@ -89,6 +90,7 @@ namespace UTD_P2
 
             if (timerEnemys >= enemySpawnTime && countEnemys <= nrToSpawn && spawnNewEnemys)
                 SpawnEnemy(enemyTexture);
+            
         }
 
         private void SpawnWave()
