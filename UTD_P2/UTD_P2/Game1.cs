@@ -27,7 +27,6 @@ namespace UTD_P2
         public bool gamePaused;
         private KeyboardState currentState, oldState;
         
-        bool isLevelActive = false;
         private Level level;
 
         public Game1()
@@ -36,6 +35,7 @@ namespace UTD_P2
 
             graphics.PreferredBackBufferHeight = 1080;
             graphics.PreferredBackBufferWidth = 1920;
+            //graphics.IsFullScreen = true;
 
             this.IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -63,9 +63,9 @@ namespace UTD_P2
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            mainMenuBackground = ContentConverter.Convert("Content/Assets/MenuButtons/Background.jpg", GraphicsDevice);
-            mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
-            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
+            mainMenuBackground = ContentConverter.Convert("Content/Assets/Menu/Background.jpg", GraphicsDevice);
+            mainMenuStartButton = ContentConverter.Convert("Content/Assets/Menu/PlayButton.png", GraphicsDevice);
+            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/Menu/QuitButton.png", GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
@@ -89,29 +89,30 @@ namespace UTD_P2
 		{
             currentState = Keyboard.GetState();
 
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
 
-            if(mainMenu != null)
+            if (mainMenu != null)
             {
                 if (mainMenu.isActive)
                     UpdateMainMenu(gameTime);
             }
             
-            if(level != null)
+            if (level != null)
             {
                 if (!gamePaused && level.isActive)
                     UpdateLevel(gameTime);
 
+            }
+                if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
+                    gamePaused = true;
+
+                else if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
+                    gamePaused = false;
+
                 if (gamePaused)
                     UpdatePauseMenu(gameTime);
             }
-            
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
-                gamePaused = true;
-
-            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
-                gamePaused = false;
 
             oldState = currentState;
 			base.Update(gameTime);
@@ -128,7 +129,7 @@ namespace UTD_P2
 
         private void UpdateLevel(GameTime gameTime)
         {
-            //throw new NotImplementedException();
+            level.Update(gameTime);
         }
 
         /// <summary>
@@ -166,13 +167,17 @@ namespace UTD_P2
             {
                 level = new Level(Level.MapState.map3, GraphicsDevice);
             }
-            
-            isLevelActive = true;
         }
 
         public void SetMainMenuActive(bool isActive)
         {
-            mainMenu.isActive = isActive;
+            if (isActive)
+            {
+                level.isActive = false;
+                level = null;
+                gamePaused = false;
+                mainMenu.isActive = true;
+            }
         }
 
 
@@ -187,13 +192,13 @@ namespace UTD_P2
             spriteBatch.Begin();
 
             // TODO: Add your drawing code here
-            if(mainMenu != null)
+            if (mainMenu != null)
             {
                 if (mainMenu.isActive)
                     mainMenu.Draw(gameTime, spriteBatch);
             }
 
-            if(level != null)
+            if (level != null)
             {
                 if (level.isActive)
                     level.Draw(spriteBatch);

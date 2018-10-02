@@ -46,6 +46,7 @@ namespace UTD_P2
             {
                 game.LoadLevel(1);
                 isActive = false;
+                startGame = false;
             }
 
             if (exitGame)

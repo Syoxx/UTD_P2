@@ -21,17 +21,17 @@ namespace UTD_P2
         {
             this.game = game;
 
-            resumeButtonTexture = ContentConverter.Convert("Content/Assets/MenuButtons/MenuResume.png", graphicsDevice);
-            quitButtonTexture = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", graphicsDevice);
-            mainMenuButtonTexture = ContentConverter.Convert("Content/Assets/MenuButtons/MainMenu.png", graphicsDevice);
-            overlayTexture = ContentConverter.Convert("Content/Assets/MenuButtons/Overlay.png", graphicsDevice);
+            resumeButtonTexture = ContentConverter.Convert("Content/Assets/Menu/ContinueButton.png", graphicsDevice);
+            quitButtonTexture = ContentConverter.Convert("Content/Assets/Menu/QuitButton.png", graphicsDevice);
+            mainMenuButtonTexture = ContentConverter.Convert("Content/Assets/Menu/MainMenuButton.png", graphicsDevice);
+            overlayTexture = ContentConverter.Convert("Content/Assets/Menu/PauseMenu.png", graphicsDevice);
 
-            posMainMenuButton = new Vector2(1920 / 2 - mainMenuButtonTexture.Width / 2, 1080 / 2 - mainMenuButtonTexture.Height / 2);
-            posResumeButton = posMainMenuButton - new Vector2(0, resumeButtonTexture.Height * 1.5f);
-            posQuitButton = posMainMenuButton + new Vector2(0, quitButtonTexture.Height * 1.5f);
+            posOverlay = new Vector2(960 - overlayTexture.Width / 2, 540 - overlayTexture.Height / 2);
+            overlayDimensions = new Rectangle(0, 0, overlayTexture.Width, overlayTexture.Height);
 
-            posOverlay = posResumeButton - new Vector2(resumeButtonTexture.Width / 2, resumeButtonTexture.Height);
-            overlayDimensions = new Rectangle(0, 0, resumeButtonTexture.Width * 2, (int)(posQuitButton.Y - posResumeButton.Y) + resumeButtonTexture.Height * 2);
+            posResumeButton = posOverlay + new Vector2(32, resumeButtonTexture.Height * 2);
+            posMainMenuButton = posResumeButton + new Vector2(0, mainMenuButtonTexture.Height * 2);
+            posQuitButton = posMainMenuButton + new Vector2(0, quitButtonTexture.Height * 2);
 
             resumeButton = new MenuButton("resumeButtonPause", resumeButtonTexture, (int)posResumeButton.X, (int)posResumeButton.Y);
             mainMenuButton = new MenuButton("mainMenuButtonPause", mainMenuButtonTexture, (int)posMainMenuButton.X, (int)posMainMenuButton.Y);
