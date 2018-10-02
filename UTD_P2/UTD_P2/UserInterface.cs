@@ -14,7 +14,7 @@ namespace UTD_P2
         private Texture2D number0, number1, number2, number3, number4, number5, number6, number7, number8, number9, currencySymbol,
             onesDisplay, tensDisplay, hundredsDisplay, thousandsDisplay;
 
-        private Vector2 posOnes, posTens, posHundreds, posThousands;
+        private Vector2 posOnes, posTens, posHundreds, posThousands, posCurrency;
 
         private string rootPath = "Content/Assets/TD/UI/";
 
@@ -41,6 +41,7 @@ namespace UTD_P2
 			posHundreds = new Vector2(number0.Width / 2, 0) + posThousands;
 			posTens = new Vector2(number0.Width / 2, 0) + posHundreds;
 			posOnes = new Vector2(number0.Width / 2, 0) + posTens;
+            posCurrency = new Vector2(number0.Width / 2, 0) + posOnes;
 		}
 
         public void Update(GameTime gameTime)
@@ -244,6 +245,7 @@ namespace UTD_P2
 			spriteBatch.Draw(hundredsDisplay, posHundreds, new Rectangle(0, 0, hundredsDisplay.Width, hundredsDisplay.Height), Color.White);
 			spriteBatch.Draw(tensDisplay, posTens, new Rectangle(0, 0, tensDisplay.Width, tensDisplay.Height), Color.White);
 			spriteBatch.Draw(onesDisplay, posOnes, new Rectangle(0, 0, onesDisplay.Width, onesDisplay.Height), Color.White);
+            spriteBatch.Draw(currencySymbol, posCurrency, new Rectangle(0, 0, currencySymbol.Width, currencySymbol.Height), Color.White);
 		}
     }
 }

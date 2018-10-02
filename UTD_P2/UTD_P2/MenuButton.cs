@@ -26,7 +26,7 @@ namespace UTD_P2
 
         public override void Update(GameTime gameTime, Game1 game)
         {
-            base.Update(gameTime);
+            base.Update(gameTime, game);
         }
 
         protected override void OnButtonClick()
@@ -54,7 +54,7 @@ namespace UTD_P2
                 case "resumeButtonPause":
                     game.gamePaused = false;
                     break;
-                case "mainMenuButton":
+                case "mainMenuButtonPause":
                     game.SetMainMenuActive(true);
                     break;
                 case "quitButtonPause":

@@ -9,14 +9,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-    class BuildButton : Button
+    public class BuildButton : Button
     {
         Vector2 uIButtonPos;
         UIButton uIButton;
         GraphicsDevice graphicsDevice;
         Player player;
+        Level level;
+        public bool allowBuilding;
 
-        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player)
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
+        }
+
+        public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.name = name;
             this.texture = texture;
@@ -24,6 +32,8 @@ namespace UTD_P2
             this.buttonY = buttonY;
             this.graphicsDevice = graphicsDevice;
             this.player = player;
+            this.level = level;
+            allowBuilding = true;
         }
 
         public override void Update(GameTime gameTime)
@@ -33,7 +43,20 @@ namespace UTD_P2
 
         protected override void OnButtonClick()
         {
-            uIButton = new UIButton((int)uIButtonPos.X, (int)uIButtonPos.Y, this, graphicsDevice, player);
+            if (allowBuilding)
+            {
+                uIButton = new UIButton(buttonX, buttonY, this, graphicsDevice, player, level);
+                level.SetUIButton(uIButton);
+            }
+
+            else
+                Upgrade();
+
+        }
+
+        private void Upgrade()
+        {
+            throw new NotImplementedException();
         }
 
         protected override void OnButtonClickMenu(MainMenu mainMenu)
