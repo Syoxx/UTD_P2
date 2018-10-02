@@ -257,19 +257,53 @@ namespace UTD_P2
 
 
             #region Enemy
-            // Waypoints
-            waypoints.Enqueue(new Vector2(2, 0) * 64);
-            waypoints.Enqueue(new Vector2(2, 1) * 64);
-            waypoints.Enqueue(new Vector2(3, 1) * 64);
-            waypoints.Enqueue(new Vector2(3, 2) * 64);
-            waypoints.Enqueue(new Vector2(4, 2) * 64);
-            waypoints.Enqueue(new Vector2(4, 4) * 64);
-            waypoints.Enqueue(new Vector2(3, 4) * 64);
-            waypoints.Enqueue(new Vector2(3, 5) * 64);
-            waypoints.Enqueue(new Vector2(2, 5) * 64);
-            waypoints.Enqueue(new Vector2(2, 7) * 64);
-            waypoints.Enqueue(new Vector2(7, 7) * 64);
 
+            if(mState == MapState.map1)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(2, 0) * 64);
+                waypoints.Enqueue(new Vector2(2, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 7) * 64);
+                waypoints.Enqueue(new Vector2(7, 7) * 64);
+            }
+            else if(mState == MapState.map2)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(2, 0) * 64);
+                waypoints.Enqueue(new Vector2(2, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 7) * 64);
+                waypoints.Enqueue(new Vector2(7, 7) * 64);
+            }
+            else if(mState == MapState.map3)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(2, 0) * 64);
+                waypoints.Enqueue(new Vector2(2, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 1) * 64);
+                waypoints.Enqueue(new Vector2(3, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 2) * 64);
+                waypoints.Enqueue(new Vector2(4, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 4) * 64);
+                waypoints.Enqueue(new Vector2(3, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 5) * 64);
+                waypoints.Enqueue(new Vector2(2, 7) * 64);
+                waypoints.Enqueue(new Vector2(7, 7) * 64);
+            }
+            
 
             // Load enemy 
             LoadEnemy(graphicsDevice);
@@ -290,19 +324,19 @@ namespace UTD_P2
             {38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,},
             {32,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33,},
             {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,31,},
-            {31, 0, 2, 2, 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,6,0,31,},
-            {31,36, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,31,},
-            {31, 0, 3, 3, 3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 2, 2, 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,4,0,31,},
-            {31,37, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,31,},
-            {31, 0, 3, 3, 3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,},
+            {31, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0,31,},
+            {31,36, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,31,},
+            {31, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 4, 0,31,},
+            {31,37, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,31,},
+            {31, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,31,},
             {34,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33,},
         };
 
