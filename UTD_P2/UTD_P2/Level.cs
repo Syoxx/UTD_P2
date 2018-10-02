@@ -100,6 +100,7 @@ namespace UTD_P2
 
         Enemys enemy1;
         Texture2D enemy1Texture;
+        EnemyController enemyController;
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
@@ -124,6 +125,7 @@ namespace UTD_P2
 
             player = new Player(graphicsDevice);
             ui = new UserInterface(graphicsDevice, player);
+            enemyController = new EnemyController(15, 10, this, graphicsDevice, player);
 
             isActive = true;
 
