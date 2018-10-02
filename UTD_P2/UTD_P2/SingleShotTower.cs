@@ -13,7 +13,7 @@ namespace UTD_P2
     {
         public SingleShotTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
-            damage = 0;
+            damage = 10;
             damageRadius = 0;
             price = 5;
             range = 200;
