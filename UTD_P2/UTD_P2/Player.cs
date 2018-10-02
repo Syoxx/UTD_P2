@@ -13,8 +13,6 @@ namespace UTD_P2
     {
         public int money;
         public int life;
-        public Vector2 position, drawPosition;
-        Texture2D texture;
 
         public Player(GraphicsDevice graphicsDevice)
         {
