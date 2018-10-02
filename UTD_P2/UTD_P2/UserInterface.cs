@@ -12,9 +12,9 @@ namespace UTD_P2
     class UserInterface
     {
         private Texture2D number0, number1, number2, number3, number4, number5, number6, number7, number8, number9, currencySymbol,
-            onesDisplay, tensDisplay, hundredsDisplay, thousandsDisplay;
+            onesDisplay, tensDisplay, hundredsDisplay, thousandsDisplay, onesDispayLives, tensDisplayLives, heartSymbol;
 
-        private Vector2 posOnes, posTens, posHundreds, posThousands, posCurrency;
+        private Vector2 posOnes, posTens, posHundreds, posThousands, posCurrency, posOnesLives, posTensLives, posHeart;
 
         private string rootPath = "Content/Assets/TD/UI/";
 
@@ -35,21 +35,97 @@ namespace UTD_P2
             number8 = ContentConverter.Convert(rootPath + "number8.png", graphicsDevice);
             number9 = ContentConverter.Convert(rootPath + "number9.png", graphicsDevice);
             currencySymbol = ContentConverter.Convert(rootPath + "currencySymbol.png", graphicsDevice);
+            heartSymbol = ContentConverter.Convert(rootPath + "heart.png", graphicsDevice);
 			onesDisplay = tensDisplay = hundredsDisplay = thousandsDisplay = number0;
+            onesDispayLives = tensDisplayLives = number0;
 
-			posThousands = new Vector2(number0.Width, number0.Height);
+			posThousands = new Vector2(number0.Width, 0);
 			posHundreds = new Vector2(number0.Width / 2, 0) + posThousands;
 			posTens = new Vector2(number0.Width / 2, 0) + posHundreds;
 			posOnes = new Vector2(number0.Width / 2, 0) + posTens;
             posCurrency = new Vector2(number0.Width / 2, 0) + posOnes;
+
+            posHeart = new Vector2(1920 - number0.Width, 0);
+            posOnesLives = posHeart - new Vector2(number0.Width, 0);
+            posTensLives = posOnesLives - new Vector2(number0.Width / 2, 0);
 		}
 
         public void Update(GameTime gameTime)
         {
 			CalcMoney(player.money);
+            CalcLives(player.life);
         }
 
-		private void CalcMoney(int curMoney)
+        private void CalcLives(int life)
+        {
+            CalcTensLive(life);
+        }
+
+        private void CalcTensLive(int life)
+        {
+            if (life >= 30)
+            {
+                tensDisplayLives = number3;
+                CalcOnesLive(life - 30);
+            }
+
+            else if (life >= 20)
+            {
+                tensDisplayLives = number2;
+                CalcOnesLive(life - 20);
+            }
+
+            else if (life >= 10)
+            {
+                tensDisplayLives = number1;
+                CalcOnesLive(life - 10);
+            }
+
+            else if (life < 10)
+            {
+                tensDisplayLives = number0;
+                CalcOnesLive(life);
+            }
+        }
+
+        private void CalcOnesLive(int life)
+        {
+            switch (life)
+            {
+                case 9:
+                    onesDispayLives = number9;
+                    break;
+                case 8:
+                    onesDispayLives = number8;
+                    break;
+                case 7:
+                    onesDispayLives = number7;
+                    break;
+                case 6:
+                    onesDispayLives = number6;
+                    break;
+                case 5:
+                    onesDispayLives = number5;
+                    break;
+                case 4:
+                    onesDispayLives = number4;
+                    break;
+                case 3:
+                    onesDispayLives = number3;
+                    break;
+                case 2:
+                    onesDispayLives = number2;
+                    break;
+                case 1:
+                    onesDispayLives = number1;
+                    break;
+                case 0:
+                    onesDispayLives = number0;
+                    break;
+            }
+        }
+
+        private void CalcMoney(int curMoney)
 		{
 			if (curMoney < 10)
 			{
@@ -246,6 +322,10 @@ namespace UTD_P2
 			spriteBatch.Draw(tensDisplay, posTens, new Rectangle(0, 0, tensDisplay.Width, tensDisplay.Height), Color.White);
 			spriteBatch.Draw(onesDisplay, posOnes, new Rectangle(0, 0, onesDisplay.Width, onesDisplay.Height), Color.White);
             spriteBatch.Draw(currencySymbol, posCurrency, new Rectangle(0, 0, currencySymbol.Width, currencySymbol.Height), Color.White);
+
+            spriteBatch.Draw(heartSymbol, posHeart, new Rectangle(0, 0, heartSymbol.Width, heartSymbol.Height), Color.White);
+            spriteBatch.Draw(tensDisplayLives, posTensLives, new Rectangle(0, 0, tensDisplayLives.Width, tensDisplayLives.Height), Color.White);
+            spriteBatch.Draw(onesDispayLives, posOnesLives, new Rectangle(0, 0, onesDispayLives.Width, onesDispayLives.Height), Color.White);
 		}
     }
 }

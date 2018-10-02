@@ -63,7 +63,7 @@ namespace UTD_P2
             enemy2 = ContentConverter.Convert(contentPath + "enemy2.png", graphicsDevice);
             enemy3 = ContentConverter.Convert(contentPath + "enemy3.png", graphicsDevice);
             enemy4 = ContentConverter.Convert(contentPath + "enemy4.png", graphicsDevice);
-            spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
+            //spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
         }
 
         public void Update(GameTime gameTime)
