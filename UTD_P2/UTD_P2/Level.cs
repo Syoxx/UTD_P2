@@ -480,15 +480,6 @@ namespace UTD_P2
             
             currentKBState = Keyboard.GetState();
 
-            if (currentKBState.IsKeyDown(Keys.Z))
-                player.position.Y -= 2;
-            if (currentKBState.IsKeyDown(Keys.H))
-                player.position.Y += 2;
-            if (currentKBState.IsKeyDown(Keys.G))
-                player.position.X -= 2;
-            if (currentKBState.IsKeyDown(Keys.J))
-                player.position.X += 2;
-
             inRangeCheck.CheckRange(towerList, enemyList);
 
             foreach(Towers tower in towerList)
