@@ -48,29 +48,29 @@ namespace UTD_P2
 		{
 			if (target.CurrentHealth > 0)
 			{
-                projSpawnPosition = position + new Vector2(32, 32);
 				timer = 0;
-				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, projSpawnPosition, target, canSlow);
+				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target, canSlow);
                 level.AddProjectile(proj);
+                readyToFire = false;
 			}
 		}
 
 		public virtual void Update(GameTime gameTime, Level level)
 		{
             if (target != null)
-                if (Vector2.Distance(position, target.Position) > range)
+                if (Vector2.Distance(position, target.projTargetPosition) > range)
                     target = null;
 
 			if(!readyToFire)
 			{
-				timer += gameTime.ElapsedGameTime.Milliseconds;
+				timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 				if (timer >= reloadTime)
 					readyToFire = true;
 			}   
 
             if (target != null)
 			{
-                direction = target.Position - position;
+                direction = target.projTargetPosition - position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
                 if (readyToFire && target.CurrentHealth > 0)

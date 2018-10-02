@@ -118,6 +118,11 @@ namespace UTD_P2
                 enemyLife = 30;
             }
             countWaves++;
+
+            if (countEnemys > nrOfWaves)
+            {
+                //load new level
+            }
         }
 
         private void SpawnFirstWave()

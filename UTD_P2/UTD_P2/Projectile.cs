@@ -39,7 +39,7 @@ namespace UTD_P2
         }
 
         public void Update(GameTime gameTime)
-        {;
+        {
             direction = target.projTargetPosition - position;
             direction.Normalize();
             position += direction * speed;
@@ -63,7 +63,7 @@ namespace UTD_P2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            drawPosition = position - new Vector2(texture.Width / 2, texture.Height / 2);
+            drawPosition = position;
             sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, drawPosition, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);
         }
