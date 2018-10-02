@@ -40,11 +40,11 @@ namespace UTD_P2
 
         public void Update(GameTime gameTime)
         {
-            direction = position - target.position;
+            direction = position - target.Position;
             direction.Normalize();
             position += direction * speed;
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
-            if (Vector2.Distance(position, target.position) <= texture.Width)
+            if (Vector2.Distance(position, target.Position) <= texture.Width)
             {
                 if (damageRadius > 0)
                     InitiateExplosion();
