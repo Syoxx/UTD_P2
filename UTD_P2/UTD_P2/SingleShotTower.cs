@@ -13,10 +13,10 @@ namespace UTD_P2
     {
         public SingleShotTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
-            damage = 10;
+            damage = 0;
             damageRadius = 0;
             price = 5;
-            range = 100;
+            range = 200;
             reloadTime = 2;
             position.X = positionX + texture.Width / 2;
             position.Y = positionY + texture.Height / 2;
@@ -24,6 +24,7 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/bullet.png", graphicsDevice);
+            projectileSpeed = 10;
             this.player = player;
         }
 

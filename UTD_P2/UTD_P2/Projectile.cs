@@ -14,7 +14,7 @@ namespace UTD_P2
         private float speed, damage, damageRadius, rotationAngle;
 
         private Texture2D texture;
-
+        private Vector2 targetPosition;
         private Vector2 position, direction, rotationCenter, drawPosition;
 
         public Enemys target;
@@ -39,12 +39,12 @@ namespace UTD_P2
         }
 
         public void Update(GameTime gameTime)
-        {
-            direction = position - target.Position;
+        {;
+            direction = target.projTargetPosition - position;
             direction.Normalize();
             position += direction * speed;
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
-            if (Vector2.Distance(position, target.Position) <= texture.Width)
+            if (Vector2.Distance(position, target.projTargetPosition) <= 2)
             {
                 if (damageRadius > 0)
                     InitiateExplosion();

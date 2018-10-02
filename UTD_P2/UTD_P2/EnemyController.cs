@@ -23,9 +23,9 @@ namespace UTD_P2
     /// </summary>
     class EnemyController
     {
-        private float timerWaves, timerEnemys, startFirstWave, timerAfterFirstWave, enemySpeed;
+        private float timerWaves, timerEnemys, startFirstWave, timerAfterFirstWave, enemySpeed, enemySpawnTime;
         private int nrToSpawn, nrOfWaves, enemyLife, countEnemys, countWaves;
-        private bool isFirstWave, spawnNewEnemys, initiateSpawn;
+        private bool isFirstWave, spawnNewEnemys, initiateSpawn, stopTimer;
         Vector2 spawnPosition;
         private int enemyBounty;
 
@@ -54,37 +54,46 @@ namespace UTD_P2
             this.level = level;
             this.player = player;
             this.graphicsDevice = graphicsDevice;
-            startFirstWave = 30;
+            startFirstWave = 5;
             timerAfterFirstWave = 15;
             spawnNewEnemys = false;
             countWaves = 1;
             countEnemys = 0;
             enemyBounty = 1;
             enemySpeed = 2;
+            enemyLife = 10;
+            enemySpawnTime = 1f;
+            timerEnemys = 1;
             enemy1 = ContentConverter.Convert(contentPath + "enemy1.png", graphicsDevice);
             enemy2 = ContentConverter.Convert(contentPath + "enemy2.png", graphicsDevice);
             enemy3 = ContentConverter.Convert(contentPath + "enemy3.png", graphicsDevice);
             enemy4 = ContentConverter.Convert(contentPath + "enemy4.png", graphicsDevice);
+            enemyTexture = enemy1;
             spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
         }
 
         public void Update(GameTime gameTime)
         {
-            timerWaves += gameTime.ElapsedGameTime.Seconds;
-            timerEnemys += gameTime.ElapsedGameTime.Seconds;
+            if (!stopTimer)
+                timerWaves = timerWaves + (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (timerWaves >= startFirstWave && isFirstWave)
+            Console.WriteLine(timerWaves);
+
+            timerEnemys += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (timerWaves >= startFirstWave && isFirstWave && initiateSpawn)
                 SpawnFirstWave();
 
             if (timerWaves >= timerAfterFirstWave && !isFirstWave && initiateSpawn)
                 SpawnWave();
 
-            if (timerEnemys >= timerAfterFirstWave && countEnemys <= nrToSpawn)
+            if (timerEnemys >= enemySpawnTime && countEnemys <= nrToSpawn && spawnNewEnemys)
                 SpawnEnemy(enemyTexture);
         }
 
         private void SpawnWave()
         {
+            stopTimer = true;
             initiateSpawn = false;
             spawnNewEnemys = true;
             if (countWaves <= 4 && countWaves > 1)
@@ -92,18 +101,21 @@ namespace UTD_P2
                 enemyTexture = enemy2;
                 enemyBounty = 2;
                 enemySpeed = 3;
+                enemyLife = 15;
             }
             if (countWaves <= 7 && countWaves > 4)
             {
                 enemyBounty = 3;
                 enemySpeed = 4;
                 enemyTexture = enemy3;
+                enemyLife = 20;
             }
             if (countWaves >= 8)
             {
                 enemyBounty = 4;
                 enemySpeed = 6;
                 enemyTexture = enemy4;
+                enemyLife = 30;
             }
             countWaves++;
         }
@@ -113,18 +125,23 @@ namespace UTD_P2
             initiateSpawn = false;
             spawnNewEnemys = true;
             enemyTexture = enemy1;
+            isFirstWave = false;
             countWaves++;
         }
 
         private void SpawnEnemy(Texture2D texture)
         {
             Enemys enemy = new Enemys(player, texture, spawnPosition, enemyLife, enemyBounty, enemySpeed, graphicsDevice);
+            enemy.SetWaypoints(level.Waypoints);
             level.AddEnemy(enemy);
             countEnemys++;
+            timerEnemys = 0;
             if (countEnemys >= nrToSpawn)
             {
                 countEnemys = 0;
                 spawnNewEnemys = false;
+                timerWaves = 0;
+                stopTimer = false;
             }
         }
     }

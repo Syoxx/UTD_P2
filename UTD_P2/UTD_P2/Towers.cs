@@ -12,7 +12,8 @@ namespace UTD_P2
 {
 	public abstract class Towers
 	{
-		protected float damage, damageRadius, price, reloadTime, timer, projectileSpeed, rotationAngle;
+        private Vector2 projSpawnPosition;
+        protected float damage, damageRadius, price, reloadTime, timer, projectileSpeed, rotationAngle;
 		public float range;
 
 		protected bool readyToFire, canSlow = false;
@@ -47,33 +48,31 @@ namespace UTD_P2
 		{
 			if (target.CurrentHealth > 0)
 			{
+                projSpawnPosition = position + new Vector2(32, 32);
 				timer = 0;
-				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target, canSlow);
+				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, projSpawnPosition, target, canSlow);
                 level.AddProjectile(proj);
 			}
 		}
 
 		public virtual void Update(GameTime gameTime, Level level)
 		{
+            if (target != null)
+                if (Vector2.Distance(position, target.Position) > range)
+                    target = null;
+
 			if(!readyToFire)
 			{
 				timer += gameTime.ElapsedGameTime.Milliseconds;
 				if (timer >= reloadTime)
 					readyToFire = true;
-			}
+			}   
 
-            if (target == null)
-            {        
-                direction = position - player.position;
+            if (target != null)
+			{
+                direction = target.Position - position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
-            }
-
-			if (target != null)
-			{
-                direction = position - target.Position;
-                direction.Normalize();
-                rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
                 if (readyToFire && target.CurrentHealth > 0)
 					Fire(level);
 

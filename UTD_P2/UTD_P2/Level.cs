@@ -101,6 +101,7 @@ namespace UTD_P2
         Enemys enemy1;
         Texture2D enemy1Texture;
         EnemyController enemyController;
+        InRangeCheck inRangeCheck;
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
@@ -125,6 +126,7 @@ namespace UTD_P2
 
             player = new Player(graphicsDevice);
             ui = new UserInterface(graphicsDevice, player);
+            inRangeCheck = new InRangeCheck();
 
             isActive = true;
 
@@ -487,6 +489,8 @@ namespace UTD_P2
             if (currentKBState.IsKeyDown(Keys.J))
                 player.position.X += 2;
 
+            inRangeCheck.CheckRange(towerList, enemyList);
+
             foreach(Towers tower in towerList)
             {
                 tower.Update(gameTime, this);
@@ -494,7 +498,7 @@ namespace UTD_P2
 
             for (int i = 0; i < enemyList.Count; i++)
             {
-                if (enemyList[i].CurrentHealth <= 0)
+                if (!enemyList[i].alive)
                     enemyList[i] = null;
                 else
                     enemyList[i].Update(gameTime);
@@ -524,6 +528,11 @@ namespace UTD_P2
 
             player.Update(gameTime);
 
+            enemyController.Update(gameTime);
+
+            if (enemyList.Count == 0)
+                enemyController.InitiateSpawn = true;
+
             oldKBState = currentKBState;
         }
 
@@ -545,8 +554,15 @@ namespace UTD_P2
                 }
             }
             enemy1.Draw(batch);
+
             foreach (BuildButton button in buildButtonList)
                 button.Draw(batch);
+
+            foreach (Projectile proj in projectileList)
+            {
+                if (proj != null)
+                    proj.Draw(batch);
+            }
 
             foreach (Towers tower in towerList)
                 tower.Draw(batch);
@@ -555,12 +571,6 @@ namespace UTD_P2
             {
                 if (enemy != null)
                     enemy.Draw(batch);
-            }
-
-            foreach (Projectile proj in projectileList)
-            {
-                if (proj != null)
-                    proj.Draw(batch);
             }
 
             ui.Draw(batch);
