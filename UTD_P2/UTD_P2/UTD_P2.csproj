@@ -92,13 +92,22 @@
     <Content Include="Content\Assets\Level1\tileEnemyWay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\MenuButtons\Background.jpg">
+    <Content Include="Content\Assets\Menu\Background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\MenuButtons\MenuQuit.png">
+    <Content Include="Content\Assets\Menu\ContinueButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\MenuButtons\MenuStart.png">
+    <Content Include="Content\Assets\Menu\MainMenuButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Menu\PauseMenu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Menu\PlayButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Menu\QuitButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\License.txt" />
@@ -1364,16 +1373,19 @@
     <Content Include="Content\Assets\TD\UI\number9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\UI\Towers\doubleShot.png">
+    <Content Include="Content\Assets\TD\UI\towerBuild.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\UI\Towers\rocketLauncher.png">
+    <Content Include="Content\Assets\TD\UI\Towers\DoubleShotTower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\UI\Towers\singleShot.png">
+    <Content Include="Content\Assets\TD\UI\Towers\RocketLauncherTower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Assets\TD\UI\Towers\slow.png">
+    <Content Include="Content\Assets\TD\UI\Towers\SingleShotTower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\TD\UI\Towers\SlowTower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\TD\Vector\towerDefense_vector.svg" />

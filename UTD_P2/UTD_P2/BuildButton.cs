@@ -18,6 +18,12 @@ namespace UTD_P2
         Level level;
         public bool allowBuilding;
 
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
+        }
+
         public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.name = name;

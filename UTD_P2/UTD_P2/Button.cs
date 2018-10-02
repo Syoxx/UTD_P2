@@ -16,7 +16,7 @@ namespace UTD_P2
         protected Texture2D texture;
         protected MouseState mouseState;
         protected MouseState oldState;
-        protected Color currentColor;
+        protected Color currentColor = Color.White;
 
         public int ButtonX
         {
@@ -44,11 +44,16 @@ namespace UTD_P2
                     mouseState.Y < buttonY + texture.Height &&
                     mouseState.Y > buttonY)
             {
-                currentColor = Color.Gray;
+                if (currentColor == Color.White)
+                    currentColor = Color.Gray;
                 return true;
             }
-            currentColor = Color.White;
-            return false;
+            else
+            {
+                if (currentColor != Color.Red)
+                    currentColor = Color.White;
+                return false;
+            }
         }
 
         public virtual void Update(GameTime gameTime)

@@ -45,6 +45,7 @@ namespace UTD_P2
         private List<BuildButton> buildButtonList;
         private UIButton uiButton;
 
+
         private Player player;
         private UserInterface ui;
 
@@ -93,7 +94,7 @@ namespace UTD_P2
             {
                 case MapState.map1:
                     mapToUse = map1;
-                    BuildButton buildButton = new BuildButton("buildButton", buildButtonTexture, 220, 64, graphicsDevice, player, this);
+                    BuildButton buildButton = new BuildButton("buildButton", buildButtonTexture, 500, 64, graphicsDevice, player, this);
                     buildButtonList.Add(buildButton);
                     break;
                 case MapState.map2:
@@ -286,14 +287,26 @@ namespace UTD_P2
                 tower.Update(gameTime, this);
             }
 
-            foreach(Enemys enemy in enemyList)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                enemy.Update(gameTime);
+                if (enemyList[i].life <= 0)
+                    enemyList[i] = null;
+                else
+                    enemyList[i].Update(gameTime);
+
+                if (enemyList[i] == null)
+                    enemyList.Remove(enemyList[i]);
             }
 
-            foreach(Projectile proj in projectileList)
+            for (int i = 0; i < projectileList.Count; i++)
             {
-                proj.Update(gameTime);
+                if (projectileList[i].hit)
+                    projectileList[i] = null;
+                else
+                    projectileList[i].Update(gameTime);
+
+                if (projectileList[i] == null)
+                    projectileList.Remove(projectileList[i]);
             }
 
             foreach (BuildButton button in buildButtonList)
@@ -334,10 +347,16 @@ namespace UTD_P2
                 tower.Draw(batch);
 
             foreach (Enemys enemy in enemyList)
-                enemy.Draw(batch);
+            {
+                if (enemy != null)
+                    enemy.Draw(batch);
+            }
 
             foreach (Projectile proj in projectileList)
-                proj.Draw(batch);
+            {
+                if (proj != null)
+                    proj.Draw(batch);
+            }
 
             ui.Draw(batch);
 

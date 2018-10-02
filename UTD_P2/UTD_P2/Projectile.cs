@@ -9,13 +9,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-    public class Projectile : IDisposable
+    public class Projectile
     {
         private float speed, damage, damageRadius, rotationAngle;
 
         private Texture2D texture;
 
-        private Vector2 position, direction, rotationCenter;
+        private Vector2 position, direction, rotationCenter, drawPosition;
 
         public Enemys target;
 
@@ -23,7 +23,9 @@ namespace UTD_P2
 
         public bool hit;
 
-        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target)
+        private bool canSlow;
+
+        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target, bool canSlow)
         {
             this.texture = texture;
             this.speed = speed;
@@ -31,6 +33,7 @@ namespace UTD_P2
             this.damageRadius = damageRadius;
             this.position = position;
             this.target = target;
+            this.canSlow = canSlow;
             hit = false;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
@@ -41,11 +44,12 @@ namespace UTD_P2
             direction.Normalize();
             position += direction * speed;
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
-            if (Vector2.Distance(position, target.position) <= 2)
+            if (Vector2.Distance(position, target.position) <= texture.Width)
             {
                 if (damageRadius > 0)
                     InitiateExplosion();
                 target.life -= damage;
+                //target.isSlowed = canSLow;
                 hit = true;
             }
         }
@@ -59,13 +63,9 @@ namespace UTD_P2
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            drawPosition = position - new Vector2(texture.Width / 2, texture.Height / 2);
             sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
-            spriteBatch.Draw(texture, position, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+            spriteBatch.Draw(texture, drawPosition, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);
         }
     }
 }

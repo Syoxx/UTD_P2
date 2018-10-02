@@ -17,14 +17,14 @@ namespace UTD_P2
             damageRadius = 0;
             price = 5;
             range = 100;
-            reloadTime = 3;
-            position.X = positionX;
-            position.Y = positionY;
-            towerTexture = texture;
+            reloadTime = 2;
+            position.X = positionX + texture.Width / 2;
+            position.Y = positionY + texture.Height / 2;
             towerTexture = texture;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/bullet.png", graphicsDevice);
+            this.player = player;
         }
 
         public override void Fire(Level level)

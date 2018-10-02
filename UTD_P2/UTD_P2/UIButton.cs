@@ -13,15 +13,15 @@ namespace UTD_P2
     {
         BuildButton buildButton;
         Texture2D singleShotTexture, singleShotUITexture, doubleShotTexture, doubleShotUITexture, slowTexture, slowUITexture,
-            rocketLauncherTexture, rocketLauncherUITexture;
+            rocketLauncherTexture, rocketLauncherUITexture, towerBuild;
         private string singleShotPath = "Content/Assets/TD/Towers/singleShot.png";
-        private string singleShotUIPath = "Content/Assets/TD/UI/Towers/singleShot.png";
+        private string singleShotUIPath = "Content/Assets/TD/UI/Towers/SingleShotTower.png";
         private string doubleShotPath = "Content/Assets/TD/Towers/doubleShot.png";
-        private string doubleShotUIPath = "Content/Assets/TD/UI/Towers/doubleShot.png";
+        private string doubleShotUIPath = "Content/Assets/TD/UI/Towers/DoubleShotTower.png";
         private string slowPath = "Content/Assets/TD/Towers/slow.png";
-        private string slowUIPath = "Content/Assets/TD/UI/Towers/slow.png";
+        private string slowUIPath = "Content/Assets/TD/UI/Towers/SlowTower.png";
         private string rocketLauncherPath = "Content/Assets/TD/Towers/rocketLauncher.png";
-        private string rocketLauncherUIPath = "Content/Assets/TD/UI/Towers/rocketLauncher.png";
+        private string rocketLauncherUIPath = "Content/Assets/TD/UI/Towers/RocketLauncherTower.png";
 
         private bool affordable = false;
 
@@ -52,6 +52,7 @@ namespace UTD_P2
             slowUITexture = ContentConverter.Convert(slowUIPath, graphicsDevice);
             rocketLauncherTexture = ContentConverter.Convert(rocketLauncherPath, graphicsDevice);
             rocketLauncherUITexture = ContentConverter.Convert(rocketLauncherUIPath, graphicsDevice);
+            towerBuild = ContentConverter.Convert("Content/Assets/TD/UI/towerBuild.png", graphicsDevice);
 
             towerType = TowerTypes.Single;
             //texture = singleShotTexture;
@@ -78,13 +79,13 @@ namespace UTD_P2
                         || InputManager.CheckInputKeyboard(previousKBState, currentKBState, Keys.A))
                         towerType = TowerTypes.Rocket;
 
-                    if (player.money > 5)
+                    if (player.money >= 5)
                     {
                         affordable = true;
                         currentColor = Color.White;
                     }
 
-                    else
+                    else if (player.money < 5)
                     {
                         affordable = false;
                         currentColor = Color.Red;
@@ -102,7 +103,7 @@ namespace UTD_P2
                         || InputManager.CheckInputKeyboard(previousKBState, currentKBState, Keys.A))
                         towerType = TowerTypes.Single;
 
-                    if (player.money > 10)
+                    if (player.money >= 10)
                         {
                             affordable = true;
                             currentColor = Color.White;
@@ -124,7 +125,7 @@ namespace UTD_P2
                     else if (InputManager.CheckInputKeyboard(previousKBState, currentKBState, Keys.Left)
                         || InputManager.CheckInputKeyboard(previousKBState, currentKBState, Keys.A))
                         towerType = TowerTypes.Double;
-                    if (player.money > 15)
+                    if (player.money >= 15)
                         {
                             affordable = true;
                             currentColor = Color.White;
@@ -147,13 +148,13 @@ namespace UTD_P2
                         || InputManager.CheckInputKeyboard(previousKBState, currentKBState, Keys.A))
                         towerType = TowerTypes.Slow;
 
-                    if (player.money > 20)
+                    if (player.money >= 20)
                     {
                         affordable = true;
                         currentColor = Color.White;
                     }
 
-                    else
+                    else if (player.money < 20)
                     {
                         affordable = false;
                         currentColor = Color.Red;
@@ -171,24 +172,29 @@ namespace UTD_P2
 
         protected override void OnButtonClick()
         {
-            switch (towerType)
+            if (affordable)
             {
-                case TowerTypes.Single:
-                    SingleShotTower newSingleShotTower = new SingleShotTower(singleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
-                    level.AddTower(newSingleShotTower, this);
-                    break;
-                case TowerTypes.Double:
-                    DoubleShotTower newDoubleShotTower = new DoubleShotTower(doubleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
-                    level.AddTower(newDoubleShotTower, this);
-                    break;
-                case TowerTypes.Slow:
-                    SlowTower newSlowTower = new SlowTower(slowTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
-                    level.AddTower(newSlowTower, this);
-                    break;
-                case TowerTypes.Rocket:
-                    RocketLauncherTower newRocketLauncherTower = new RocketLauncherTower(rocketLauncherTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
-                    level.AddTower(newRocketLauncherTower, this);
-                    break;
+                buildButton.Texture = towerBuild;
+                buildButton.allowBuilding = false;
+                switch (towerType)
+                {
+                    case TowerTypes.Single:
+                        SingleShotTower newSingleShotTower = new SingleShotTower(singleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
+                        level.AddTower(newSingleShotTower, this);
+                        break;
+                    case TowerTypes.Double:
+                        DoubleShotTower newDoubleShotTower = new DoubleShotTower(doubleShotTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
+                        level.AddTower(newDoubleShotTower, this);
+                        break;
+                    case TowerTypes.Slow:
+                        SlowTower newSlowTower = new SlowTower(slowTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
+                        level.AddTower(newSlowTower, this);
+                        break;
+                    case TowerTypes.Rocket:
+                        RocketLauncherTower newRocketLauncherTower = new RocketLauncherTower(rocketLauncherTexture, buildButton.ButtonX, buildButton.ButtonY, player, graphicsDevice);
+                        level.AddTower(newRocketLauncherTower, this);
+                        break;
+                }
             }
             //change buildButton behaviour to disable building new towers
         }

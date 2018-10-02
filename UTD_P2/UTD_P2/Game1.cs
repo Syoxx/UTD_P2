@@ -63,9 +63,9 @@ namespace UTD_P2
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            mainMenuBackground = ContentConverter.Convert("Content/Assets/MenuButtons/Background.jpg", GraphicsDevice);
-            mainMenuStartButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuStart.png", GraphicsDevice);
-            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/MenuButtons/MenuQuit.png", GraphicsDevice);
+            mainMenuBackground = ContentConverter.Convert("Content/Assets/Menu/Background.jpg", GraphicsDevice);
+            mainMenuStartButton = ContentConverter.Convert("Content/Assets/Menu/PlayButton.png", GraphicsDevice);
+            mainMenuQuitButton = ContentConverter.Convert("Content/Assets/Menu/QuitButton.png", GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
@@ -89,8 +89,8 @@ namespace UTD_P2
 		{
             currentState = Keyboard.GetState();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
 
             if (mainMenu != null)
             {
@@ -103,14 +103,14 @@ namespace UTD_P2
                 if (!gamePaused && level.isActive)
                     UpdateLevel(gameTime);
 
-                if (gamePaused)
-                    UpdatePauseMenu(gameTime);
-
                 if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
                     gamePaused = true;
 
-                if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
+                else if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
                     gamePaused = false;
+
+                if (gamePaused)
+                    UpdatePauseMenu(gameTime);
             }
 
             oldState = currentState;
@@ -157,7 +157,6 @@ namespace UTD_P2
             if(i == 1)
             {
                 level = new Level(Level.MapState.map1, GraphicsDevice);
-
             }
             else if(i == 2)
             {
@@ -171,7 +170,13 @@ namespace UTD_P2
 
         public void SetMainMenuActive(bool isActive)
         {
-            mainMenu.isActive = isActive;
+            if (isActive)
+            {
+                level.isActive = false;
+                level = null;
+                gamePaused = false;
+                mainMenu.isActive = true;
+            }
         }
         /// <summary>
         /// This is called when the game should draw itself.

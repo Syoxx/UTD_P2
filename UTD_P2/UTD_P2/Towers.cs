@@ -48,7 +48,7 @@ namespace UTD_P2
 			if (target.life > 0)
 			{
 				timer = 0;
-				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target);
+				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target, canSlow);
                 level.AddProjectile(proj);
 			}
 		}
@@ -63,7 +63,7 @@ namespace UTD_P2
 			}
 
             if (target == null)
-            {
+            {        
                 direction = position - player.position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
