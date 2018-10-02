@@ -125,7 +125,6 @@ namespace UTD_P2
 
             player = new Player(graphicsDevice);
             ui = new UserInterface(graphicsDevice, player);
-            enemyController = new EnemyController(15, 10, this, graphicsDevice, player);
 
             isActive = true;
 
@@ -293,7 +292,8 @@ namespace UTD_P2
 
             // Load enemy 
             LoadEnemy(graphicsDevice);
-            
+
+            enemyController = new EnemyController(15, 10, this, graphicsDevice, player);
 
             #endregion
         }

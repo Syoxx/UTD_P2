@@ -33,6 +33,7 @@ namespace UTD_P2
 
         Level level;
         Player player;
+        GraphicsDevice graphicsDevice;
 
         string contentPath = "Content/Assets/Enemys/";
         private bool doneSpawning;
@@ -52,6 +53,7 @@ namespace UTD_P2
             timerEnemys = 0;
             this.level = level;
             this.player = player;
+            this.graphicsDevice = graphicsDevice;
             startFirstWave = 30;
             timerAfterFirstWave = 15;
             spawnNewEnemys = false;
@@ -63,7 +65,7 @@ namespace UTD_P2
             enemy2 = ContentConverter.Convert(contentPath + "enemy2.png", graphicsDevice);
             enemy3 = ContentConverter.Convert(contentPath + "enemy3.png", graphicsDevice);
             enemy4 = ContentConverter.Convert(contentPath + "enemy4.png", graphicsDevice);
-            //spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
+            spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
         }
 
         public void Update(GameTime gameTime)
@@ -116,7 +118,7 @@ namespace UTD_P2
 
         private void SpawnEnemy(Texture2D texture)
         {
-            Enemys enemy = new Enemys(texture, spawnPosition, enemyLife, enemyBounty, enemySpeed);
+            Enemys enemy = new Enemys(player, texture, spawnPosition, enemyLife, enemyBounty, enemySpeed, graphicsDevice);
             level.AddEnemy(enemy);
             countEnemys++;
             if (countEnemys >= nrToSpawn)
