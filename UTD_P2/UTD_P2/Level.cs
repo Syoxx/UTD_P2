@@ -21,7 +21,8 @@ namespace UTD_P2
             background3, lvlWay3, lvlTile22, lvlTile23, lvlTile24, lvlTile25, lvlTile26, lvlTile27, lvlTile28, lvlTile29,
             horOutline1, verOutline1, botRightCor, botLeftCor, uppRightCor, uppLeftCor,
             start1, end1,
-            uiLine;
+            uiLine,
+            buildButtonTexture;
 
         #region TilesToPath
         
@@ -80,7 +81,7 @@ namespace UTD_P2
 
         private List<Texture2D> tileTextures;
         private List<Towers> towerList;
-        private List<Enemy> enemyList;
+        private List<Enemys> enemyList;
         private List<Projectile> projectileList;
         private List<BuildButton> buildButtonList;
         private UIButton uiButton;
@@ -97,7 +98,7 @@ namespace UTD_P2
 
         int[,] mapToUse;
 
-        Enemy enemy1;
+        Enemys enemy1;
         Texture2D enemy1Texture;
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
@@ -117,7 +118,7 @@ namespace UTD_P2
 
             // Create lists which contain the towers, enemys and projectiles.
             towerList = new List<Towers>();
-            enemyList = new List<Enemy>();
+            enemyList = new List<Enemys>();
             projectileList = new List<Projectile>();
             buildButtonList = new List<BuildButton>();
 
@@ -126,13 +127,14 @@ namespace UTD_P2
 
             isActive = true;
 
+            buildButtonTexture = ContentConverter.Convert("Content/Assets/TD/UI/buildTower.png", graphicsDevice);
+
             #region Convert and load level textures
 
             // Level 1
             background1 = ContentConverter.Convert(pathToLvl1Background, graphicsDevice);
             lvlWay1 = ContentConverter.Convert(pathToLvl1Way, graphicsDevice);
             lvlTile2 = ContentConverter.Convert(pathToLvlTile2, graphicsDevice);
-            buildButtonTexture = ContentConverter.Convert("Content/Assets/TD/UI/buildTower.png", graphicsDevice);
             lvlTile3 = ContentConverter.Convert(pathToLvlTile3, graphicsDevice);
             lvlTile4 = ContentConverter.Convert(pathToLvlTile4, graphicsDevice);
             lvlTile5 = ContentConverter.Convert(pathToLvlTile5, graphicsDevice);
@@ -407,7 +409,7 @@ namespace UTD_P2
         /// Add enemy to the list enemyList.
         /// </summary>
         /// <param name="enemys"></param>
-        public void AddEnemy(Enemy enemys)
+        public void AddEnemy(Enemys enemys)
         {
             enemyList.Add(enemys);
         }
@@ -431,7 +433,7 @@ namespace UTD_P2
         {
             enemy1Texture = ContentConverter.Convert("Content/Assets/Enemys/enemy1.png", graphicsDevice);
             // Creates enemy in the top left corner (0,0) with 100 health, 10 gold
-            enemy1 = new Enemy(enemy1Texture, Vector2.Zero, 100, 10, 0.5f);
+            enemy1 = new Enemys(enemy1Texture, Vector2.Zero, 100, 10, 0.5f);
 
             enemy1.SetWaypoints(waypoints);
         }
@@ -472,7 +474,7 @@ namespace UTD_P2
 
             for (int i = 0; i < enemyList.Count; i++)
             {
-                if (enemyList[i].life <= 0)
+                if (enemyList[i].CurrentHealth <= 0)
                     enemyList[i] = null;
                 else
                     enemyList[i].Update(gameTime);
@@ -518,11 +520,11 @@ namespace UTD_P2
                         continue;
 
                     Texture2D texture = tileTextures[textureIndex];
-                    spriteBatch.Draw(texture, new Rectangle(
+                    batch.Draw(texture, new Rectangle(
                         x * 64, y * 64, 64, 64), Color.White);
                 }
             }
-            enemy1.Draw(spriteBatch);
+            enemy1.Draw(batch);
             foreach (BuildButton button in buildButtonList)
                 button.Draw(batch);
 

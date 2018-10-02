@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	public class Enemy : Sprite
+	public class Enemys : Sprite
 	{
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
@@ -66,7 +66,7 @@ namespace UTD_P2
 
 
 
-        public Enemy(Texture2D texture, Vector2 position, float health, int bountyGiven, float speed) : base(texture, position)
+        public Enemys(Texture2D texture, Vector2 position, float health, int bountyGiven, float speed) : base(texture, position)
         {
             this.startHealth = health;
             this.currentHealth = startHealth;

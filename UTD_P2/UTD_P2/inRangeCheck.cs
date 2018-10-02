@@ -11,11 +11,11 @@ namespace UTD_P2
 {
 	class InRangeCheck
 	{
-		public void CheckRange(List<Towers> towers, List<Enemy> enemys)
+		public void CheckRange(List<Towers> towers, List<Enemys> enemys)
 		{
             foreach(Towers tower in towers)
             {
-                foreach(Enemy enemy in enemys)
+                foreach(Enemys enemy in enemys)
                 {
                     if (Vector2.Distance(tower.position, enemy.position) <= tower.range)
                     {

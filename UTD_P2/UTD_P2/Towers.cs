@@ -26,7 +26,7 @@ namespace UTD_P2
 
         Projectile proj;
 
-        protected Enemy target;
+        protected Enemys target;
 
         protected Player player;
 
@@ -74,7 +74,7 @@ namespace UTD_P2
                 direction = position - target.position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
-                if (readyToFire && target.life > 0)
+                if (readyToFire && target.CurrentHealth > 0)
 					Fire(level);
 
 				if (target.CurrentHealth <= 0)

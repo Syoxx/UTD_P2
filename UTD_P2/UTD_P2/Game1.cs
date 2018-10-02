@@ -31,7 +31,7 @@ namespace UTD_P2
 
         private Level level;
 
-        private Enemy enemy1;
+        private Enemys enemy1;
         
 
 
@@ -118,7 +118,6 @@ namespace UTD_P2
 
                 if (gamePaused)
                     UpdatePauseMenu(gameTime);
-            }
 
             oldState = currentState;
 			base.Update(gameTime);

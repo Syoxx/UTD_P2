@@ -17,7 +17,7 @@ namespace UTD_P2
 
         private Vector2 position, direction, rotationCenter, drawPosition;
 
-        public Enemy target;
+        public Enemys target;
 
         private Rectangle sourceRectangle;
 
