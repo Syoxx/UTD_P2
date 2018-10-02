@@ -13,6 +13,8 @@ namespace UTD_P2
 	{
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
+        public Vector2 projTargetPosition;
+
         Player player;
 
         private float speedModifier;
@@ -24,7 +26,7 @@ namespace UTD_P2
         protected float currentHealth;
         float healthPercentage;
 
-        protected bool alive = true;
+        public bool alive = true;
         private bool enemyAtEnd;
         protected float speed = 10f;
         protected int bountyGiven;
@@ -46,10 +48,10 @@ namespace UTD_P2
         }
         
         // Check whether enemy has reached it's next waypoint
-        public float DistanceToDestination
-        {
-            get { return Vector2.Distance(position, waypoints.Peek()); }
-        }
+        //public float DistanceToDestination
+        //{
+        //    get { return Vector2.Distance(position, waypoints.Peek()); }
+        //}
 
 
         /// <summary>
@@ -116,7 +118,7 @@ namespace UTD_P2
 
             if (waypoints.Count > 0)
             {
-                if (DistanceToDestination < speed)
+                if (Vector2.Distance(position, waypoints.Peek()) < speed)
                 {
                     position = waypoints.Peek();
                     waypoints.Dequeue();
@@ -163,6 +165,8 @@ namespace UTD_P2
                 alive = false;
                 //player.money += 5;
             }
+
+            projTargetPosition = position + new Vector2(32, 32);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
