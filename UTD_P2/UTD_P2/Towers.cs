@@ -71,7 +71,7 @@ namespace UTD_P2
 
 			if (target != null)
 			{
-                direction = position - target.position;
+                direction = position - target.Position;
                 direction.Normalize();
                 rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
                 if (readyToFire && target.CurrentHealth > 0)

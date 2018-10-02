@@ -259,19 +259,37 @@ namespace UTD_P2
 
 
             #region Enemy
-            // Waypoints
-            waypoints.Enqueue(new Vector2(2, 0) * 64);
-            waypoints.Enqueue(new Vector2(2, 1) * 64);
-            waypoints.Enqueue(new Vector2(3, 1) * 64);
-            waypoints.Enqueue(new Vector2(3, 2) * 64);
-            waypoints.Enqueue(new Vector2(4, 2) * 64);
-            waypoints.Enqueue(new Vector2(4, 4) * 64);
-            waypoints.Enqueue(new Vector2(3, 4) * 64);
-            waypoints.Enqueue(new Vector2(3, 5) * 64);
-            waypoints.Enqueue(new Vector2(2, 5) * 64);
-            waypoints.Enqueue(new Vector2(2, 7) * 64);
-            waypoints.Enqueue(new Vector2(7, 7) * 64);
 
+            if (mState == MapState.map1)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(1, 4) * 64);
+                waypoints.Enqueue(new Vector2(26, 4) * 64);
+                waypoints.Enqueue(new Vector2(26, 13) * 64);
+                waypoints.Enqueue(new Vector2(1, 13) * 64);
+            }
+            else if (mState == MapState.map2)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(1, 4) * 64);
+                waypoints.Enqueue(new Vector2(7, 4) * 64);
+                waypoints.Enqueue(new Vector2(7, 14) * 64);
+                waypoints.Enqueue(new Vector2(22, 14) * 64);
+                waypoints.Enqueue(new Vector2(22, 4) * 64);
+                waypoints.Enqueue(new Vector2(28, 4) * 64);
+            }
+            else if (mState == MapState.map3)
+            {
+                // Waypoints
+                waypoints.Enqueue(new Vector2(1, 4) * 64);
+                waypoints.Enqueue(new Vector2(7, 4) * 64);
+                waypoints.Enqueue(new Vector2(7, 14) * 64);
+                waypoints.Enqueue(new Vector2(14, 14) * 64);
+                waypoints.Enqueue(new Vector2(14, 4) * 64);
+                waypoints.Enqueue(new Vector2(21, 4) * 64);
+                waypoints.Enqueue(new Vector2(21, 14) * 64);
+                waypoints.Enqueue(new Vector2(28, 14) * 64);
+            }
 
             // Load enemy 
             LoadEnemy(graphicsDevice);
@@ -292,19 +310,19 @@ namespace UTD_P2
             {38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,},
             {32,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33,},
             {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,31,},
-            {31, 0, 2, 2, 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,6,0,31,},
-            {31,36, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,31,},
-            {31, 0, 3, 3, 3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,31,},
-            {31, 0, 2, 2, 2, 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,4,0,31,},
-            {31,37, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0,31,},
-            {31, 0, 3, 3, 3, 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,8,0,31,},
-            {31, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,},
+            {31, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0,31,},
+            {31,36, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,31,},
+            {31, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0,31,},
+            {31, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 4, 0,31,},
+            {31,37, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 0,31,},
+            {31, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 0,31,},
+            {31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,31,},
             {34,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,33,},
         };
 
@@ -378,7 +396,6 @@ namespace UTD_P2
         {
             get { return mapToUse.GetLength(0); }
         }
-
         
         /// <summary>
         /// Add a texture to the tileTexture list.
@@ -431,13 +448,14 @@ namespace UTD_P2
 
         #endregion
 
+
         public void LoadEnemy(GraphicsDevice graphicsDevice)
         {
             enemy1Texture = ContentConverter.Convert("Content/Assets/Enemys/enemy1.png", graphicsDevice);
             // Creates enemy in the top left corner (0,0) with 100 health, 10 gold
-            enemy1 = new Enemys(enemy1Texture, Vector2.Zero, 100, 10, 0.5f);
+            enemy1 = new Enemys(player, enemy1Texture, Waypoints.Peek(), 100, 10, 5f, graphicsDevice);
 
-            enemy1.SetWaypoints(waypoints);
+            enemy1.SetWaypoints(Waypoints);
         }
 
         #region UIButtonList
@@ -455,7 +473,7 @@ namespace UTD_P2
 
         public void Update(GameTime gameTime)
         {
-            enemy1.CurrentHealth -= 1;
+            //enemy1.CurrentHealth -= 1;
             enemy1.Update(gameTime);
             
             currentKBState = Keyboard.GetState();

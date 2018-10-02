@@ -13,16 +13,18 @@ namespace UTD_P2
 	{
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
+        Player player;
+
         protected float startHealth;
         protected float currentHealth;
         float healthPercentage;
 
         protected bool alive = true;
         
-        protected float speed = 0.5f;
+        protected float speed = 10f;
         protected int bountyGiven;
-        
-        public Vector2 position;
+
+        protected float rotationAngle;
 
         public float CurrentHealth
         {
@@ -38,21 +40,23 @@ namespace UTD_P2
             get { return bountyGiven; }
         }
 
-        // Check wheter enemy has reached it's next waypoint
+        // Check whether enemy has reached it's next waypoint
         public float DistanceToDestination
         {
             get { return Vector2.Distance(position, waypoints.Peek()); }
         }
 
-        //private float speedModifier;
+
+        // Add speed modifier for waves and tower hit modifier
+        private float speedModifier;
         //private float modifierDuration;
         //private float modifierCurrentTime;
 
-        //public float SpeedModifier
-        //{
-        //    get { return speedModifier; }
-        //    set { speedModifier = value; }
-        //}
+        public float SpeedModifier
+        {
+            get { return speedModifier; }
+            set { speedModifier = value; }
+        }
 
         //public float ModifierDuration
         //{
@@ -66,13 +70,15 @@ namespace UTD_P2
 
 
 
-        public Enemys(Texture2D texture, Vector2 position, float health, int bountyGiven, float speed) : base(texture, position)
+        public Enemys(Player player, Texture2D texture, Vector2 position, float health, int bountyGiven, float speed, GraphicsDevice graphicsDevice) : base(texture, position)
         {
             this.startHealth = health;
             this.currentHealth = startHealth;
 
             this.bountyGiven = bountyGiven;
             this.speed = speed;
+
+            this.player = player;
         }
         
         public void SetWaypoints(Queue<Vector2> waypoints)
@@ -100,6 +106,7 @@ namespace UTD_P2
                 {
                     Vector2 direction = waypoints.Peek() - position;
                     direction.Normalize();
+                    rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
 
                     velocity = Vector2.Multiply(direction, speed);
 
@@ -107,11 +114,15 @@ namespace UTD_P2
                 }
             }
             else
+            {
                 alive = false;
+                player.life -= 1;
+            }
 
             if (currentHealth <= 0)
             {
                 alive = false;
+                player.money += 5;
             }
         }
 
@@ -121,8 +132,10 @@ namespace UTD_P2
             {
                 healthPercentage = (float)currentHealth / (float)startHealth;
                 
-                Color color = new Color(new Vector3(1 - healthPercentage,1 - healthPercentage, 1 - healthPercentage));
-                
+                Color color = new Color(new Vector3(100 - healthPercentage,100 - healthPercentage, 100 - healthPercentage));
+
+                rotation = rotationAngle;
+
                 base.Draw(spriteBatch, color);
             }
         }
