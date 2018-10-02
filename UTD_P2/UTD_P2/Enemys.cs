@@ -15,12 +15,17 @@ namespace UTD_P2
 
         Player player;
 
+        private float speedModifier;
+
+        private float modifierDuration;
+        private float modifierCurrentTime;
+
         protected float startHealth;
         protected float currentHealth;
         float healthPercentage;
 
         protected bool alive = true;
-        
+        private bool enemyAtEnd;
         protected float speed = 10f;
         protected int bountyGiven;
 
@@ -33,13 +38,13 @@ namespace UTD_P2
         }
         public bool IsDead
         {
-            get { return currentHealth <= 0; }
+            get { return !alive; }
         }
         public int BountyGiven
         {
             get { return bountyGiven; }
         }
-
+        
         // Check whether enemy has reached it's next waypoint
         public float DistanceToDestination
         {
@@ -47,29 +52,39 @@ namespace UTD_P2
         }
 
 
-        // Add speed modifier for waves and tower hit modifier
-        private float speedModifier;
-        //private float modifierDuration;
-        //private float modifierCurrentTime;
-
+        /// <summary>
+        /// Alters the speed of the enemy.
+        /// </summary>
         public float SpeedModifier
         {
             get { return speedModifier; }
             set { speedModifier = value; }
         }
 
-        //public float ModifierDuration
-        //{
-        //    get { return modifierDuration; }
-        //    set
-        //    {
-        //        modifierDuration = value;
-        //        modifierCurrentTime = 0;
-        //    }
-        //}
+        /// <summary>
+        /// Defines how long the speed modification will last.
+        /// </summary>
+        public float ModifierDuration
+        {
+            get { return modifierDuration; }
+            set
+            {
+                modifierDuration = value;
+                modifierCurrentTime = 0;
+            }
+        }
 
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="texture"></param>
+        /// <param name="position"></param>
+        /// <param name="health"></param>
+        /// <param name="bountyGiven"></param>
+        /// <param name="speed"></param>
+        /// <param name="graphicsDevice"></param>
         public Enemys(Player player, Texture2D texture, Vector2 position, float health, int bountyGiven, float speed, GraphicsDevice graphicsDevice) : base(texture, position)
         {
             this.startHealth = health;
@@ -81,6 +96,10 @@ namespace UTD_P2
             this.player = player;
         }
         
+        /// <summary>
+        /// Set given waypoint in queue.
+        /// </summary>
+        /// <param name="waypoints"></param>
         public void SetWaypoints(Queue<Vector2> waypoints)
         {
             foreach (Vector2 waypoint in waypoints)
@@ -108,7 +127,26 @@ namespace UTD_P2
                     direction.Normalize();
                     rotationAngle = (float)Math.Atan2(direction.X, direction.Y);
 
-                    velocity = Vector2.Multiply(direction, speed);
+                    // Store the original speed.
+                    float temporarySpeed = speed;
+
+                    // If the modifier has finished,
+                    if(modifierCurrentTime > modifierDuration)
+                    {
+                        // reset the modifier.
+                        speedModifier = 0;
+                        modifierCurrentTime = 0;
+                    }
+
+                    if(speedModifier != 0 && modifierCurrentTime <= modifierDuration)
+                    {
+                        // Modify the speed of the enemy.
+                        temporarySpeed *= speedModifier;
+                        // Update the modifier timer.
+                        modifierCurrentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    }
+
+                    velocity = Vector2.Multiply(direction, temporarySpeed);
 
                     position += velocity;
                 }
@@ -116,13 +154,14 @@ namespace UTD_P2
             else
             {
                 alive = false;
-                player.life -= 1;
+                enemyAtEnd = true;
+                //player.life -= 1;
             }
 
             if (currentHealth <= 0)
             {
                 alive = false;
-                player.money += 5;
+                //player.money += 5;
             }
         }
 

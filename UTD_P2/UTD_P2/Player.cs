@@ -16,6 +16,18 @@ namespace UTD_P2
         public Vector2 position, drawPosition;
         Texture2D texture;
 
+        public int Money
+        {
+            get { return money; }
+            set { money = value; }
+        }
+        
+        public int Lives
+        {
+            get { return life; }
+            set { life = value; }
+        }
+
         public Player(GraphicsDevice graphicsDevice)
         {
 			money = 15;
@@ -24,8 +36,10 @@ namespace UTD_P2
             texture = ContentConverter.Convert("Content/Assets/TD/UI/number9.png", graphicsDevice);
         }
 
+
         public void Update(GameTime gameTime)
         {
+            Console.WriteLine(life);
             drawPosition = position - new Vector2(texture.Width / 2, texture.Height / 2);
         }
 

@@ -39,16 +39,12 @@ namespace UTD_P2
             position = pos;
             velocity = Vector2.Zero;
             
-            //center = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
-            //origin = new Vector2(texture.Width / 2, texture.Height / 2);
             center = new Vector2(position.X + 32, position.Y + 32);
             origin = new Vector2(32, 32);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            //this.center = new Vector2(position.X + texture.Width / 2, 
-            //    position.Y + texture.Height / 2);
             this.center = new Vector2(position.X + 32, position.Y + 32);
         }
 
