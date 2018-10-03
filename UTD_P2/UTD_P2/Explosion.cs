@@ -13,16 +13,19 @@ namespace UTD_P2
 	{
 		private Vector2 pos, drawPos;
 		private Texture2D texture;
-		private float damage, timer, exploDuration;
+		private float damage, timer, exploDuration, speedModifier, speedModifierDuration;
 		private Color exploColor;
-		public bool done;
+		public bool done, canSlow;
 
-		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow)
+		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration)
 		{
 			this.pos = pos;
 			this.drawPos = drawPos;
 			this.texture = texture;
 			this.damage = damage;
+			this.canSlow = canSlow;
+			this.speedModifier = speedModifier;
+			this.speedModifierDuration = speedModifierDuration;
 			exploDuration = 1f;
 			timer = 0;
 			done = false;
@@ -39,7 +42,15 @@ namespace UTD_P2
 					enemy.Position.X > pos.X &&
 					enemy.Position.Y < pos.Y + texture.Height &&
 					enemy.Position.Y > pos.Y)
+			{
 				enemy.CurrentHealth -= damage;
+
+				if (canSlow)
+				{
+					enemy.SpeedModifier = speedModifier;
+					enemy.ModifierDuration = speedModifierDuration;
+				}
+			}
 		}
 
 		public void Update(GameTime gameTime)
