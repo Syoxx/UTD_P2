@@ -51,8 +51,7 @@ namespace UTD_P2
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
             if (Vector2.Distance(position, target.projTargetPosition) <= 10)
             {
-                if (damageRadius > 0)
-                    InitiateExplosion();
+                InitiateExplosion();
                 target.CurrentHealth -= damage;
 				if (canSlow)
 				{
@@ -66,7 +65,7 @@ namespace UTD_P2
         private void InitiateExplosion()
         {
 			drawPositionExplo = position - new Vector2(explosionTexture.Width / 2, explosionTexture.Height / 2);
-			Explosion newExplo = new Explosion(position, drawPositionExplo, explosionTexture, damage, canSlow, speedModifier, speedModifierDuration);
+			Explosion newExplo = new Explosion(position, drawPositionExplo, explosionTexture, damage, canSlow, speedModifier, speedModifierDuration, damageRadius);
 			level.AddExplosion(newExplo);
         }
 

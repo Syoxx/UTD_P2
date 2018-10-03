@@ -24,7 +24,7 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/bullet.png", graphicsDevice);
-			explosionTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/explosionRocket.png", graphicsDevice);
+			explosionTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/explosionNormal.png", graphicsDevice);
 			this.player = player;
 			projectileSpeed = 20;
         }

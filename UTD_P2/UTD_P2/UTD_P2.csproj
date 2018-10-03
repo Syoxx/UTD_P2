@@ -1440,6 +1440,9 @@
     <Content Include="Content\Assets\TD\Projectiles\bullet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Assets\TD\Projectiles\explosionNormal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Assets\TD\Projectiles\explosionRocket.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

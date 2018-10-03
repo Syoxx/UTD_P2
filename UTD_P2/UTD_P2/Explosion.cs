@@ -13,11 +13,11 @@ namespace UTD_P2
 	{
 		private Vector2 pos, drawPos;
 		private Texture2D texture;
-		private float damage, timer, exploDuration, speedModifier, speedModifierDuration;
+		private float damage, timer, exploDuration, speedModifier, speedModifierDuration, explosionRadius;
 		private Color exploColor;
 		public bool done, canSlow;
 
-		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration)
+		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration, float explosionRadius)
 		{
 			this.pos = pos;
 			this.drawPos = drawPos;
@@ -26,9 +26,11 @@ namespace UTD_P2
 			this.canSlow = canSlow;
 			this.speedModifier = speedModifier;
 			this.speedModifierDuration = speedModifierDuration;
+			this.explosionRadius = explosionRadius;
 			exploDuration = 1f;
 			timer = 0;
 			done = false;
+			exploColor = Color.Red;
 
 			if (canSlow)
 				exploColor = Color.Aquamarine;
@@ -38,17 +40,20 @@ namespace UTD_P2
 
 		public void CheckIfInsideExplosion(Enemys enemy)
 		{
-			if (enemy.Position.X < pos.X + texture.Width &&
-					enemy.Position.X > pos.X &&
-					enemy.Position.Y < pos.Y + texture.Height &&
-					enemy.Position.Y > pos.Y)
+			if (explosionRadius > 0)
 			{
-				enemy.CurrentHealth -= damage;
-
-				if (canSlow)
+				if (enemy.Position.X < pos.X + texture.Width &&
+						enemy.Position.X > pos.X &&
+						enemy.Position.Y < pos.Y + texture.Height &&
+						enemy.Position.Y > pos.Y)
 				{
-					enemy.SpeedModifier = speedModifier;
-					enemy.ModifierDuration = speedModifierDuration;
+					enemy.CurrentHealth -= damage;
+
+					if (canSlow)
+					{
+						enemy.SpeedModifier = speedModifier;
+						enemy.ModifierDuration = speedModifierDuration;
+					}
 				}
 			}
 		}
