@@ -25,6 +25,7 @@ namespace UTD_P2
             player.money -= (int)price;
             this.player = player;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/missile.png", graphicsDevice);
+			explosionTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/explosionRocket.png", graphicsDevice);
 			projectileSpeed = 8;
         }
 

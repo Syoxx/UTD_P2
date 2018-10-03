@@ -21,7 +21,7 @@ namespace UTD_P2
 		public Vector2 position, rotationCenter;
         protected Vector2 direction;
 
-        protected Texture2D towerTexture, projectileTexture;
+        protected Texture2D towerTexture, projectileTexture, explosionTexture;
 
         protected Rectangle sourceRectangle;
 
@@ -49,7 +49,7 @@ namespace UTD_P2
 			if (target.CurrentHealth > 0)
 			{
 				timer = 0;
-				proj = new Projectile(projectileTexture, projectileSpeed, damage, damageRadius, position, target, canSlow);
+				proj = new Projectile(projectileTexture, explosionTexture, projectileSpeed, damage, damageRadius, position, target, canSlow, level);
                 level.AddProjectile(proj);
                 readyToFire = false;
 			}
