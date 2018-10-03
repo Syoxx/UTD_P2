@@ -48,7 +48,6 @@
     <Compile Include="DoubleShotTower.cs" />
     <Compile Include="Enemys.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GameOver.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="inRangeCheck.cs" />
     <Compile Include="Interface.cs" />

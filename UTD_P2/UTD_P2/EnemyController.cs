@@ -51,7 +51,7 @@ namespace UTD_P2
             set { initiateSpawn = value; }
         }
 
-        public EnemyController(int nrToSpawn, int nrOfWaves, Level level, GraphicsDevice graphicsDevice, Player player)
+        public EnemyController(int nrToSpawn, int nrOfWaves, Level level, GraphicsDevice graphicsDevice, Player player, Game1 game1)
         {
             this.nrOfWaves = nrOfWaves;
             this.nrToSpawn = nrToSpawn;
@@ -61,6 +61,7 @@ namespace UTD_P2
             this.level = level;
             this.player = player;
             this.graphicsDevice = graphicsDevice;
+			this.game1 = game1;
             startFirstWave = 5;
             timerAfterFirstWave = 15;
             spawnNewEnemys = false;

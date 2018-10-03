@@ -102,6 +102,7 @@ namespace UTD_P2
         Texture2D enemy1Texture;
         EnemyController enemyController;
         InRangeCheck inRangeCheck;
+		Game1 game1;
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
@@ -113,8 +114,9 @@ namespace UTD_P2
         #endregion
 
 
-        public Level(MapState mState, GraphicsDevice graphicsDevice)
+        public Level(MapState mState, GraphicsDevice graphicsDevice, Game1 game1)
         {
+			this.game1 = game1;
             // Create a list which contains the textures to load as map.
             tileTextures = new List<Texture2D>();
 
@@ -295,7 +297,7 @@ namespace UTD_P2
             // Load enemy 
             //LoadEnemy(graphicsDevice);
 
-            enemyController = new EnemyController(15, 10, this, graphicsDevice, player);
+            enemyController = new EnemyController(15, 10, this, graphicsDevice, player, game1);
 
             #endregion
         }

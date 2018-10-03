@@ -162,15 +162,15 @@ namespace UTD_P2
         {
             if(i == 1)
             {
-                level = new Level(Level.MapState.map1, GraphicsDevice);
+                level = new Level(Level.MapState.map1, GraphicsDevice, this);
             }
             else if(i == 2)
             {
-                level = new Level(Level.MapState.map2, GraphicsDevice);
+                level = new Level(Level.MapState.map2, GraphicsDevice, this);
             }
             else if(i == 3)
             {
-                level = new Level(Level.MapState.map3, GraphicsDevice);
+                level = new Level(Level.MapState.map3, GraphicsDevice, this);
             }
         }
 
