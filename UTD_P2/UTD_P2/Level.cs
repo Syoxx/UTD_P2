@@ -84,6 +84,7 @@ namespace UTD_P2
         private List<Enemys> enemyList;
         private List<Projectile> projectileList;
         private List<BuildButton> buildButtonList;
+		private List<Explosion> explosionList;
         private UIButton uiButton;
 
 
@@ -125,6 +126,7 @@ namespace UTD_P2
             enemyList = new List<Enemys>();
             projectileList = new List<Projectile>();
             buildButtonList = new List<BuildButton>();
+			explosionList = new List<Explosion>();
 
             player = new Player(graphicsDevice);
             ui = new UserInterface(graphicsDevice, player);
@@ -450,6 +452,15 @@ namespace UTD_P2
             projectileList.Add(projectile);
         }
 
+		public void AddExplosion(Explosion explo)
+		{
+			explosionList.Add(explo);
+			foreach(Enemys enemy in enemyList)
+			{
+				explo.CheckIfInsideExplosion(enemy);
+			}
+		}
+
         #endregion
 
 
@@ -511,6 +522,17 @@ namespace UTD_P2
                     projectileList.Remove(projectileList[i]);
             }
 
+			for (int i = 0; i < explosionList.Count; i++)
+			{
+				if (explosionList[i].done)
+					explosionList[i] = null;
+				else
+					explosionList[i].Update(gameTime);
+
+				if (explosionList[i] == null)
+					explosionList.Remove(explosionList[i]);
+			}
+
             foreach (BuildButton button in buildButtonList)
                 button.Update(gameTime);
 
@@ -565,6 +587,12 @@ namespace UTD_P2
                 if (enemy != null)
                     enemy.Draw(batch);
             }
+
+			foreach (Explosion explo in explosionList)
+			{
+				if (explo != null)
+					explo.Draw(batch);
+			}
 
             ui.Draw(batch);
 

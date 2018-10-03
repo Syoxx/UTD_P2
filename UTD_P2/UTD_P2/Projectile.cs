@@ -13,27 +13,30 @@ namespace UTD_P2
     {
         private float speed, damage, damageRadius, rotationAngle, speedModifier, speedModifierDuration;
 
-        private Texture2D texture;
-        private Vector2 targetPosition;
-        private Vector2 position, direction, rotationCenter, drawPosition;
+        private Texture2D texture, explosionTexture;
+        private Vector2 position, direction, rotationCenter, drawPosition, drawPositionExplo;
 
         public Enemys target;
 
         private Rectangle sourceRectangle;
 
+		Level level;
+
         public bool hit;
 
         private bool canSlow;
 
-        public Projectile(Texture2D texture, float speed, float damage, float damageRadius, Vector2 position, Enemys target, bool canSlow)
+        public Projectile(Texture2D texture, Texture2D explosionTexture, float speed, float damage, float damageRadius, Vector2 position, Enemys target, bool canSlow, Level level)
         {
             this.texture = texture;
-            this.speed = speed;
+			this.explosionTexture = explosionTexture;
+			this.speed = speed;
             this.damage = damage;
             this.damageRadius = damageRadius;
             this.position = position;
             this.target = target;
             this.canSlow = canSlow;
+			this.level = level;
             hit = false;
 			speedModifier = 0.5f;
 			speedModifierDuration = 2f;
@@ -48,8 +51,7 @@ namespace UTD_P2
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
             if (Vector2.Distance(position, target.projTargetPosition) <= 10)
             {
-                if (damageRadius > 0)
-                    InitiateExplosion();
+                InitiateExplosion();
                 target.CurrentHealth -= damage;
 				if (canSlow)
 				{
@@ -62,7 +64,9 @@ namespace UTD_P2
 
         private void InitiateExplosion()
         {
-            //TODO: implement Circle for Explosion collision
+			drawPositionExplo = position - new Vector2(explosionTexture.Width / 2, explosionTexture.Height / 2);
+			Explosion newExplo = new Explosion(position, drawPositionExplo, explosionTexture, damage, canSlow, speedModifier, speedModifierDuration, damageRadius);
+			level.AddExplosion(newExplo);
         }
 
         
@@ -70,6 +74,9 @@ namespace UTD_P2
         public void Draw(SpriteBatch spriteBatch)
         {
             drawPosition = position;
+			
+			if (hit && damageRadius > 0)
+				spriteBatch.Draw(explosionTexture, drawPositionExplo, Color.Orange);
             sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, drawPosition, sourceRectangle, Color.White, rotationAngle, rotationCenter, 1, SpriteEffects.None, 1);
         }

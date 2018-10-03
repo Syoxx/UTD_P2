@@ -37,7 +37,7 @@ namespace UTD_P2
         /**
          * @return true: If a player enters the button with mouse
          */
-        public bool enterButton()
+        public bool EnterButton()
         {
             if (mouseState.X < buttonX + texture.Width &&
                     mouseState.X > buttonX &&
@@ -59,7 +59,7 @@ namespace UTD_P2
         public virtual void Update(GameTime gameTime)
         {
             mouseState = Mouse.GetState();
-            if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
+            if (EnterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
             {
                 OnButtonClick();
             }
@@ -69,7 +69,7 @@ namespace UTD_P2
         public virtual void Update(GameTime gameTime, MainMenu mainMenu)
         {
             mouseState = Mouse.GetState();
-            if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
+            if (EnterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
             {
                 OnButtonClickMenu(mainMenu);
             }
@@ -79,7 +79,7 @@ namespace UTD_P2
         public virtual void Update(GameTime gameTime, Game1 game)
         {
             mouseState = Mouse.GetState();
-            if (enterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
+            if (EnterButton() && oldState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed)
             {
                 OnButtonClickMenu(game);
             }
