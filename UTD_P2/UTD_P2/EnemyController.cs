@@ -65,8 +65,7 @@ namespace UTD_P2
             startFirstWave = 5;
             timerAfterFirstWave = 15;
             spawnNewEnemys = false;
-            //CHANGE BACK TO 1 AFTER TESTING
-            countWaves = 9;
+            countWaves = 1;
             countEnemys = 0;
             enemyBounty = 1;
             enemySpeed = 2;
@@ -134,7 +133,6 @@ namespace UTD_P2
             {
                 mapChangeIndicator++;
                 game1.LoadLevel(mapChangeIndicator);
-                Console.WriteLine(mapChangeIndicator);
             }
         }
 

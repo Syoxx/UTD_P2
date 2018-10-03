@@ -248,14 +248,17 @@ namespace UTD_P2
             {
                 case MapState.map1:
                     mapToUse = map1;
-                    BuildButton buildButton = new BuildButton("buildButton", buildButtonTexture, 500, 64, graphicsDevice, player, this);
-                    buildButtonList.Add(buildButton);
+                    buildButtonsToUse1(graphicsDevice);
                     break;
+
                 case MapState.map2:
                     mapToUse = map2;
+                    buildButtonsToUse2(graphicsDevice);
                     break;
+
                 case MapState.map3:
                     mapToUse = map3;
+                    buildButtonsToUse3(graphicsDevice);
                     break;
 
                 default:
@@ -303,6 +306,7 @@ namespace UTD_P2
 
             #endregion
         }
+
 
         #region Map Arrays
 
@@ -383,8 +387,7 @@ namespace UTD_P2
         private KeyboardState oldKBState;
         
         #endregion
-
-
+        
         #region LoadMapTextures
 
         /// <summary>
@@ -464,14 +467,183 @@ namespace UTD_P2
         #endregion
 
 
-        public void LoadEnemy(GraphicsDevice graphicsDevice)
-        {
-            enemy1Texture = ContentConverter.Convert("Content/Assets/Enemys/enemy1.png", graphicsDevice);
-            // Creates enemy in the top left corner (0,0) with 100 health, 10 gold
-            //enemy1 = new Enemys(player, enemy1Texture, Waypoints.Peek(), 100, 10, 5f, graphicsDevice);
+        #region BuildingButtonsPlacements
 
-            //enemy1.SetWaypoints(Waypoints);
+        /// <summary>
+        /// BuildingButtons placement for map1
+        /// </summary>
+        /// <param name="graphicsDevice"></param>
+        private void buildButtonsToUse1(GraphicsDevice graphicsDevice)
+        {
+            BuildButton buildButton = new BuildButton("buildButton", buildButtonTexture, 500, 150, graphicsDevice, player, this);
+            BuildButton buildButton1 = new BuildButton("buildButton", buildButtonTexture, 750, 150, graphicsDevice, player, this);
+            BuildButton buildButton2 = new BuildButton("buildButton", buildButtonTexture, 1000, 150, graphicsDevice, player, this);
+            BuildButton buildButton3 = new BuildButton("buildButton", buildButtonTexture, 1250, 150, graphicsDevice, player, this);
+            BuildButton buildButton4 = new BuildButton("buildButton", buildButtonTexture, 1500, 150, graphicsDevice, player, this);
+
+            BuildButton buildButton5 = new BuildButton("buildButton", buildButtonTexture, 500, 360, graphicsDevice, player, this);
+            BuildButton buildButton6 = new BuildButton("buildButton", buildButtonTexture, 750, 360, graphicsDevice, player, this);
+            BuildButton buildButton7 = new BuildButton("buildButton", buildButtonTexture, 1000, 360, graphicsDevice, player, this);
+            BuildButton buildButton8 = new BuildButton("buildButton", buildButtonTexture, 1250, 360, graphicsDevice, player, this);
+            BuildButton buildButton9 = new BuildButton("buildButton", buildButtonTexture, 1500, 360, graphicsDevice, player, this);
+
+            BuildButton buildButton10 = new BuildButton("buildButton", buildButtonTexture, 500, 725, graphicsDevice, player, this);
+            BuildButton buildButton11 = new BuildButton("buildButton", buildButtonTexture, 750, 725, graphicsDevice, player, this);
+            BuildButton buildButton12 = new BuildButton("buildButton", buildButtonTexture, 1000, 725, graphicsDevice, player, this);
+            BuildButton buildButton13 = new BuildButton("buildButton", buildButtonTexture, 1250, 725, graphicsDevice, player, this);
+            BuildButton buildButton14 = new BuildButton("buildButton", buildButtonTexture, 1500, 725, graphicsDevice, player, this);
+
+            BuildButton buildButton15 = new BuildButton("buildButton", buildButtonTexture, 500, 925, graphicsDevice, player, this);
+            BuildButton buildButton16 = new BuildButton("buildButton", buildButtonTexture, 750, 925, graphicsDevice, player, this);
+            BuildButton buildButton17 = new BuildButton("buildButton", buildButtonTexture, 1000, 925, graphicsDevice, player, this);
+            BuildButton buildButton18 = new BuildButton("buildButton", buildButtonTexture, 1250, 925, graphicsDevice, player, this);
+            BuildButton buildButton19 = new BuildButton("buildButton", buildButtonTexture, 1500, 925, graphicsDevice, player, this);
+
+            buildButtonList.Add(buildButton);
+            buildButtonList.Add(buildButton1);
+            buildButtonList.Add(buildButton2);
+            buildButtonList.Add(buildButton3);
+            buildButtonList.Add(buildButton4);
+
+            buildButtonList.Add(buildButton5);
+            buildButtonList.Add(buildButton6);
+            buildButtonList.Add(buildButton7);
+            buildButtonList.Add(buildButton8);
+            buildButtonList.Add(buildButton9);
+
+            buildButtonList.Add(buildButton10);
+            buildButtonList.Add(buildButton11);
+            buildButtonList.Add(buildButton12);
+            buildButtonList.Add(buildButton13);
+            buildButtonList.Add(buildButton14);
+
+            buildButtonList.Add(buildButton15);
+            buildButtonList.Add(buildButton16);
+            buildButtonList.Add(buildButton17);
+            buildButtonList.Add(buildButton18);
+            buildButtonList.Add(buildButton19);
         }
+
+        /// <summary>
+        /// BuildingButtons placement for map2
+        /// </summary>
+        /// <param name="graphicsDevice"></param>
+        private void buildButtonsToUse2(GraphicsDevice graphicsDevice)
+        {
+            BuildButton buildButton20 = new BuildButton("buildButton", buildButtonTexture, 350, 400, graphicsDevice, player, this);
+            BuildButton buildButton21 = new BuildButton("buildButton", buildButtonTexture, 350, 600, graphicsDevice, player, this);
+            BuildButton buildButton22 = new BuildButton("buildButton", buildButtonTexture, 350, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton23 = new BuildButton("buildButton", buildButtonTexture, 550, 400, graphicsDevice, player, this);
+            BuildButton buildButton24 = new BuildButton("buildButton", buildButtonTexture, 550, 600, graphicsDevice, player, this);
+            BuildButton buildButton25 = new BuildButton("buildButton", buildButtonTexture, 550, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton26 = new BuildButton("buildButton", buildButtonTexture, 790, 800, graphicsDevice, player, this);
+            BuildButton buildButton27 = new BuildButton("buildButton", buildButtonTexture, 1030, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton28 = new BuildButton("buildButton", buildButtonTexture, 675, 1000, graphicsDevice, player, this);
+            BuildButton buildButton29 = new BuildButton("buildButton", buildButtonTexture, 900, 1000, graphicsDevice, player, this);
+            BuildButton buildButton30 = new BuildButton("buildButton", buildButtonTexture, 1175, 1000, graphicsDevice, player, this);
+
+            BuildButton buildButton31 = new BuildButton("buildButton", buildButtonTexture, 1300, 400, graphicsDevice, player, this);
+            BuildButton buildButton32 = new BuildButton("buildButton", buildButtonTexture, 1300, 600, graphicsDevice, player, this);
+            BuildButton buildButton33 = new BuildButton("buildButton", buildButtonTexture, 1300, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton34 = new BuildButton("buildButton", buildButtonTexture, 1500, 400, graphicsDevice, player, this);
+            BuildButton buildButton35 = new BuildButton("buildButton", buildButtonTexture, 1500, 600, graphicsDevice, player, this);
+            BuildButton buildButton36 = new BuildButton("buildButton", buildButtonTexture, 1500, 800, graphicsDevice, player, this);
+
+
+            buildButtonList.Add(buildButton20);
+            buildButtonList.Add(buildButton21);
+            buildButtonList.Add(buildButton22);
+
+            buildButtonList.Add(buildButton23);
+            buildButtonList.Add(buildButton24);
+            buildButtonList.Add(buildButton25);
+
+            buildButtonList.Add(buildButton26);
+            buildButtonList.Add(buildButton27);
+
+            buildButtonList.Add(buildButton28);
+            buildButtonList.Add(buildButton29);
+            buildButtonList.Add(buildButton30);
+
+            buildButtonList.Add(buildButton31);
+            buildButtonList.Add(buildButton32);
+            buildButtonList.Add(buildButton33);
+
+            buildButtonList.Add(buildButton34);
+            buildButtonList.Add(buildButton35);
+            buildButtonList.Add(buildButton36);
+        }
+
+        /// <summary>
+        /// BuildingButtons placement for map3
+        /// </summary>
+        /// <param name="graphicsDevice"></param>
+        private void buildButtonsToUse3(GraphicsDevice graphicsDevice)
+        {
+            BuildButton buildButton40 = new BuildButton("buildButton", buildButtonTexture, 350, 400, graphicsDevice, player, this);
+            BuildButton buildButton41 = new BuildButton("buildButton", buildButtonTexture, 350, 600, graphicsDevice, player, this);
+            BuildButton buildButton42 = new BuildButton("buildButton", buildButtonTexture, 350, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton43 = new BuildButton("buildButton", buildButtonTexture, 550, 400, graphicsDevice, player, this);
+            BuildButton buildButton44 = new BuildButton("buildButton", buildButtonTexture, 550, 600, graphicsDevice, player, this);
+            BuildButton buildButton45 = new BuildButton("buildButton", buildButtonTexture, 550, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton46 = new BuildButton("buildButton", buildButtonTexture, 675, 1000, graphicsDevice, player, this);
+
+            BuildButton buildButton47 = new BuildButton("buildButton", buildButtonTexture, 800, 400, graphicsDevice, player, this);
+            BuildButton buildButton48 = new BuildButton("buildButton", buildButtonTexture, 800, 600, graphicsDevice, player, this);
+            BuildButton buildButton49 = new BuildButton("buildButton", buildButtonTexture, 800, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton50 = new BuildButton("buildButton", buildButtonTexture, 1000, 400, graphicsDevice, player, this);
+            BuildButton buildButton51 = new BuildButton("buildButton", buildButtonTexture, 1000, 600, graphicsDevice, player, this);
+            BuildButton buildButton52 = new BuildButton("buildButton", buildButtonTexture, 1000, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton53 = new BuildButton("buildButton", buildButtonTexture, 1125, 150, graphicsDevice, player, this);
+
+            BuildButton buildButton54 = new BuildButton("buildButton", buildButtonTexture, 1250, 400, graphicsDevice, player, this);
+            BuildButton buildButton55 = new BuildButton("buildButton", buildButtonTexture, 1250, 600, graphicsDevice, player, this);
+            BuildButton buildButton56 = new BuildButton("buildButton", buildButtonTexture, 1250, 800, graphicsDevice, player, this);
+
+            BuildButton buildButton57 = new BuildButton("buildButton", buildButtonTexture, 1450, 400, graphicsDevice, player, this);
+            BuildButton buildButton58 = new BuildButton("buildButton", buildButtonTexture, 1450, 600, graphicsDevice, player, this);
+            BuildButton buildButton59 = new BuildButton("buildButton", buildButtonTexture, 1450, 800, graphicsDevice, player, this);
+
+
+
+            buildButtonList.Add(buildButton40);
+            buildButtonList.Add(buildButton41);
+            buildButtonList.Add(buildButton42);
+
+            buildButtonList.Add(buildButton43);
+            buildButtonList.Add(buildButton44);
+            buildButtonList.Add(buildButton45);
+
+            buildButtonList.Add(buildButton46);
+
+            buildButtonList.Add(buildButton47);
+            buildButtonList.Add(buildButton48);
+            buildButtonList.Add(buildButton49);
+
+            buildButtonList.Add(buildButton50);
+            buildButtonList.Add(buildButton51);
+            buildButtonList.Add(buildButton52);
+
+            buildButtonList.Add(buildButton53);
+
+            buildButtonList.Add(buildButton54);
+            buildButtonList.Add(buildButton55);
+            buildButtonList.Add(buildButton56);
+
+            buildButtonList.Add(buildButton57);
+            buildButtonList.Add(buildButton58);
+            buildButtonList.Add(buildButton59);
+        }
+
+        #endregion
 
         #region UIButtonList
 
@@ -486,11 +658,9 @@ namespace UTD_P2
 
         #endregion
 
+
         public void Update(GameTime gameTime)
-        {
-            //enemy1.CurrentHealth -= 1;
-            //enemy1.Update(gameTime);
-            
+        {   
             currentKBState = Keyboard.GetState();
 
             inRangeCheck.CheckRange(towerList, enemyList);
@@ -558,7 +728,6 @@ namespace UTD_P2
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    //int textureIndex = map[y, x];
                     int textureIndex = mapToUse[y, x];
                     if (textureIndex == -1)
                         continue;
@@ -568,7 +737,6 @@ namespace UTD_P2
                         x * 64, y * 64, 64, 64), Color.White);
                 }
             }
-            //enemy1.Draw(batch);
 
             foreach (BuildButton button in buildButtonList)
                 button.Draw(batch);
@@ -601,6 +769,5 @@ namespace UTD_P2
 
             player.Draw(batch);
         }
-
     }
 }
