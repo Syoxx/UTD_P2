@@ -29,12 +29,18 @@ namespace UTD_P2
         Vector2 spawnPosition;
         private int enemyBounty;
 
+
         Texture2D enemy1, enemy2, enemy3, enemy4, enemyTexture;
 
+        
         Level level;
         Player player;
         Enemys enemys;
         GraphicsDevice graphicsDevice;
+
+        // Level switch
+        Game1 game1;
+        private int mapChangeIndicator = 1;
 
         string contentPath = "Content/Assets/Enemys/";
         private bool doneSpawning;
@@ -58,7 +64,8 @@ namespace UTD_P2
             startFirstWave = 5;
             timerAfterFirstWave = 15;
             spawnNewEnemys = false;
-            countWaves = 1;
+            //CHANGE BACK TO 1 AFTER TESTING
+            countWaves = 9;
             countEnemys = 0;
             enemyBounty = 1;
             enemySpeed = 2;
@@ -121,9 +128,12 @@ namespace UTD_P2
             }
             countWaves++;
 
-            if (countEnemys > nrOfWaves)
+            // Level switch
+            if (countWaves > nrOfWaves)
             {
-                //load new level
+                mapChangeIndicator++;
+                game1.LoadLevel(mapChangeIndicator);
+                Console.WriteLine(mapChangeIndicator);
             }
         }
 

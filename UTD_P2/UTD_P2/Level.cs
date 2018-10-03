@@ -293,7 +293,7 @@ namespace UTD_P2
             }
 
             // Load enemy 
-            LoadEnemy(graphicsDevice);
+            //LoadEnemy(graphicsDevice);
 
             enemyController = new EnemyController(15, 10, this, graphicsDevice, player);
 
@@ -455,9 +455,9 @@ namespace UTD_P2
         {
             enemy1Texture = ContentConverter.Convert("Content/Assets/Enemys/enemy1.png", graphicsDevice);
             // Creates enemy in the top left corner (0,0) with 100 health, 10 gold
-            enemy1 = new Enemys(player, enemy1Texture, Waypoints.Peek(), 100, 10, 5f, graphicsDevice);
+            //enemy1 = new Enemys(player, enemy1Texture, Waypoints.Peek(), 100, 10, 5f, graphicsDevice);
 
-            enemy1.SetWaypoints(Waypoints);
+            //enemy1.SetWaypoints(Waypoints);
         }
 
         #region UIButtonList
@@ -476,7 +476,7 @@ namespace UTD_P2
         public void Update(GameTime gameTime)
         {
             //enemy1.CurrentHealth -= 1;
-            enemy1.Update(gameTime);
+            //enemy1.Update(gameTime);
             
             currentKBState = Keyboard.GetState();
 
@@ -544,7 +544,7 @@ namespace UTD_P2
                         x * 64, y * 64, 64, 64), Color.White);
                 }
             }
-            enemy1.Draw(batch);
+            //enemy1.Draw(batch);
 
             foreach (BuildButton button in buildButtonList)
                 button.Draw(batch);
