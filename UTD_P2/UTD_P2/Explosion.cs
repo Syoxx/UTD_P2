@@ -33,6 +33,15 @@ namespace UTD_P2
 				exploColor = Color.Red;
 		}
 
+		public void CheckIfInsideExplosion(Enemys enemy)
+		{
+			if (enemy.Position.X < pos.X + texture.Width &&
+					enemy.Position.X > pos.X &&
+					enemy.Position.Y < pos.Y + texture.Height &&
+					enemy.Position.Y > pos.Y)
+				enemy.CurrentHealth -= damage;
+		}
+
 		public void Update(GameTime gameTime)
 		{
 			timer += (float)gameTime.ElapsedGameTime.TotalSeconds;

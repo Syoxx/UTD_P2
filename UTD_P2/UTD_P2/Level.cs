@@ -453,6 +453,10 @@ namespace UTD_P2
 		public void AddExplosion(Explosion explo)
 		{
 			explosionList.Add(explo);
+			foreach(Enemys enemy in enemyList)
+			{
+				explo.CheckIfInsideExplosion(enemy);
+			}
 		}
 
         #endregion
