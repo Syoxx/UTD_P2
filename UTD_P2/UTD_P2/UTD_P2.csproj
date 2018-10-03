@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BuildButton.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="DrawCircle.cs" />
     <Compile Include="EnemyController.cs" />
     <Compile Include="ContentConverter.cs" />
     <Compile Include="DoubleShotTower.cs" />

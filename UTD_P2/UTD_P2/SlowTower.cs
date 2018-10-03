@@ -21,7 +21,7 @@ namespace UTD_P2
             damage = 5;
             damageRadius = 5;
             price = 15;
-            range = 200;
+            range = 300;
             reloadTime = 2;
             position.X = positionX + texture.Width / 2;
             position.Y = positionY + texture.Height / 2;

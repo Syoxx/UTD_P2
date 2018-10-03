@@ -13,7 +13,7 @@ namespace UTD_P2
     {
         BuildButton buildButton;
         Texture2D singleShotTexture, singleShotUITexture, doubleShotTexture, doubleShotUITexture, slowTexture, slowUITexture,
-            rocketLauncherTexture, rocketLauncherUITexture, towerBuild;
+            rocketLauncherTexture, rocketLauncherUITexture, towerBuild, rangeIndicator;
         private string singleShotPath = "Content/Assets/TD/Towers/singleShot.png";
         private string singleShotUIPath = "Content/Assets/TD/UI/Towers/SingleShotTower.png";
         private string doubleShotPath = "Content/Assets/TD/Towers/doubleShot.png";
@@ -35,6 +35,8 @@ namespace UTD_P2
 
         private GraphicsDevice graphicsDevice;
 
+		private Vector2 centerPositionTower, centerPositionCircle;
+
         public UIButton(int buttonX, int buttonY, BuildButton buildButton, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.buttonX = buttonX;
@@ -43,6 +45,7 @@ namespace UTD_P2
             this.player = player;
             this.level = level;
             this.graphicsDevice = graphicsDevice;
+			centerPositionTower = new Vector2(buttonX, buttonY) + new Vector2(buildButton.Texture.Width / 2, buildButton.Texture.Height / 2);
 
             singleShotTexture = ContentConverter.Convert(singleShotPath, graphicsDevice);
             singleShotUITexture = ContentConverter.Convert(singleShotUIPath, graphicsDevice);
@@ -91,7 +94,7 @@ namespace UTD_P2
                         currentColor = Color.Red;
                     }
 
- 
+					rangeIndicator = DrawCircle.createCircleText(200 * 2, Color.Red, graphicsDevice);
                     texture = singleShotUITexture;
                     break;
 
@@ -115,7 +118,8 @@ namespace UTD_P2
                         currentColor = Color.Red;
                     }
 
-                    texture = doubleShotUITexture;
+					rangeIndicator = DrawCircle.createCircleText(200 * 2, Color.Red, graphicsDevice);
+					texture = doubleShotUITexture;
                     break;
 
                 case TowerTypes.Slow:
@@ -137,7 +141,8 @@ namespace UTD_P2
                             currentColor = Color.Red;
                         }
 
-                    texture = slowUITexture;
+					rangeIndicator = DrawCircle.createCircleText(300 * 2, Color.Red, graphicsDevice);
+					texture = slowUITexture;
                     break;
 
                 case TowerTypes.Rocket:
@@ -160,13 +165,15 @@ namespace UTD_P2
                         currentColor = Color.Red;
                     }
 
-                    texture = rocketLauncherUITexture;
+					rangeIndicator = DrawCircle.createCircleText(300 * 2, Color.Red, graphicsDevice);
+					texture = rocketLauncherUITexture;
                     break;
             }
 
             previousKBState = currentKBState;
             buttonX = 960 - texture.Width / 2;
             buttonY = 540 - texture.Height / 2;
+			centerPositionCircle = centerPositionTower - new Vector2(rangeIndicator.Width / 2, rangeIndicator.Height / 2);
             base.Update(gameTime);
         }
 
@@ -211,6 +218,8 @@ namespace UTD_P2
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+			if (rangeIndicator != null)
+				spriteBatch.Draw(rangeIndicator, centerPositionCircle, Color.White);
             base.Draw(spriteBatch);
         }
     }
