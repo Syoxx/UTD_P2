@@ -30,12 +30,13 @@ namespace UTD_P2
 			exploDuration = 1f;
 			timer = 0;
 			done = false;
-			exploColor = Color.Red;
+			exploColor = Color.Yellow;
+
+			if (explosionRadius > 0)
+				exploColor = Color.Red;
 
 			if (canSlow)
 				exploColor = Color.Aquamarine;
-			else
-				exploColor = Color.Red;
 		}
 
 		public void CheckIfInsideExplosion(Enemys enemy)
