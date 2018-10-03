@@ -21,7 +21,7 @@ namespace UTD_P2
             damage = 5;
             damageRadius = 5;
             price = 15;
-            range = 100;
+            range = 200;
             reloadTime = 2;
             position.X = positionX + texture.Width / 2;
             position.Y = positionY + texture.Height / 2;
@@ -34,6 +34,7 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
             player.money -= (int)price;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/slowProj.png", graphicsDevice);
+			projectileSpeed = 20;
             this.player = player;
         }
 
@@ -47,11 +48,11 @@ namespace UTD_P2
             base.Update(gameTime, level);
 
             // If target is hit? -> Do...
-            if(target.SpeedModifier <= speedModifier)
-            {
-                target.SpeedModifier = speedModifier;
-                target.ModifierDuration = modifierDuration;
-            }
+            //if(target.SpeedModifier <= speedModifier)
+            //{
+            //    target.SpeedModifier = speedModifier;
+            //    target.ModifierDuration = modifierDuration;
+            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)

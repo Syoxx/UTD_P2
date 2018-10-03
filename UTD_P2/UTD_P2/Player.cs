@@ -17,7 +17,7 @@ namespace UTD_P2
 
         public Player(GraphicsDevice graphicsDevice)
         {
-			money = 15;
+			money = 30;
 			life = 30;
         }
 

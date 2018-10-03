@@ -11,7 +11,7 @@ namespace UTD_P2
 {
     public class Projectile
     {
-        private float speed, damage, damageRadius, rotationAngle;
+        private float speed, damage, damageRadius, rotationAngle, speedModifier, speedModifierDuration;
 
         private Texture2D texture;
         private Vector2 targetPosition;
@@ -35,6 +35,8 @@ namespace UTD_P2
             this.target = target;
             this.canSlow = canSlow;
             hit = false;
+			speedModifier = 0.5f;
+			speedModifierDuration = 2f;
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
@@ -44,12 +46,16 @@ namespace UTD_P2
             direction.Normalize();
             position += direction * speed;
             rotationAngle = (float)Math.Atan2(direction.Y, direction.X);
-            if (Vector2.Distance(position, target.projTargetPosition) <= 2)
+            if (Vector2.Distance(position, target.projTargetPosition) <= 10)
             {
                 if (damageRadius > 0)
                     InitiateExplosion();
                 target.CurrentHealth -= damage;
-                //target.isSlowed = canSLow;
+				if (canSlow)
+				{
+					target.SpeedModifier = speedModifier;
+					target.ModifierDuration = speedModifierDuration;
+				}
                 hit = true;
             }
         }

@@ -16,7 +16,7 @@ namespace UTD_P2
             damage = 30;
             damageRadius = 10;
             price = 20;
-            range = 100;
+            range = 200;
             reloadTime = 3;
             position.X = positionX + texture.Width / 2;
             position.Y = positionY + texture.Height / 2;
@@ -25,6 +25,7 @@ namespace UTD_P2
             player.money -= (int)price;
             this.player = player;
             projectileTexture = ContentConverter.Convert("Content/Assets/TD/Projectiles/missile.png", graphicsDevice);
+			projectileSpeed = 8;
         }
 
         public override void Fire(Level level)
