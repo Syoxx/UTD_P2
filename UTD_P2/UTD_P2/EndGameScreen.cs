@@ -10,8 +10,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Game over screen class
+    /// </summary>
     public class EndGameScreen
     {
+        #region Variables
+
         Texture2D background;
         Texture2D mainMenuButton;
         Texture2D exitMenuButton;
@@ -20,6 +25,9 @@ namespace UTD_P2
         public bool isActive = false;
         private bool mainMenu = false;
         private bool exitGame = false;
+
+        #endregion
+        
 
         public EndGameScreen(Texture2D background, Texture2D mainMenuButton, Texture2D exitMenuButton)
         {
