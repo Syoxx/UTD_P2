@@ -124,7 +124,7 @@ namespace UTD_P2
                     UpdatePauseMenu(gameTime);
 
 
-            if (playerIsDead)
+            if (playerIsDead && endgame == null)
             {
                 level = null;
                 endgame = new EndGameScreen(endGameBackground, mainMenuButton, mainMenuQuitButton);
