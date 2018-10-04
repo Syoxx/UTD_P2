@@ -22,7 +22,7 @@
 |																							                                             |
 |	Simple click on a grey spot you want to place a tower.									                 |
 |	You can switch through the different tower with A & D or Arrow Left & Arrow Right.		   |
-|																							                                             |
+|																							                                             |<br>
 |	NOTE:																					                                           |
 |	If you want to build a tower but the interface is red									                   |
 |	then you simply don't have enough money to build it.									                   |
