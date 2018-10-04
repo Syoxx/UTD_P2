@@ -3,15 +3,15 @@
 #########################################################
 
 /******************************************************************************************\
-|	About:																					                                         |
-|																							                                             |
-|	You got 30 life points. If an enemy reaches the end it will be reduced for 1.			       |
-|	If you kill an enemy you get money. Each enemy gives you a different amount of money.	   |
-|	You can kill enemies with towers you build on building spots marked grey.				         |
-|	There are four different towers which have different stats like price,					         |
-|	damage, reload time, range and one with a slow down modifier.							               |
-|																							                                             |
-|	Every level has 10 waves where every wave changes the enemy life, speed and reward.		   |
+|	About:																					                                         |<br>
+|																							                                             |<br>
+|	You got 30 life points. If an enemy reaches the end it will be reduced for 1.			       |<br>
+|	If you kill an enemy you get money. Each enemy gives you a different amount of money.	   |<br>
+|	You can kill enemies with towers you build on building spots marked grey.				         |<br>
+|	There are four different towers which have different stats like price,					         |<br>
+|	damage, reload time, range and one with a slow down modifier.							               |<br>
+|																							                                             |<br>
+|	Every level has 10 waves where every wave changes the enemy life, speed and reward.		   |<br>
 |																							                                             |
 |	Can u handle all waves and safe your base?												                       |
 |	Good Luck!																				                                       |
