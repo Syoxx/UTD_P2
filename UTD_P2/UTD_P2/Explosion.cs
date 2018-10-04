@@ -13,11 +13,11 @@ namespace UTD_P2
 	{
 		private Vector2 pos, drawPos;
 		private Texture2D texture;
-		private float damage, timer, exploDuration, speedModifier, speedModifierDuration, explosionRadius;
+		private float damage, timer, exploDuration, speedModifier, speedModifierDuration;
 		private Color exploColor;
-		public bool done, canSlow;
+		public bool done, canSlow, hasSplash;
 
-		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration, float explosionRadius)
+		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration, bool hasSplash)
 		{
 			this.pos = pos;
 			this.drawPos = drawPos;
@@ -26,13 +26,14 @@ namespace UTD_P2
 			this.canSlow = canSlow;
 			this.speedModifier = speedModifier;
 			this.speedModifierDuration = speedModifierDuration;
-			this.explosionRadius = explosionRadius;
-			exploDuration = 1f;
+            this.hasSplash = hasSplash;
+
+            exploDuration = 1f;
 			timer = 0;
 			done = false;
 			exploColor = Color.Yellow;
 
-			if (explosionRadius > 0)
+			if (hasSplash)
 				exploColor = Color.Red;
 
 			if (canSlow)
@@ -41,12 +42,12 @@ namespace UTD_P2
 
 		public void CheckIfInsideExplosion(Enemys enemy)
 		{
-			if (explosionRadius > 0)
+			if (hasSplash)
 			{
 				if (enemy.Position.X < pos.X + texture.Width &&
-						enemy.Position.X > pos.X &&
+						enemy.Position.X > pos.X - texture.Height &&
 						enemy.Position.Y < pos.Y + texture.Height &&
-						enemy.Position.Y > pos.Y)
+						enemy.Position.Y > pos.Y - texture.Height)
 				{
 					enemy.CurrentHealth -= damage;
 
@@ -66,8 +67,14 @@ namespace UTD_P2
 				done = true;
 		}
 
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
 		{
+            //Texture2D testTexture = new Texture2D(graphicsDevice, (int)texture.Width * 2, (int)texture.Height * 2);
+            //Color[] testColor = new Color[((int)texture.Width * 2) * ((int)texture.Height * 2)];
+            //for (int i = 0; i < testColor.Length; i++)
+            //    testColor[i] = Color.Red;
+            //testTexture.SetData(testColor);
+            //spriteBatch.Draw(testTexture, pos - new Vector2(texture.Width, texture.Height), Color.Red);
 			spriteBatch.Draw(texture, drawPos, exploColor);
 		}
 	}

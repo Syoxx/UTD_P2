@@ -108,6 +108,7 @@ namespace UTD_P2
         EnemyController enemyController;
         InRangeCheck inRangeCheck;
 		Game1 game1;
+        GraphicsDevice graphicsDevice;
 
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
@@ -123,6 +124,7 @@ namespace UTD_P2
         public Level(MapState mState, GraphicsDevice graphicsDevice, Game1 game1)
         {
 			this.game1 = game1;
+            this.graphicsDevice = graphicsDevice;
             // Create a list which contains the textures to load as map.
             tileTextures = new List<Texture2D>();
 
@@ -768,7 +770,7 @@ namespace UTD_P2
 			foreach (Explosion explo in explosionList)
 			{
 				if (explo != null)
-					explo.Draw(batch);
+					explo.Draw(batch, graphicsDevice);
 			}
 
             ui.Draw(batch);

@@ -19,7 +19,7 @@ namespace UTD_P2
         public SlowTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 5;
-            damageRadius = 5;
+            hasSplash = true;
             price = 15;
             range = 300;
             reloadTime = 2;
