@@ -14,7 +14,7 @@ namespace UTD_P2
         public RocketLauncherTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 30;
-            damageRadius = 10;
+            hasSplash = true;
             price = 20;
             range = 300;
             reloadTime = 3;

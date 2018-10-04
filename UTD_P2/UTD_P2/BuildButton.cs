@@ -56,7 +56,7 @@ namespace UTD_P2
 
         private void Upgrade()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void OnButtonClickMenu(MainMenu mainMenu)

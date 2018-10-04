@@ -13,10 +13,10 @@ namespace UTD_P2
 	public abstract class Towers
 	{
         private Vector2 projSpawnPosition;
-        protected float damage, damageRadius, price, reloadTime, timer, projectileSpeed, rotationAngle;
+        protected float damage, price, reloadTime, timer, projectileSpeed, rotationAngle;
 		public float range;
 
-		protected bool readyToFire, canSlow = false;
+		protected bool readyToFire, canSlow, hasSplash = false;
 
 		public Vector2 position, rotationCenter;
         protected Vector2 direction;
@@ -49,7 +49,7 @@ namespace UTD_P2
 			if (target.CurrentHealth > 0)
 			{
 				timer = 0;
-				proj = new Projectile(projectileTexture, explosionTexture, projectileSpeed, damage, damageRadius, position, target, canSlow, level);
+				proj = new Projectile(projectileTexture, explosionTexture, projectileSpeed, damage, hasSplash, position, target, canSlow, level);
                 level.AddProjectile(proj);
                 readyToFire = false;
 			}
