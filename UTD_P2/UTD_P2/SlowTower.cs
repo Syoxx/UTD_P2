@@ -47,13 +47,6 @@ namespace UTD_P2
         public override void Update(GameTime gameTime, Level level)
         {
             base.Update(gameTime, level);
-
-            // If target is hit? -> Do...
-            //if(target.SpeedModifier <= speedModifier)
-            //{
-            //    target.SpeedModifier = speedModifier;
-            //    target.ModifierDuration = modifierDuration;
-            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)

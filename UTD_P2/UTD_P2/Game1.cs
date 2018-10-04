@@ -22,17 +22,18 @@ namespace UTD_P2
         private Texture2D mainMenuBackground;
         private Texture2D mainMenuStartButton;
         private Texture2D mainMenuQuitButton;
+        private Texture2D mainMenuButton;
+        private Texture2D endGameBackground;
         private MainMenu mainMenu;
         private PauseMenu pauseMenu;
         public bool gamePaused;
         private KeyboardState currentState, oldState;
-        
-        bool isLevelActive = false;
 
         private Level level;
 
-        private Enemys enemy1;
-        
+        private EndGameScreen endgame;
+
+        public bool playerIsDead;
 
 
 
@@ -46,6 +47,7 @@ namespace UTD_P2
 
             this.IsMouseVisible = true;
             Content.RootDirectory = "Content";
+            playerIsDead = false;
 		}
 
 		/// <summary>
@@ -56,8 +58,6 @@ namespace UTD_P2
 		/// </summary>
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
-
 			base.Initialize();
 		}
 
@@ -73,6 +73,9 @@ namespace UTD_P2
             mainMenuBackground = ContentConverter.Convert("Content/Assets/Menu/Background.jpg", GraphicsDevice);
             mainMenuStartButton = ContentConverter.Convert("Content/Assets/Menu/PlayButton.png", GraphicsDevice);
             mainMenuQuitButton = ContentConverter.Convert("Content/Assets/Menu/QuitButton.png", GraphicsDevice);
+
+            mainMenuButton = ContentConverter.Convert("Content/Assets/Menu/MainMenuButton.png", GraphicsDevice);
+            endGameBackground = ContentConverter.Convert("Content/Assets/Menu/EndGameBackground.png", GraphicsDevice);
 
             mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
         }
@@ -108,19 +111,36 @@ namespace UTD_P2
             {
                 if (!gamePaused && level.isActive)
                     UpdateLevel(gameTime);
-
             }
-                if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
+
+            if (endgame != null)
+            {
+                if (endgame.isActive)
+                {
+                    endgame.Update(gameTime, this);
+                }
+            }
+
+            if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && !gamePaused && level.isActive)
                     gamePaused = true;
 
-                else if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
+            else if (InputManager.CheckInputKeyboard(oldState, currentState, Keys.Escape) && gamePaused && level.isActive)
                     gamePaused = false;
 
-                if (gamePaused)
+            if (gamePaused)
                     UpdatePauseMenu(gameTime);
 
+
+            if (playerIsDead)
+            {
+                level = null;
+                endgame = new EndGameScreen(endGameBackground, mainMenuButton, mainMenuQuitButton);
+                endgame.isActive = true;
+            }
+
             oldState = currentState;
-			base.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         private void UpdatePauseMenu(GameTime gameTime)
@@ -172,15 +192,34 @@ namespace UTD_P2
             {
                 level = new Level(Level.MapState.map3, GraphicsDevice, this);
             }
+            else if(i > 3)
+            {
+                level = null;
+                endgame = new EndGameScreen(endGameBackground, mainMenuButton, mainMenuQuitButton);
+                endgame.isActive = true;
+            }
         }
 
         public void SetMainMenuActive(bool isActive)
         {
             if (isActive)
             {
-                level.isActive = false;
-                level = null;
-                gamePaused = false;
+                if(level != null)
+                {
+                    level.isActive = false;
+                    level = null;
+                    gamePaused = false;
+                }
+                if(endgame != null)
+                {
+                    endgame.isActive = false;
+                    endgame = null;
+                    playerIsDead = false;
+                }
+                if(mainMenu == null)
+                {
+                    mainMenu = new MainMenu(mainMenuBackground, mainMenuStartButton, mainMenuQuitButton);
+                }
                 mainMenu.isActive = true;
             }
         }
@@ -212,6 +251,14 @@ namespace UTD_P2
 
                 if (gamePaused)
                     pauseMenu.Draw(spriteBatch);
+            }
+
+            if(endgame != null)
+            {
+                if (endgame.isActive)
+                {
+                    endgame.Draw(spriteBatch);
+                }
             }
 
             spriteBatch.End();

@@ -15,6 +15,8 @@ namespace UTD_P2
     {
         #region Variables
 
+        #region Texture2D of tiles
+
         Texture2D
             background1, lvlWay1, lvlTile2, lvlTile3, lvlTile4, lvlTile5, lvlTile6, lvlTile7, lvlTile8, lvlTile9,
             background2, lvlWay2, lvlTile12, lvlTile13, lvlTile14, lvlTile15, lvlTile16, lvlTile17, lvlTile18, lvlTile19,
@@ -24,8 +26,10 @@ namespace UTD_P2
             uiLine,
             buildButtonTexture;
 
+        #endregion
+
         #region TilesToPath
-        
+
         // Level 1
         private string pathToLvl1Background = "Content/Assets/Level1/tileBackground.png";
         private string pathToLvl1Way = "Content/Assets/Level1/tileEnemyWay.png";
@@ -104,6 +108,7 @@ namespace UTD_P2
         EnemyController enemyController;
         InRangeCheck inRangeCheck;
 		Game1 game1;
+
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
@@ -244,6 +249,7 @@ namespace UTD_P2
 
             this.mState = mState;
             
+            // Which map to use
             switch (mState)
             {
                 case MapState.map1:
@@ -266,7 +272,7 @@ namespace UTD_P2
             }
 
 
-            #region Enemy
+            #region EnemyWaypoints
 
             if (mState == MapState.map1)
             {
@@ -298,9 +304,6 @@ namespace UTD_P2
                 waypoints.Enqueue(new Vector2(21, 14) * 64);
                 waypoints.Enqueue(new Vector2(28, 14) * 64);
             }
-
-            // Load enemy 
-            //LoadEnemy(graphicsDevice);
 
             enemyController = new EnemyController(15, 10, this, graphicsDevice, player, game1);
 
@@ -659,6 +662,7 @@ namespace UTD_P2
         #endregion
 
 
+        
         public void Update(GameTime gameTime)
         {   
             currentKBState = Keyboard.GetState();
@@ -719,6 +723,11 @@ namespace UTD_P2
                 enemyController.InitiateSpawn = true;
 
             oldKBState = currentKBState;
+
+            if(player.life <= 0)
+            {
+                game1.playerIsDead = true;
+            }
         }
 
         /// <param name="batch"></param>

@@ -48,12 +48,6 @@ namespace UTD_P2
         {
             get { return bountyGiven; }
         }
-        
-        // Check whether enemy has reached it's next waypoint
-        //public float DistanceToDestination
-        //{
-        //    get { return Vector2.Distance(position, waypoints.Peek()); }
-        //}
 
 
         /// <summary>

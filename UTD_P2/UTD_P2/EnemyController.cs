@@ -14,13 +14,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace UTD_P2
 {
-    /// <summary>
-    /// EnemyController checkt in der Update wenn das Leben der Enemys <=0 ist, wenn ja -> Destroy (null setzen) und dem Player Coins gutschreiben
-    /// Timer wird gestartet wenn Enemys <= 0 ist.
-    /// Wenn Timer = 0, Enemys nach Anzahl spawnen.
-    /// 
-    /// EnemyWaypoints nach Map (Lvl) -> switch abfrage nach lvl string
-    /// </summary>
     class EnemyController
     {
         private float timerWaves, timerEnemys, startFirstWave, timerAfterFirstWave, enemySpeed, enemySpawnTime;
@@ -105,34 +98,83 @@ namespace UTD_P2
             stopTimer = true;
             initiateSpawn = false;
             spawnNewEnemys = true;
-            if (countWaves <= 4 && countWaves > 1)
+
+            switch (countWaves)
             {
-                enemyTexture = enemy2;
-                enemyBounty = 2;
-                enemySpeed = 3;
-                enemyLife = 15;
+                case 1:
+                    enemyBounty = 1;
+                    enemySpeed = 2;
+                    enemyTexture = enemy1;
+                    enemyLife = 10;
+                    break;
+                case 2:
+                    enemyBounty = 2;
+                    enemySpeed = 3;
+                    enemyTexture = enemy2;
+                    enemyLife = 15;
+                    break;
+                case 3:
+                    enemyBounty = 2;
+                    enemySpeed = 3;
+                    enemyTexture = enemy2;
+                    enemyLife = 20;
+                    break;
+                case 4:
+                    enemyBounty = 2;
+                    enemySpeed = 3;
+                    enemyTexture = enemy2;
+                    enemyLife = 25;
+                    break;
+                case 5:
+                    enemyBounty = 3;
+                    enemySpeed = 5;
+                    enemyTexture = enemy3;
+                    enemyLife = 35;
+                    break;
+                case 6:
+                    enemyBounty = 3;
+                    enemySpeed = 4;
+                    enemyTexture = enemy3;
+                    enemyLife = 40;
+                    break;
+                case 7:
+                    enemyBounty = 3;
+                    enemySpeed = 4;
+                    enemyTexture = enemy3;
+                    enemyLife = 45;
+                    break;
+                case 8:
+                    enemyBounty = 4;
+                    enemySpeed = 4;
+                    enemyTexture = enemy4;
+                    enemyLife = 55;
+                    break;
+                case 9:
+                    enemyBounty = 4;
+                    enemySpeed = 4;
+                    enemyTexture = enemy4;
+                    enemyLife = 60;
+                    break;
+                case 10:
+                    enemyBounty = 4;
+                    enemySpeed = 5;
+                    enemyTexture = enemy4;
+                    enemyLife = 65;
+                    break;
+
             }
-            if (countWaves <= 7 && countWaves > 4)
-            {
-                enemyBounty = 3;
-                enemySpeed = 4;
-                enemyTexture = enemy3;
-                enemyLife = 20;
-            }
-            if (countWaves >= 8)
-            {
-                enemyBounty = 4;
-                enemySpeed = 6;
-                enemyTexture = enemy4;
-                enemyLife = 30;
-            }
+
+
             countWaves++;
 
             // Level switch
             if (countWaves > nrOfWaves)
             {
                 mapChangeIndicator++;
-                game1.LoadLevel(mapChangeIndicator);
+                if(mapChangeIndicator <= 3)
+                {
+                    game1.LoadLevel(mapChangeIndicator);
+                }
             }
         }
 

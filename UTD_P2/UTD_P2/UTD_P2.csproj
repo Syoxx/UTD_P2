@@ -44,6 +44,7 @@
     <Compile Include="BuildButton.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="DrawCircle.cs" />
+    <Compile Include="EndGameScreen.cs" />
     <Compile Include="EnemyController.cs" />
     <Compile Include="ContentConverter.cs" />
     <Compile Include="DoubleShotTower.cs" />
@@ -198,6 +199,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\Menu\ContinueButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Assets\Menu\EndGameBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Assets\Menu\MainMenuButton.png">
