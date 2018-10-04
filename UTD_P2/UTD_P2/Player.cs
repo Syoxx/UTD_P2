@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+/// <summary>
+/// Stores the Players Life and Money
+/// </summary>
 namespace UTD_P2
 {
     public class Player

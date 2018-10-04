@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Implementation of the buttons used in the Main Menu, Pause Menu and Game Over Screen
+    /// </summary>
     class MenuButton : Button
     {
         public MenuButton(string name, Texture2D texture, int buttonX, int buttonY)
@@ -34,6 +37,10 @@ namespace UTD_P2
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Implementation of the Main Menu buttons
+        /// </summary>
+        /// <param name="mainMenu"></param>
         protected override void OnButtonClickMenu(MainMenu mainMenu)
         {
             switch (name)
@@ -47,6 +54,10 @@ namespace UTD_P2
             }
         }
 
+        /// <summary>
+        /// implementation of the Pause Menu and GameOver Buttons
+        /// </summary>
+        /// <param name="game"></param>
         protected override void OnButtonClickMenu(Game1 game)
         {
             switch (name)

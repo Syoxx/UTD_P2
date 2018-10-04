@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Main Menu Class
+    /// </summary>
 	public class MainMenu
 	{
 		Texture2D background;
@@ -40,6 +43,11 @@ namespace UTD_P2
             exitGame = true;
         }
 
+        /// <summary>
+        /// starts the game after Start button is presse and quits after quit button ist pressed
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="game"></param>
         public void Update(GameTime gameTime, Game1 game)
         {
             if (startGame)

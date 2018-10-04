@@ -17,6 +17,18 @@ namespace UTD_P2
 		private Color exploColor;
 		public bool done, canSlow, hasSplash;
 
+        /// <summary>
+        /// Used to Draw the Sprites of the Explosion and Hits. Damages and Slows Enemys caught in the Explosion if a Tower has
+        /// Splash Damage or Slow
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="drawPos"></param>
+        /// <param name="texture"></param>
+        /// <param name="damage"></param>
+        /// <param name="canSlow"></param>
+        /// <param name="speedModifier"></param>
+        /// <param name="speedModifierDuration"></param>
+        /// <param name="hasSplash"></param>
 		public Explosion(Vector2 pos, Vector2 drawPos, Texture2D texture, float damage, bool canSlow, float speedModifier, float speedModifierDuration, bool hasSplash)
 		{
 			this.pos = pos;
@@ -28,7 +40,7 @@ namespace UTD_P2
 			this.speedModifierDuration = speedModifierDuration;
             this.hasSplash = hasSplash;
 
-            exploDuration = 1f;
+            exploDuration = .5f;
 			timer = 0;
 			done = false;
 			exploColor = Color.Yellow;
@@ -40,6 +52,10 @@ namespace UTD_P2
 				exploColor = Color.Aquamarine;
 		}
 
+        /// <summary>
+        /// Checks if an Enemy is insider an Explosion
+        /// </summary>
+        /// <param name="enemy"></param>
 		public void CheckIfInsideExplosion(Enemys enemy)
 		{
 			if (hasSplash)
@@ -69,12 +85,6 @@ namespace UTD_P2
 
 		public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
 		{
-            //Texture2D testTexture = new Texture2D(graphicsDevice, (int)texture.Width * 2, (int)texture.Height * 2);
-            //Color[] testColor = new Color[((int)texture.Width * 2) * ((int)texture.Height * 2)];
-            //for (int i = 0; i < testColor.Length; i++)
-            //    testColor[i] = Color.Red;
-            //testTexture.SetData(testColor);
-            //spriteBatch.Draw(testTexture, pos - new Vector2(texture.Width, texture.Height), Color.Red);
 			spriteBatch.Draw(texture, drawPos, exploColor);
 		}
 	}

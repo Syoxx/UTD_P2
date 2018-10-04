@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Parent Class for different Buttons, with different Update Methods
+    /// </summary>
     public abstract class Button
     {
         protected int buttonX, buttonY;
@@ -34,9 +37,10 @@ namespace UTD_P2
             }
         }
 
-        /**
-         * @return true: If a player enters the button with mouse
-         */
+        /// <summary>
+        /// Checks if the Mouse Cursor is on the Button. Changes its display Color to grey and returns true if Mouse is over the button 
+        /// </summary>
+        /// <returns></returns>
         public bool EnterButton()
         {
             if (mouseState.X < buttonX + texture.Width &&

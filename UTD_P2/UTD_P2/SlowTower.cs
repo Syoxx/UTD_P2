@@ -16,6 +16,14 @@ namespace UTD_P2
         // Defines how long this effect will last.
         private float modifierDuration;
 
+        /// <summary>
+        /// Constructs a Slow Tower end sets all needed values
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="positionX"></param>
+        /// <param name="positionY"></param>
+        /// <param name="player"></param>
+        /// <param name="graphicsDevice"></param>
         public SlowTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 5;

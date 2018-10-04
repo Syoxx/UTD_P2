@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Class that handles the Pause Menu
+    /// </summary>
     class PauseMenu
     {
         private Game1 game;
@@ -17,6 +20,11 @@ namespace UTD_P2
         private Rectangle overlayDimensions;
         private MenuButton resumeButton, mainMenuButton, quitButton;
 
+        /// <summary>
+        /// Constructor that creates all the needed Sprites and Buttons
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="graphicsDevice"></param>
         public PauseMenu(Game1 game, GraphicsDevice graphicsDevice)
         {
             this.game = game;

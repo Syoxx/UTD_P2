@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Implements the Button for the Build dialogue
+    /// </summary>
     public class UIButton : Button
     {
         BuildButton buildButton;
@@ -61,6 +64,9 @@ namespace UTD_P2
             //texture = singleShotTexture;
         }
 
+        /// <summary>
+        /// defines all Tower types
+        /// </summary>
         private enum TowerTypes
         {
             Single,
@@ -69,6 +75,10 @@ namespace UTD_P2
             Rocket
         }
 
+        /// <summary>
+        /// sets the Texture that should be displayed according to the Tower Type, handles Keyboard input to change the displayed Tower
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             currentKBState = Keyboard.GetState();
@@ -177,6 +187,9 @@ namespace UTD_P2
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// If clicked, creates an object of the ordered Tower
+        /// </summary>
         protected override void OnButtonClick()
         {
             if (affordable)

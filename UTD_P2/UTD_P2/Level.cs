@@ -102,7 +102,7 @@ namespace UTD_P2
         MapState mState;
 
         int[,] mapToUse;
-
+        private int mapInUse;
         Enemys enemy1;
         Texture2D enemy1Texture;
         EnemyController enemyController;
@@ -256,16 +256,19 @@ namespace UTD_P2
             {
                 case MapState.map1:
                     mapToUse = map1;
+                    mapInUse = 1;
                     buildButtonsToUse1(graphicsDevice);
                     break;
 
                 case MapState.map2:
                     mapToUse = map2;
+                    mapInUse = 2;
                     buildButtonsToUse2(graphicsDevice);
                     break;
 
                 case MapState.map3:
                     mapToUse = map3;
+                    mapInUse = 3;
                     buildButtonsToUse3(graphicsDevice);
                     break;
 
@@ -307,7 +310,7 @@ namespace UTD_P2
                 waypoints.Enqueue(new Vector2(28, 14) * 64);
             }
 
-            enemyController = new EnemyController(15, 10, this, graphicsDevice, player, game1);
+            enemyController = new EnemyController(15, 10, this, graphicsDevice, player, game1, mapInUse);
 
             #endregion
         }

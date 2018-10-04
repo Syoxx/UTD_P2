@@ -26,6 +26,18 @@ namespace UTD_P2
 
         private bool canSlow, hasSplash;
 
+        /// <summary>
+        /// Projectile is created after a Tower shot
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="explosionTexture"></param>
+        /// <param name="speed"></param>
+        /// <param name="damage"></param>
+        /// <param name="hasSplash"></param>
+        /// <param name="position"></param>
+        /// <param name="target"></param>
+        /// <param name="canSlow"></param>
+        /// <param name="level"></param>
         public Projectile(Texture2D texture, Texture2D explosionTexture, float speed, float damage, bool hasSplash, Vector2 position, Enemys target, bool canSlow, Level level)
         {
             this.texture = texture;
@@ -43,6 +55,10 @@ namespace UTD_P2
             rotationCenter = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
+        /// <summary>
+        /// Calculates the direction of the projectile and updates its position with it. Also checks for Collision with the target
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             direction = target.projTargetPosition - position;
@@ -63,6 +79,9 @@ namespace UTD_P2
             }
         }
 
+        /// <summary>
+        /// creates a Explosion Object after Collision with the Enemy
+        /// </summary>
         private void InitiateExplosion()
         {
 			drawPositionExplo = position - new Vector2(explosionTexture.Width / 2, explosionTexture.Height / 2);

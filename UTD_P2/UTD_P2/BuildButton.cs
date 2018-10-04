@@ -24,6 +24,16 @@ namespace UTD_P2
             set { texture = value; }
         }
 
+        /// <summary>
+        /// Button used for displaying where you can Build and Opens a Build dialogue in click
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="texture"></param>
+        /// <param name="buttonX"></param>
+        /// <param name="buttonY"></param>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="player"></param>
+        /// <param name="level"></param>
         public BuildButton(string name, Texture2D texture, int buttonX, int buttonY, GraphicsDevice graphicsDevice, Player player, Level level)
         {
             this.name = name;
@@ -41,6 +51,9 @@ namespace UTD_P2
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Creates the Building Dialogue
+        /// </summary>
         protected override void OnButtonClick()
         {
             if (allowBuilding)

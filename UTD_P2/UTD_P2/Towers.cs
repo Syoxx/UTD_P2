@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Tower Base Class, defines all basic Tower behaviour
+    /// </summary>
 	public abstract class Towers
 	{
         private Vector2 projSpawnPosition;
@@ -44,6 +47,10 @@ namespace UTD_P2
 			}
 		}
 
+        /// <summary>
+        /// Called when ready to fire and has a target. Creates Projectiles and resets reload timer
+        /// </summary>
+        /// <param name="level"></param>
 		public virtual void Fire(Level level)
 		{
 			if (target.CurrentHealth > 0)
@@ -55,6 +62,11 @@ namespace UTD_P2
 			}
 		}
 
+        /// <summary>
+        /// Checks if target is out of range, handles reload timer, rotates tower towards target and calls Fire function
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="level"></param>
 		public virtual void Update(GameTime gameTime, Level level)
 		{
             if (target != null)

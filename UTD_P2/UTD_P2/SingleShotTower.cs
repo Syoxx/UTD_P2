@@ -11,6 +11,14 @@ namespace UTD_P2
 {
     class SingleShotTower : Towers
     {
+        /// <summary>
+        /// Constructs a Singleshot Tower end sets all needed values
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="positionX"></param>
+        /// <param name="positionY"></param>
+        /// <param name="player"></param>
+        /// <param name="graphicsDevice"></param>
         public SingleShotTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 10;

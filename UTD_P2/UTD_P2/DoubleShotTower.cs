@@ -11,6 +11,14 @@ namespace UTD_P2
 {
     class DoubleShotTower : Towers
     {
+        /// <summary>
+        /// Constructs a Doubleshot Tower end sets all needed values
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="positionX"></param>
+        /// <param name="positionY"></param>
+        /// <param name="player"></param>
+        /// <param name="graphicsDevice"></param>
         public DoubleShotTower(Texture2D texture, float positionX, float positionY, Player player, GraphicsDevice graphicsDevice)
         {
             damage = 15;

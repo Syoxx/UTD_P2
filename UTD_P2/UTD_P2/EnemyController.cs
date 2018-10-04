@@ -14,6 +14,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Used to spawn Enemys and handles timers for enemy spawning and wave initiation
+    /// </summary>
     class EnemyController
     {
         private float timerWaves, timerEnemys, startFirstWave, timerAfterFirstWave, enemySpeed, enemySpawnTime;
@@ -33,7 +36,7 @@ namespace UTD_P2
 
         // Level switch
         Game1 game1;
-        private int mapChangeIndicator = 1;
+        private int mapChangeIndicator;
 
         string contentPath = "Content/Assets/Enemys/";
         private bool doneSpawning;
@@ -44,7 +47,17 @@ namespace UTD_P2
             set { initiateSpawn = value; }
         }
 
-        public EnemyController(int nrToSpawn, int nrOfWaves, Level level, GraphicsDevice graphicsDevice, Player player, Game1 game1)
+        /// <summary>
+        /// Constructs the Enemy controller with the appropriate values
+        /// </summary>
+        /// <param name="nrToSpawn"></param>
+        /// <param name="nrOfWaves"></param>
+        /// <param name="level"></param>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="player"></param>
+        /// <param name="game1"></param>
+        /// <param name="mapInUse"></param>
+        public EnemyController(int nrToSpawn, int nrOfWaves, Level level, GraphicsDevice graphicsDevice, Player player, Game1 game1, int mapInUse)
         {
             this.nrOfWaves = nrOfWaves;
             this.nrToSpawn = nrToSpawn;
@@ -71,14 +84,17 @@ namespace UTD_P2
             enemy4 = ContentConverter.Convert(contentPath + "enemy4.png", graphicsDevice);
             enemyTexture = enemy1;
             spawnPosition = level.Waypoints.ElementAt<Vector2>(0);
+            mapChangeIndicator = mapInUse;
         }
 
+        /// <summary>
+        /// Updates Timers and initiates Waves and Enemys
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             if (!stopTimer)
                 timerWaves = timerWaves + (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            Console.WriteLine(timerWaves);
 
             timerEnemys += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -90,9 +106,11 @@ namespace UTD_P2
 
             if (timerEnemys >= enemySpawnTime && countEnemys <= nrToSpawn && spawnNewEnemys)
                 SpawnEnemy(enemyTexture);
-            
         }
 
+        /// <summary>
+        /// Initiates a Wave and sets the values for the Enemys
+        /// </summary>
         private void SpawnWave()
         {
             stopTimer = true;
@@ -167,17 +185,17 @@ namespace UTD_P2
 
             countWaves++;
 
-            // Level switch
+            //loads next level after last wave
             if (countWaves > nrOfWaves)
             {
                 mapChangeIndicator++;
-                if(mapChangeIndicator <= 3)
-                {
-                    game1.LoadLevel(mapChangeIndicator);
-                }
+                game1.LoadLevel(mapChangeIndicator);
             }
         }
 
+        /// <summary>
+        /// Initiates the first Wave
+        /// </summary>
         private void SpawnFirstWave()
         {
             initiateSpawn = false;
@@ -187,6 +205,10 @@ namespace UTD_P2
             countWaves++;
         }
 
+        /// <summary>
+        /// Spawns enemys until the desired number of enemys is spawned
+        /// </summary>
+        /// <param name="texture"></param>
         private void SpawnEnemy(Texture2D texture)
         {
             Enemys enemy = new Enemys(player, texture, spawnPosition, enemyLife, enemyBounty, enemySpeed, graphicsDevice);

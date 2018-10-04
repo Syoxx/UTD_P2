@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
+    /// <summary>
+    /// Used to Display Life and Money
+    /// </summary>
     class UserInterface
     {
         private Texture2D number0, number1, number2, number3, number4, number5, number6, number7, number8, number9, currencySymbol,
@@ -61,6 +64,10 @@ namespace UTD_P2
             CalcTensLive(life);
         }
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Life, Zehner Stelle
+        /// </summary>
+        /// <param name="life"></param>
         private void CalcTensLive(int life)
         {
             if (life >= 30)
@@ -88,6 +95,10 @@ namespace UTD_P2
             }
         }
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Life, Einser Stelle
+        /// </summary>
+        /// <param name="life"></param>
         private void CalcOnesLive(int life)
         {
             switch (life)
@@ -125,6 +136,10 @@ namespace UTD_P2
             }
         }
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Money
+        /// </summary>
+        /// <param name="curMoney"></param>
         private void CalcMoney(int curMoney)
 		{
 			if (curMoney < 10)
@@ -152,6 +167,10 @@ namespace UTD_P2
 			}
 		}
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Money, hunderter Stelle
+        /// </summary>
+        /// <param name="curMoney"></param>
 		private void CalcHundreds(int curMoney)
 		{
 			if (curMoney >= 900)
@@ -215,6 +234,10 @@ namespace UTD_P2
 			}
 		}
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Money, zehner Stelle
+        /// </summary>
+        /// <param name="curMoney"></param>
 		private void CalcTens(int curMoney)
 		{
 			if (curMoney >= 90)
@@ -278,6 +301,10 @@ namespace UTD_P2
 			}
 		}
 
+        /// <summary>
+        /// Calculates which Texture to Display based on the current Money, einser Stelle
+        /// </summary>
+        /// <param name="curMoney"></param>
 		private void CalcOnes(int curMoney)
 		{
 			switch (curMoney)
