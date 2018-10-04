@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace UTD_P2
 {
@@ -75,7 +67,7 @@ namespace UTD_P2
             countEnemys = 0;
             enemyBounty = 1;
             enemySpeed = 2;
-            enemyLife = 10;
+            enemyLife = 15;
             enemySpawnTime = 1f;
             timerEnemys = 1;
             enemy1 = ContentConverter.Convert(contentPath + "enemy1.png", graphicsDevice);
@@ -123,61 +115,61 @@ namespace UTD_P2
                     enemyBounty = 1;
                     enemySpeed = 2;
                     enemyTexture = enemy1;
-                    enemyLife = 10;
+                    enemyLife = 15;
                     break;
                 case 2:
                     enemyBounty = 2;
                     enemySpeed = 3;
                     enemyTexture = enemy2;
-                    enemyLife = 15;
+                    enemyLife = 20;
                     break;
                 case 3:
                     enemyBounty = 2;
                     enemySpeed = 3;
                     enemyTexture = enemy2;
-                    enemyLife = 20;
+                    enemyLife = 31;
                     break;
                 case 4:
                     enemyBounty = 2;
                     enemySpeed = 3;
                     enemyTexture = enemy2;
-                    enemyLife = 25;
+                    enemyLife = 36;
                     break;
                 case 5:
                     enemyBounty = 3;
                     enemySpeed = 5;
                     enemyTexture = enemy3;
-                    enemyLife = 35;
+                    enemyLife = 66;
                     break;
                 case 6:
                     enemyBounty = 3;
                     enemySpeed = 4;
                     enemyTexture = enemy3;
-                    enemyLife = 40;
+                    enemyLife = 76;
                     break;
                 case 7:
                     enemyBounty = 3;
                     enemySpeed = 4;
                     enemyTexture = enemy3;
-                    enemyLife = 45;
+                    enemyLife = 86;
                     break;
                 case 8:
                     enemyBounty = 4;
                     enemySpeed = 4;
                     enemyTexture = enemy4;
-                    enemyLife = 55;
+                    enemyLife = 106;
                     break;
                 case 9:
                     enemyBounty = 4;
                     enemySpeed = 4;
                     enemyTexture = enemy4;
-                    enemyLife = 60;
+                    enemyLife = 136;
                     break;
                 case 10:
                     enemyBounty = 4;
                     enemySpeed = 5;
                     enemyTexture = enemy4;
-                    enemyLife = 65;
+                    enemyLife = 155;
                     break;
 
             }

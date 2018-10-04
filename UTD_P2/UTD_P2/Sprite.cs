@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace UTD_P2
 {
     public class Sprite
     {
+        #region Variables
+
         protected Texture2D texture;
 
         protected Vector2 position;
@@ -21,17 +17,28 @@ namespace UTD_P2
 
         protected float rotation;
 
+        #endregion
+
+        #region Properties
+
         public Vector2 Center
         {
             get { return center; }
         }
-        
-        
+
+
         public Vector2 Position
         {
             get { return position; }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Set the position of the sprite to the center.
+        /// </summary>
+        /// <param name="tex"></param>
+        /// <param name="pos"></param>
         public Sprite(Texture2D tex, Vector2 pos)
         {
             texture = tex;

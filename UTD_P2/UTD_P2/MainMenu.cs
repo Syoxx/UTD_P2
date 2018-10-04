@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
     /// <summary>
     /// Main Menu Class
     /// </summary>
-	public class MainMenu
+    public class MainMenu
 	{
 		Texture2D background;
 		Texture2D playMenuButton;

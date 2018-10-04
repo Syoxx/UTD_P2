@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
     /// <summary>
     /// Creates a circle as a texture2D to be drawn
     /// </summary>
-	public static class DrawCircle
+    public static class DrawCircle
 	{
 		public static Texture2D createCircleText(int radius, Color ringColor, GraphicsDevice graphicsDevice)
 		{

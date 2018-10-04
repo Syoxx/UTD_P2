@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace UTD_P2
 {
-	public class Enemys : Sprite
+    public class Enemys : Sprite
 	{
+        #region Variables
+
         private Queue<Vector2> waypoints = new Queue<Vector2>();
 
         public Vector2 projTargetPosition;
@@ -34,6 +32,10 @@ namespace UTD_P2
         protected float rotationAngle;
         private bool executed = false;
         private bool moneyExecuted = false;
+
+        #endregion
+
+        #region Properties
 
         public float CurrentHealth
         {
@@ -72,17 +74,9 @@ namespace UTD_P2
             }
         }
 
+        #endregion
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="texture"></param>
-        /// <param name="position"></param>
-        /// <param name="health"></param>
-        /// <param name="bountyGiven"></param>
-        /// <param name="speed"></param>
-        /// <param name="graphicsDevice"></param>
+
         public Enemys(Player player, Texture2D texture, Vector2 position, float health, int bountyGiven, float speed, GraphicsDevice graphicsDevice) : base(texture, position)
         {
             this.startHealth = health;
@@ -112,13 +106,17 @@ namespace UTD_P2
         {
             base.Update(gameTime);
 
+            // If there are waypoints ...
             if (waypoints.Count > 0)
             {
+                // and if npc distance to waypoint is smaller then speed
                 if (Vector2.Distance(position, waypoints.Peek()) < speed)
                 {
+                    // drop npc on waypoint to not walk over the waypoint. It's just for smoothing if npc reaches a waypoint.
                     position = waypoints.Peek();
                     waypoints.Dequeue();
                 }
+                // walk towards the waypoint.
                 else
                 {
                     Vector2 direction = waypoints.Peek() - position;
@@ -149,23 +147,27 @@ namespace UTD_P2
                     position += velocity;
                 }
             }
+            // If there aren't waypoints left -> NPC is at the end but still have life...
             else
             {
+                // reduce the life of the player and delete NC.
                 ReducePlayerLife();
                 alive = false;
-                //player.life -= 1;
             }
-
+            // If npc's health is 0 -> NPC is death because no more life..
             if (currentHealth <= 0)
             {
+                // Add money to the player and delete NPC.
                 AddMoneyToPlayer();
                 alive = false;
-                //player.money += 5;
             }
 
             projTargetPosition = position + new Vector2(32, 32);
         }
 
+        /// <summary>
+        /// Reduce life of the player with amount of 1.
+        /// </summary>
         private void ReducePlayerLife()
         {
             if (!executed)
@@ -175,6 +177,9 @@ namespace UTD_P2
             }
         }
 
+        /// <summary>
+        /// Add money to the player with the amount of given bounty from enemy.
+        /// </summary>
         private void AddMoneyToPlayer()
         {
             if (!moneyExecuted)
@@ -183,6 +188,7 @@ namespace UTD_P2
                 moneyExecuted = true;
             }
         }
+
 
         public override void Draw(SpriteBatch spriteBatch)
         {

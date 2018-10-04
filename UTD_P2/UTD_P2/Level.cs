@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -248,9 +246,10 @@ namespace UTD_P2
 
             #endregion
 
+            #region Switch for changing the map.
 
             this.mState = mState;
-            
+
             // Which map to use
             switch (mState)
             {
@@ -274,9 +273,10 @@ namespace UTD_P2
 
                 default:
                     throw new Exception(String.Format("Unknown state: {0}", mState));
+
+            #endregion
             }
-
-
+            
             #region EnemyWaypoints
 
             if (mState == MapState.map1)
@@ -734,8 +734,8 @@ namespace UTD_P2
                 game1.playerIsDead = true;
             }
         }
+        
 
-        /// <param name="batch"></param>
         public void Draw(SpriteBatch batch)
         {
             for (int x = 0; x < Width; x++)
